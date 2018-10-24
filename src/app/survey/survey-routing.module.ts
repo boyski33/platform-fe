@@ -4,7 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { SurveyCreationFormComponent } from './creation-form/survey-creation-form.component';
 
 const routes: Routes = [
-  { path: '', component: SurveyCreationFormComponent }
+  { path: 'new', component: SurveyCreationFormComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'new' }
 ];
 
 @NgModule({

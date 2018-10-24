@@ -123,5 +123,10 @@
       }
     }
   },
-  "defaultProject": "platform-fe"
+  "defaultProject": "platform-fe",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

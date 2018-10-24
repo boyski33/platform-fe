@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './survey/home/home.component';
-import { UserHistoryComponent } from './survey/user-history/user-history.component';
+import { HomeComponent } from './common/home/home.component';
+import { UserHistoryComponent } from './user/profile/user-history/user-history.component';
 import { NavigationComponent } from './common/navigation/navigation.component';
+import { NotFoundComponent } from './common/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { NavigationComponent } from './common/navigation/navigation.component';
     HomeComponent,
     UserHistoryComponent,
     NavigationComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

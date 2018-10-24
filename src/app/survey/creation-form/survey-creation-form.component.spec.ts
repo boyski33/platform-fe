@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavigationComponent } from './navigation.component';
+import { SurveyCreationFormComponent } from './survey-creation-form.component';
 
-describe('NavigationComponent', () => {
-  let component: NavigationComponent;
-  let fixture: ComponentFixture<NavigationComponent>;
+describe('SurveyCreationFormComponent', () => {
+  let component: SurveyCreationFormComponent;
+  let fixture: ComponentFixture<SurveyCreationFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavigationComponent ]
+      declarations: [ SurveyCreationFormComponent ]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavigationComponent);
+    fixture = TestBed.createComponent(SurveyCreationFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

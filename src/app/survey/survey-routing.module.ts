@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { SurveyCreationFormComponent } from './creation-form/survey-creation-form.component';
+import { HomeComponent } from './home/home.component';
+import { CreationFormComponent } from './creation-form/creation-form.component';
 
 const routes: Routes = [
-  { path: 'new', component: SurveyCreationFormComponent },
-  { path: '', pathMatch: 'full', redirectTo: 'new' }
+  { path: 'home', component: HomeComponent },
+  { path: 'new', component: CreationFormComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'home' }
 ];
 
 @NgModule({

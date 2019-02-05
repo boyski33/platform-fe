@@ -10,7 +10,7 @@ export class ThumbnailComponent implements OnInit {
 
   @Input() survey: Survey;
   // surveyTitle: string;
-  // surveyDescription: string;
+  surveyDescription: string;
   takenByUser = false;
 
   buttonText = 'Take it!';
@@ -20,6 +20,7 @@ export class ThumbnailComponent implements OnInit {
 
   ngOnInit() {
     this._styleButton();
+    this.surveyDescription = this.survey.description;
   }
 
   private _styleButton() {

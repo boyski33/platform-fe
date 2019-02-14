@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Survey } from '../../model/survey';
-import { TemporaryService } from '../services/temporary.service';
+import { QuestionService } from '../services/question.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'home-page',
   templateUrl: './home.component.html',
   styleUrls: [ './home.component.scss' ]
 })
@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
 
   surveys: Survey[];
 
-  constructor(private _tempService: TemporaryService) {
+  constructor(private _questionService: QuestionService) {
   }
 
   ngOnInit() {
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   }
 
   private _loadSurveys() {
-    this._tempService.getAllSurveys()
+    this._questionService.getAllSurveys()
       .subscribe(data => this.surveys = data);
   }
 

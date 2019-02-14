@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Survey } from '../../../model/survey';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-thumbnail',
+  selector: 'survey-thumbnail',
   templateUrl: './thumbnail.component.html',
-  styleUrls: ['./thumbnail.component.scss']
+  styleUrls: [ './thumbnail.component.scss' ]
 })
 export class ThumbnailComponent implements OnInit {
 
@@ -16,11 +17,16 @@ export class ThumbnailComponent implements OnInit {
   buttonText = 'Take it!';
   disableBtn = false;
 
-  constructor() { }
+  constructor(private _router: Router) {
+  }
 
   ngOnInit() {
     this._styleButton();
     this.surveyDescription = this.survey.description;
+  }
+
+  openSubmissionPage() {
+    this._router.navigate(['survey', this.survey.id]);
   }
 
   private _styleButton() {

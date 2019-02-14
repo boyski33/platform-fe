@@ -1,0 +1,27 @@
+{
+  "surveys": [
+    {
+      "id": 1,
+      "title": "Survey 1",
+      "creatorId": 31,
+      "description": "Cool Survey bro",
+      "dateCreated": "2018/10/1"
+    },
+    {
+      "id": 2,
+      "title": "Survey 2",
+      "creatorId": 17,
+      "dateCreated": "2018/9/7"
+    },
+    {
+      "id": 3,
+      "title": "Survey 3",
+      "creatorId": 17,
+      "dateCreated": "2018/10/15"
+    },
+    {
+      "title": "Survey 123",
+      "id": 4
+    }
+  ]
+}

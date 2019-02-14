@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Survey } from '../../model/survey';
 
 @Component({
-  selector: 'app-thumbnail-list',
+  selector: 'thumbnail-list',
   templateUrl: './thumbnail-list.component.html',
   styleUrls: [ './thumbnail-list.component.scss' ]
 })

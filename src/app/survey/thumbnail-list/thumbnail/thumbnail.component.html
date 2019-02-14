@@ -4,6 +4,6 @@
     <p class="card-text">
       {{survey.description}}
     </p>
-    <button [disabled]="disableBtn" class="btn btn-primary">{{buttonText}}</button>
+    <button [disabled]="disableBtn" class="btn btn-primary" (click)="openSubmissionPage()">{{buttonText}}</button>
   </div>
 </div>

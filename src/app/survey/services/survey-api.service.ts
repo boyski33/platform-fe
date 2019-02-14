@@ -18,4 +18,10 @@ export class SurveyApiService {
 
     return this._http.get<Survey[]>(url);
   }
+
+  getById(id: string) {
+    const url = `${apiUrl}/surveys/${id}`;
+
+    return this._http.get<Survey>(url);
+  }
 }

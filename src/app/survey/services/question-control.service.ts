@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SurveyQuestion } from '../model/survey-question';
+import { Question } from '../model/question';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Injectable({
@@ -9,7 +9,7 @@ export class QuestionControlService {
 
   constructor() {}
 
-  toFormGroup(questions: SurveyQuestion[]) {
+  toFormGroup(questions: Question[]) {
     const group = {};
 
     questions.forEach(q => {

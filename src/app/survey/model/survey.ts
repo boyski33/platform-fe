@@ -1,10 +1,10 @@
 import { User } from '../../model/user';
-import { SurveyQuestion } from './survey-question';
+import { Question } from './question';
 
 export interface Survey {
   id: string;
   title: string;
   description: string;
   creator: User;
-  questionSet: SurveyQuestion[];
+  questionSetId: string;
 }

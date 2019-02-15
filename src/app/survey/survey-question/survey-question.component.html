@@ -3,10 +3,11 @@
 
   <div [ngSwitch]="question.controlType">
 
-    <input *ngSwitchCase="'textbox'" [formControlName]="question.key"
+    <!--https://stackoverflow.com/questions/35835984/how-to-use-a-typescript-enum-value-in-an-angular2-ngswitch-statement-->
+    <input *ngSwitchCase="QuestionType.TEXTBOX" [formControlName]="question.key"
            [id]="question.key" [type]="question.type">
 
-    <select [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key">
+    <select [id]="question.key" *ngSwitchCase="QuestionType.DROPDOWN" [formControlName]="question.key">
       <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
     </select>
 

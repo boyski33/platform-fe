@@ -1,7 +1,8 @@
-import { SurveyQuestion } from './survey-question';
+import { Question } from './question';
+import { QuestionType } from './question-type';
 
-export class DropdownQuestion extends SurveyQuestion {
-  controlType = 'dropdown';
+export class DropdownQuestion extends Question {
+  controlType = QuestionType.DROPDOWN;
   dropdownOptions: {key: string, value: string}[] = [];
 
   constructor(options: any = {}) {

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SurveyQuestion } from '../model/survey-question';
+import { Question } from '../model/question';
 import { FormGroup } from '@angular/forms';
 import { QuestionControlService } from '../services/question-control.service';
 
@@ -10,7 +10,7 @@ import { QuestionControlService } from '../services/question-control.service';
 })
 export class SurveyFormComponent implements OnInit {
 
-  @Input() questions: SurveyQuestion[] = [];
+  @Input() questions: Question[] = [];
   form: FormGroup;
   formValue = '';
 

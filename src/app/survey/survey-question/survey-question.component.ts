@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { SurveyQuestion } from '../model/survey-question';
+import { Question } from '../model/question';
 
 @Component({
   selector: 'survey-question',
@@ -9,7 +9,7 @@ import { SurveyQuestion } from '../model/survey-question';
 })
 export class SurveyQuestionComponent implements OnInit {
 
-  @Input() question: SurveyQuestion;
+  @Input() question: Question;
   @Input() form: FormGroup;
 
   constructor() {

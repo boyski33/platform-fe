@@ -1,7 +1,8 @@
-import { SurveyQuestion } from './survey-question';
+import { Question } from './question';
+import { QuestionType } from './question-type';
 
-export class TextboxQuestion extends SurveyQuestion {
-  controlType = 'textbox';
+export class TextboxQuestion extends Question {
+  controlType = QuestionType.TEXTBOX;
 
   constructor(options: any = {}) {
     super(options);

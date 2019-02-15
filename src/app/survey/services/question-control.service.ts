@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SurveyQuestion } from '../../model/survey-question';
+import { SurveyQuestion } from '../model/survey-question';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Injectable({

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { SurveyQuestion } from '../../model/survey-question';
+import { SurveyQuestion } from '../model/survey-question';
 
 @Component({
   selector: 'survey-question',

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Survey } from '../../../model/survey';
+import { Survey } from '../../model/survey';
 import { Router } from '@angular/router';
 
 @Component({

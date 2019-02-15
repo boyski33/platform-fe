@@ -1,4 +1,4 @@
-import { User } from './user';
+import { User } from '../../model/user';
 import { SurveyQuestion } from './survey-question';
 
 export interface Survey {

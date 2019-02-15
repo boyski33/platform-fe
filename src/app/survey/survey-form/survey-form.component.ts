@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SurveyQuestion } from '../../model/survey-question';
+import { SurveyQuestion } from '../model/survey-question';
 import { FormGroup } from '@angular/forms';
 import { QuestionControlService } from '../services/question-control.service';
 

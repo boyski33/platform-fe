@@ -1,8 +1,7 @@
 import { Question } from './question';
-import { QuestionType } from './question-type';
 
 export class TextboxQuestion extends Question {
-  controlType = QuestionType.TEXTBOX;
+  controlType = 'textbox';
 
   constructor(options: any = {}) {
     super(options);

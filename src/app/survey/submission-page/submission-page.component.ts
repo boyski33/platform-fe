@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionService } from '../services/question.service';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { Question } from '../model/question';
 
 @Component({
   selector: 'submission-page',
@@ -13,6 +14,7 @@ import { switchMap } from 'rxjs/operators';
 export class SubmissionPageComponent implements OnInit {
 
   survey$: Observable<Survey>;
+  questions$: Observable<Question[]>;
 
   constructor(private _route: ActivatedRoute,
               private _router: Router,
@@ -23,6 +25,11 @@ export class SubmissionPageComponent implements OnInit {
     this.survey$ = this._route.paramMap.pipe(
       switchMap(params => this._questionService.getSurvey(params.get('id')))
     );
+
+    this.survey$.subscribe(s => {
+      console.log(s);
+      this.questions$ = this._questionService.getQuestions(s.questionSetId);
+    });
   }
 
 }

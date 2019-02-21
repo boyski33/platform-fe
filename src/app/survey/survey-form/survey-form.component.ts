@@ -3,6 +3,7 @@ import { Question } from '../model/question';
 import { FormGroup } from '@angular/forms';
 import { QuestionControlService } from '../services/question-control.service';
 import { QuestionService } from '../services/question.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'survey-form',
@@ -11,8 +12,7 @@ import { QuestionService } from '../services/question.service';
 })
 export class SurveyFormComponent implements OnInit {
 
-  @Input() questionSetId: string;
-  questions: Question[];
+  @Input() questions: Question[];
   form: FormGroup;
   formValue = '';
 
@@ -20,7 +20,6 @@ export class SurveyFormComponent implements OnInit {
               private _questionService: QuestionService) { }
 
   ngOnInit() {
-    this._questionService.getQuestions(this.questionSetId).subscribe(result => this.questions = result);
     this.form = this._questionControlService.toFormGroup(this.questions);
   }
 

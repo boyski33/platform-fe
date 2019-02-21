@@ -3,5 +3,5 @@
   <p>
     {{survey.description}}
   </p>
-  <survey-form [questionSetId]="survey.questionSetId"></survey-form>
+  <survey-form *ngIf="questions$ | async as questions" [questions]="questions"></survey-form>
 </div>

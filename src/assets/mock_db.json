@@ -1,27 +1,59 @@
 {
   "surveys": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Survey 1",
-      "creatorId": 31,
+      "creatorId": "31",
       "description": "Cool Survey bro",
-      "dateCreated": "2018/10/1"
+      "questionSetId": "1"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Survey 2",
-      "creatorId": 17,
-      "dateCreated": "2018/9/7"
+      "creatorId": "17",
+      "questionSetId": "2"
     },
     {
       "id": 3,
       "title": "Survey 3",
       "creatorId": 17,
       "dateCreated": "2018/10/15"
+    }
+  ],
+  "question-set": [
+    {
+      "id": "1",
+      "questions": [
+        {
+          "value": "value",
+          "key": "key1",
+          "label": "Q1",
+          "order": 1,
+          "controlType": "textbox"
+        },
+        {
+          "value": "asdasd",
+          "key": "adkey2",
+          "label": "Q2",
+          "order": 2,
+          "controlType": "dropdown",
+          "dropdownOptions": [{"key": "one", "value": "choose me"}, {"key": "two", "value": "plz pick me"}]
+        }
+      ]
     },
     {
-      "title": "Survey 123",
-      "id": 4
+      "id": "2",
+      "questions": [
+        {
+          "value": "value2",
+          "key": "key2",
+          "label": "Q2",
+          "order": 1,
+          "controlType": "dropdown",
+          "dropdownOptions": [{"key": "one", "value": "asd"}, {"key": "two", "value": "qwe"}]
+        }
+      ]
+
     }
   ]
 }

@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container" *ngIf="survey$ | async as survey">
   <h3>{{survey.title}}</h3>
   <p>
     {{survey.description}}
   </p>
-  <survey-form [questions]="survey.questionSet"></survey-form>
+  <survey-form [questionSetId]="survey.questionSetId"></survey-form>
 </div>

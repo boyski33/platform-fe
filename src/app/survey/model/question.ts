@@ -1,23 +1,26 @@
 
 export class Question {
-  value: string;
   key: string;
+  value: string;
   label: string;
   order: number;
   controlType: string;
+  placeholder: string;
 
   constructor(options: {
-    value?: string,
     key?: string,
+    value?: string,
     label?: string,
     order?: number,
     controlType?: string
+    placeholder?: string;
   } = {}) {
-    this.value = options.value;
     this.key = options.key || '';
+    this.value = options.value;
     this.label = options.label || '';
     this.order = options.order === undefined ? 1 : options.order;
     this.controlType = options.controlType || '';
+    this.placeholder = options.placeholder || '';
   }
 
 }

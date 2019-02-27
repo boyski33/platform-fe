@@ -15,13 +15,13 @@ export class SurveyApiService {
   }
 
   getAllSurveys() {
-    const url = `${apiUrl}/surveys`;
+    const url = `${apiUrl}/survey`;
 
     return this._http.get<Survey[]>(url);
   }
 
   getSurveyById(id: string) {
-    const url = `${apiUrl}/surveys/${id}`;
+    const url = `${apiUrl}/survey/${id}`;
 
     return this._http.get<Survey>(url);
   }
@@ -30,5 +30,11 @@ export class SurveyApiService {
     const url = `${apiUrl}/question-set/${id}`;
 
     return this._http.get<QuestionSet>(url);
+  }
+
+  createNewSurvey(survey: Survey) {
+    const url = `${apiUrl}/survey`;
+
+    return this._http.post<Survey>(url, survey);
   }
 }

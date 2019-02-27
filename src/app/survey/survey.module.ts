@@ -10,6 +10,7 @@ import { SurveyQuestionComponent } from './survey-question/survey-question.compo
 import { SubmissionPageComponent } from './submission-page/submission-page.component';
 import { QuestionService } from './services/question.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CreationFormComponent } from './creation-form/creation-form.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ThumbnailComponent,
     ThumbnailListComponent,
     SurveyQuestionComponent,
-    SubmissionPageComponent
+    SubmissionPageComponent,
+    CreationFormComponent
   ],
   providers: [
     QuestionService,

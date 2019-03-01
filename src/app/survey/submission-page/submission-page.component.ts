@@ -25,11 +25,6 @@ export class SubmissionPageComponent implements OnInit {
     this.survey$ = this._route.paramMap.pipe(
       switchMap(params => this._questionService.getSurvey(params.get('id')))
     );
-
-    this.survey$.subscribe(s => {
-      console.log(s);
-      this.questions$ = this._questionService.getQuestions(s.questionSetId);
-    });
   }
 
 }

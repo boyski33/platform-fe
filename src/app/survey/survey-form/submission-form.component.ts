@@ -6,11 +6,11 @@ import { QuestionService } from '../services/question.service';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'survey-form',
-  templateUrl: './survey-form.component.html',
-  styleUrls: ['./survey-form.component.scss']
+  selector: 'submission-form',
+  templateUrl: './submission-form.component.html',
+  styleUrls: ['./submission-form.component.scss']
 })
-export class SurveyFormComponent implements OnInit {
+export class SubmissionFormComponent implements OnInit {
 
   @Input() questions: Question[];
   form: FormGroup;

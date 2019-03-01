@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SurveyRoutingModule } from './survey-routing.module';
 import { SurveyDashboardComponent } from './survey-dashboard/survey-dashboard.component';
-import { SurveyFormComponent } from './survey-form/survey-form.component';
+import { SubmissionFormComponent } from './survey-form/submission-form.component';
 import { ThumbnailComponent } from './thumbnail-list/thumbnail/thumbnail.component';
 import { ThumbnailListComponent } from './thumbnail-list/thumbnail-list.component';
 import { QuestionControlService } from './services/question-control.service';
@@ -22,7 +22,7 @@ import { CreationFormComponent } from './creation-form/creation-form.component';
   ],
   declarations: [
     SurveyDashboardComponent,
-    SurveyFormComponent,
+    SubmissionFormComponent,
     ThumbnailComponent,
     ThumbnailListComponent,
     SurveyQuestionComponent,

@@ -3,5 +3,5 @@
   <p>
     {{survey.description}}
   </p>
-  <survey-form *ngIf="questions$ | async as questions" [questions]="questions"></survey-form>
+  <submission-form *ngIf="questions$ | async as questions" [questions]="questions"></submission-form>
 </div>

@@ -7,7 +7,7 @@ import { ThumbnailListComponent } from './thumbnail-list/thumbnail-list.componen
 import { QuestionControlService } from './services/question-control.service';
 import { SurveyQuestionComponent } from './survey-question/survey-question.component';
 import { SubmissionPageComponent } from './submission-page/submission-page.component';
-import { QuestionService } from './services/question.service';
+import { SurveyService } from './services/survey.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreationFormComponent } from './creation-form/creation-form.component';
 
@@ -28,7 +28,7 @@ import { CreationFormComponent } from './creation-form/creation-form.component';
     CreationFormComponent
   ],
   providers: [
-    QuestionService,
+    SurveyService,
     QuestionControlService
   ]
 })

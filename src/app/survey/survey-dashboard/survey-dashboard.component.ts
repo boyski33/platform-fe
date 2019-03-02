@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { QuestionService } from '../services/question.service';
+import { SurveyService } from '../services/survey.service';
 import { Survey } from '../model/survey';
 
 @Component({
@@ -11,7 +11,7 @@ export class SurveyDashboardComponent implements OnInit {
 
   surveys: Survey[];
 
-  constructor(private _questionService: QuestionService) {
+  constructor(private _questionService: SurveyService) {
   }
 
   ngOnInit() {

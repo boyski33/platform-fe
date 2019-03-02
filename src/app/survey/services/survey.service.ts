@@ -6,7 +6,7 @@ import { Survey } from '../model/survey';
 @Injectable({
   providedIn: 'root'
 })
-export class QuestionService {
+export class SurveyService {
 
   constructor(private _apiService: SurveyApiService) {
   }

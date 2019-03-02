@@ -1,7 +1,27 @@
-<div class="container" *ngIf="survey$ | async as survey">
+<div class="container pad-top" *ngIf="survey">
   <h3>{{survey.title}}</h3>
   <p>
     {{survey.description}}
   </p>
-  <submission-form *ngIf="questions$ | async as questions" [questions]="questions"></submission-form>
+  <div *ngIf="form" class="container">
+    <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+      <div *ngFor="let question of survey.questions" class="form-row">
+        <survey-question [question]="question" [form]="form"></survey-question>
+      </div>
+
+      <div class="form-row pad-top">
+        <button class="btn btn-success" type="submit" [disabled]="!form.valid">Submit</button>
+      </div>
+    </form>
+
+    <div *ngIf="formValue" class="form-row">
+      <strong>Saved the following values</strong><br>{{formValue}}
+    </div>
+  </div>
+  <div *ngIf="!survey.questions">
+    <p>
+      There are no questions for this survey... 😔
+    </p>
+  </div>
 </div>

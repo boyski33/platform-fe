@@ -10,6 +10,7 @@ export class QuestionControlService {
   constructor() {}
 
   toFormGroup(questions: Question[]) {
+    // TODO: add custom validations, such as not empty
     const group = {};
 
     questions.forEach(q => {

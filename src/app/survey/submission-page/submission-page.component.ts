@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Survey } from '../model/survey';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionService } from '../services/question.service';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Question } from '../model/question';
+import { FormGroup } from '@angular/forms';
+import { QuestionControlService } from '../services/question-control.service';
 
 @Component({
   selector: 'submission-page',
@@ -13,18 +15,41 @@ import { Question } from '../model/question';
 })
 export class SubmissionPageComponent implements OnInit {
 
-  survey$: Observable<Survey>;
-  questions$: Observable<Question[]>;
+  survey: Survey;
+  form: FormGroup;
+  formValue = '';
 
   constructor(private _route: ActivatedRoute,
               private _router: Router,
-              private _questionService: QuestionService) {
+              private _questionService: QuestionService,
+              private _questionControlService: QuestionControlService) {
   }
 
   ngOnInit() {
-    this.survey$ = this._route.paramMap.pipe(
+    this._route.paramMap.pipe(
       switchMap(params => this._questionService.getSurvey(params.get('id')))
+    ).subscribe(s => {
+        this.survey = s;
+        this.createFormFromSurvey(s);
+      },
+      e => {
+        this.displayErrorDialog(JSON.stringify(e));
+      }
     );
+  }
+
+  createFormFromSurvey(survey: Survey) {
+    const questions = survey.questions || [];
+    this.form = this._questionControlService.toFormGroup(questions);
+  }
+
+  onSubmit() {
+    this.formValue = JSON.stringify(this.form.value);
+  }
+
+  displayErrorDialog(error: string) {
+    // TODO: add a modal window when showing errors, or extract extract it in a service
+    alert(error);
   }
 
 }

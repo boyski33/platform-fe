@@ -4,6 +4,7 @@ import { Survey } from '../model/survey';
 import { environment } from '../../../environments/environment';
 
 const apiUrl = environment.mockApiUrl;
+const surveysUrl = `${apiUrl}/surveys`;
 
 @Injectable({
   providedIn: 'root'
@@ -14,20 +15,16 @@ export class SurveyApiService {
   }
 
   getAllSurveys() {
-    const url = `${apiUrl}/survey`;
-
-    return this._http.get<Survey[]>(url);
+    return this._http.get<Survey[]>(surveysUrl);
   }
 
   getSurveyById(id: string) {
-    const url = `${apiUrl}/survey/${id}`;
+    const url = `${surveysUrl}/${id}`;
 
     return this._http.get<Survey>(url);
   }
 
   createNewSurvey(survey: Survey) {
-    const url = `${apiUrl}/survey`;
-
-    return this._http.post<Survey>(url, survey);
+    return this._http.post<Survey>(surveysUrl, survey);
   }
 }

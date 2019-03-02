@@ -26,7 +26,7 @@ export class ThumbnailComponent implements OnInit {
   }
 
   openSubmissionPage() {
-    this._router.navigate(['survey', this.survey.id]);
+    this._router.navigate(['surveys', this.survey.id]);
   }
 
   private _styleButton() {

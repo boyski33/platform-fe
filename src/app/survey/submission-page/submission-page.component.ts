@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Survey } from '../model/survey';
 import { ActivatedRoute, Router } from '@angular/router';
-import { QuestionService } from '../services/question.service';
+import { SurveyService } from '../services/survey.service';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Question } from '../model/question';
@@ -21,13 +21,13 @@ export class SubmissionPageComponent implements OnInit {
 
   constructor(private _route: ActivatedRoute,
               private _router: Router,
-              private _questionService: QuestionService,
+              private _surveyService: SurveyService,
               private _questionControlService: QuestionControlService) {
   }
 
   ngOnInit() {
     this._route.paramMap.pipe(
-      switchMap(params => this._questionService.getSurvey(params.get('id')))
+      switchMap(params => this._surveyService.getSurvey(params.get('id')))
     ).subscribe(s => {
         this.survey = s;
         this.createFormFromSurvey(s);

@@ -6,9 +6,10 @@
     <input class="form-control" *ngSwitchCase="'textbox'" [formControlName]="question.key"
            [id]="question.key" [type]="question.controlType" [placeholder]="question.placeholder">
 
-    <select #select class="form-control" [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key">
+    <select #select class="form-control" [id]="question.key" *ngSwitchCase="'dropdown'"
+            [formControlName]="question.key">
       <option *ngIf="!select.value" value="" disabled selected>Select your option</option>
-      <option *ngFor="let opt of question['dropdownOptions']" [value]="opt.key">{{opt.value}}</option>
+      <option *ngFor="let opt of question['dropdownOptions']" [value]="opt">{{opt}}</option>
     </select>
 
   </div>

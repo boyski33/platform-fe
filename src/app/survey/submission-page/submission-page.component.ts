@@ -42,6 +42,7 @@ export class SubmissionPageComponent implements OnInit {
   }
 
   createFormFromSurvey(survey: Survey) {
+    // TODO: make use of the Question constructor or use interfaces
     const questions = survey.questions || [];
     this.form = this._questionControlService.toFormGroup(questions);
   }

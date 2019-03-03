@@ -7,6 +7,9 @@ import { switchMap } from 'rxjs/operators';
 import { Question } from '../model/question';
 import { FormGroup } from '@angular/forms';
 import { QuestionControlService } from '../services/question-control.service';
+import { Submission } from '../model/submission';
+import { User } from '../../user/model/user';
+import { AnsweredQuestion } from '../model/answered-question';
 
 @Component({
   selector: 'submission-page',
@@ -44,11 +47,44 @@ export class SubmissionPageComponent implements OnInit {
   }
 
   onSubmit() {
-    this.formValue = JSON.stringify(this.form.value);
+    const submission = this._assembleSubmissionObject();
+    console.log(this.form);
+
+    this._surveyService.postSubmission(submission).subscribe(
+      s => {
+        // TODO: redirect
+        console.log(s);
+      },
+      e => {
+        // TODO: something went wrong
+      }
+    );
+  }
+
+  private _assembleSubmissionObject(): Submission {
+    const loggedInUser: User = {username: 'dummy_user'};
+    const answers = this._getSurveyAnswers();
+
+    return new Submission(loggedInUser, this.survey, answers);
+  }
+
+  private _getSurveyAnswers(): AnsweredQuestion[] {
+    const answers = [];
+    this.survey.questions.forEach(question => {
+      answers.push(this._assembleAnswerObject(question));
+    });
+
+    return answers;
+  }
+
+  private _assembleAnswerObject(question: Question): AnsweredQuestion {
+    const answer = this.form.controls[question.key].value;
+
+    return new AnsweredQuestion(question, answer);
   }
 
   displayErrorDialog(error: string) {
-    // TODO: add a modal window when showing errors, or extract extract it in a service
+    // TODO: add a modal window when showing errors, or extract it in a service
     alert(error);
   }
 

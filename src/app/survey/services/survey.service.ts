@@ -10,6 +10,8 @@ import { SubmissionApiService } from './submission-api.service';
 })
 export class SurveyService {
 
+  // TODO: maybe refactor this service to returns entities and not observables
+
   constructor(private _surveyApi: SurveyApiService,
               private _submissionApi: SubmissionApiService) {
   }
@@ -19,6 +21,7 @@ export class SurveyService {
   }
 
   getSurvey(id: string): Observable<Survey> {
+    // TODO: make sure questions are sorted by order
     return this._surveyApi.getSurveyById(id);
   }
 

@@ -7,21 +7,30 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" routerLink="home"
-           routerLinkActive="active">
+        <a class="nav-link" routerLink="home" routerLinkActive="active">
           Home
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="surveys/new"
-           routerLinkActive="active">
+        <a class="nav-link" routerLink="surveys" routerLinkActive="active">
+          Dashboard
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="surveys/new" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}">
           Create Survey
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="user"
-           routerLinkActive="active">
+        <a class="nav-link" routerLink="users" routerLinkActive="active">
           Profile
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="surveys/admin" routerLinkActive="active"
+           [routerLinkActiveOptions]="{exact: true}">
+          Admin Panel
         </a>
       </li>
     </ul>

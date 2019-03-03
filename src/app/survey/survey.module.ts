@@ -8,6 +8,7 @@ import { SurveyQuestionComponent } from './survey-question/survey-question.compo
 import { SubmissionPageComponent } from './submission-page/submission-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreationFormComponent } from './creation-form/creation-form.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { CreationFormComponent } from './creation-form/creation-form.component';
     ThumbnailListComponent,
     SurveyQuestionComponent,
     SubmissionPageComponent,
-    CreationFormComponent
+    CreationFormComponent,
+    AdminPanelComponent
   ]
 })
 export class SurveyModule {

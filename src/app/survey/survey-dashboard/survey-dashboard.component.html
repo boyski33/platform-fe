@@ -5,6 +5,9 @@
     </p>
   </div>
   <div>
-    <thumbnail-list [allSurveys]="surveys"></thumbnail-list>
+    <thumbnail-list [surveys]="surveys"
+                    [buttonText]="'Take it!'"
+                    (thumbnailClick)="redirectToSurvey($event)">
+    </thumbnail-list>
   </div>
 </div>

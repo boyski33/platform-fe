@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Survey } from '../model/survey';
 
 @Component({
@@ -8,12 +8,18 @@ import { Survey } from '../model/survey';
 })
 export class ThumbnailListComponent implements OnInit {
 
-  @Input() allSurveys: Survey[];
+  @Input() surveys: Survey[];
+  @Input() buttonText: string;
+  @Output() thumbnailClick = new EventEmitter<string>();
 
   constructor() {
   }
 
   ngOnInit() {
+  }
+
+  emitClick(id: string) {
+    this.thumbnailClick.emit(id);
   }
 
 }

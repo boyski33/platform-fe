@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Survey } from '../../model/survey';
 import { Router } from '@angular/router';
 
@@ -10,14 +10,14 @@ import { Router } from '@angular/router';
 export class ThumbnailComponent implements OnInit {
 
   @Input() survey: Survey;
-  // surveyTitle: string;
+  @Input() buttonText;
+  @Output() thumbnailClick = new EventEmitter<string>();
   surveyDescription: string;
   takenByUser = false;
 
-  buttonText = 'Take it!';
   disableBtn = false;
 
-  constructor(private _router: Router) {
+  constructor() {
   }
 
   ngOnInit() {
@@ -25,8 +25,8 @@ export class ThumbnailComponent implements OnInit {
     this.surveyDescription = this.survey.description;
   }
 
-  openSubmissionPage() {
-    this._router.navigate(['surveys', this.survey._id]);
+  openThumbnail() {
+    this.thumbnailClick.emit(this.survey._id);
   }
 
   private _styleButton() {

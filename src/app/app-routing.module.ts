@@ -6,6 +6,7 @@ import { HomePageComponent } from './common/home-page/home-page.component';
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: 'surveys', loadChildren: './survey/survey.module#SurveyModule' },
+  { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },
   { path: 'users', loadChildren: './user/user.module#UserModule' },
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: '**', component: NotFoundComponent }

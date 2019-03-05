@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'survey-thumbnail',
-  templateUrl: './thumbnail.component.html',
-  styleUrls: [ './thumbnail.component.scss' ]
+  templateUrl: './survey-thumbnail.component.html',
+  styleUrls: [ './survey-thumbnail.component.scss' ]
 })
-export class ThumbnailComponent implements OnInit {
+export class SurveyThumbnailComponent implements OnInit {
 
   @Input() survey: Survey;
   @Input() buttonText;

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Submission } from '../model/submission';
-import { SurveyService } from '../services/survey.service';
+import { Submission } from '../../survey/model/submission';
+import { SurveyService } from '../../survey/services/survey.service';
 
 @Component({
-  selector: 'app-admin-panel',
-  templateUrl: './admin-panel.component.html',
-  styleUrls: [ './admin-panel.component.scss' ]
+  selector: 'admin-dashboard',
+  templateUrl: './admin-dashboard.component.html',
+  styleUrls: [ './admin-dashboard.component.scss' ]
 })
-export class AdminPanelComponent implements OnInit {
+export class AdminDashboardComponent implements OnInit {
 
   submissions: Submission[];
 

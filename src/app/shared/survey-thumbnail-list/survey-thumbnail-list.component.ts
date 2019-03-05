@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Survey } from '../model/survey';
+import { Survey } from '../../survey/model/survey';
 
 @Component({
   selector: 'survey-thumbnail-list',

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Submission } from '../../survey/model/submission';
 import { SurveyService } from '../../survey/services/survey.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Survey } from '../../survey/model/survey';
 
 @Component({
   selector: 'admin-dashboard',
@@ -9,18 +10,25 @@ import { SurveyService } from '../../survey/services/survey.service';
 })
 export class AdminDashboardComponent implements OnInit {
 
-  submissions: Submission[];
+  surveys: Survey[];
 
-  constructor(private _surveyService: SurveyService) {
+  constructor(private _surveyService: SurveyService,
+              private _router: Router,
+              private _route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this._getSubmissions();
+    this._getSurveys();
   }
 
-  private _getSubmissions() {
-    this._surveyService.getAllSubmissions().subscribe(data => {
-      this.submissions = data;
+  openSurveyReport(surveyId: string) {
+    this._router.navigate([ surveyId ], { relativeTo: this._route });
+  }
+
+  private _getSurveys() {
+    // TODO: get for user
+    this._surveyService.getAllSurveys().subscribe(data => {
+      this.surveys = data;
     });
   }
 }

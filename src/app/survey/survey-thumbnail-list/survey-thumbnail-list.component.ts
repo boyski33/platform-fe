@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Survey } from '../model/survey';
 
 @Component({
-  selector: 'thumbnail-list',
-  templateUrl: './thumbnail-list.component.html',
-  styleUrls: [ './thumbnail-list.component.scss' ]
+  selector: 'survey-thumbnail-list',
+  templateUrl: './survey-thumbnail-list.component.html',
+  styleUrls: [ './survey-thumbnail-list.component.scss' ]
 })
-export class ThumbnailListComponent implements OnInit {
+export class SurveyThumbnailListComponent implements OnInit {
 
   @Input() surveys: Survey[];
   @Input() buttonText: string;

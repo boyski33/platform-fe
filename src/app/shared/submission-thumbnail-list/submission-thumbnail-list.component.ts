@@ -11,7 +11,7 @@ export class SubmissionThumbnailListComponent implements OnInit {
 
   @Input() submissions: Submission[];
   @Input() buttonText: string;
-  @Output() thumbnailClick = new EventEmitter<string>();
+  @Output() thumbnailClick = new EventEmitter<Submission>();
 
   constructor() {
   }
@@ -19,8 +19,8 @@ export class SubmissionThumbnailListComponent implements OnInit {
   ngOnInit() {
   }
 
-  openSubmission(id: string) {
-    this.thumbnailClick.emit(id);
+  openSubmission(submission: Submission) {
+    this.thumbnailClick.emit(submission);
   }
 
 }

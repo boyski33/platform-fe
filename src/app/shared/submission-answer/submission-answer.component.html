@@ -1,0 +1,14 @@
+<div>
+  <label [attr.for]="question.key">{{question.label}}</label>
+
+  <div [ngSwitch]="question.controlType">
+
+    <input class="form-control" *ngSwitchCase="'textbox'" [value]="answer" disabled
+           [id]="question.key" [type]="question.controlType" [placeholder]="question.placeholder">
+
+    <select disabled class="form-control" [id]="question.key" *ngSwitchCase="'dropdown'">
+      <option [value]="answer">{{answer}}</option>
+    </select>
+
+  </div>
+</div>

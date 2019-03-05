@@ -18,7 +18,7 @@ export class SurveyThumbnailListComponent implements OnInit {
   ngOnInit() {
   }
 
-  emitClick(id: string) {
+  openSurvey(id: string) {
     this.thumbnailClick.emit(id);
   }
 

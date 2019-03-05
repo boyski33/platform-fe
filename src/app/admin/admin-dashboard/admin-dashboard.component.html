@@ -1,6 +1,8 @@
 <div class="container d-flex justify-content-center pad-top">
   <div id="all-submissions" class="col-md-4">
     <h5>All Submissions:</h5>
+    <submission-thumbnail-list [submissions]="submissions" [buttonText]="'View'">
+    </submission-thumbnail-list>
   </div>
 
   <div id="submission-stats" class="col-md-4">

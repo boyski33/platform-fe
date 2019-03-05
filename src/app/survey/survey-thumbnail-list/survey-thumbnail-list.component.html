@@ -1,8 +1,20 @@
 <div class="container">
   <!--TODO: use flexbox view?-->
-  <survey-thumbnail *ngFor="let survey of surveys"
-                    [survey]="survey"
-                    [buttonText]="buttonText"
-                    (thumbnailClick)="emitClick($event)">
-  </survey-thumbnail>
+
+  <div *ngFor="let survey of surveys" class="card custom-width">
+    <div class="card-body">
+      <h5 *ngIf="survey.title" class="card-title">{{survey.title}}</h5>
+      <h5 *ngIf="!survey.title" class="card-title"><i>Untitled</i></h5>
+
+      <p *ngIf="survey.description" class="card-text">
+        {{survey.description}}
+      </p>
+      <p *ngIf="!survey.description" class="card-text">
+        <i>no description</i>
+      </p>
+
+      <button class="btn btn-primary" (click)="openSurvey(survey._id)">{{buttonText}}</button>
+    </div>
+  </div>
+
 </div>

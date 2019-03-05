@@ -1,4 +1,4 @@
-<div class="container pad-top">
+<div class="d-flex justify-content-center container pad-top">
 
   <div *ngIf="survey">
     <h3>{{survey.title}}</h3>
@@ -12,7 +12,6 @@
           <survey-question [question]="question" [form]="form"></survey-question>
         </div>
 
-        <!--TODO: enable button but show errors after click-->
         <div class="form-row pad-top">
           <button class="btn btn-success" type="submit" [disabled]="!form.valid">Submit</button>
         </div>

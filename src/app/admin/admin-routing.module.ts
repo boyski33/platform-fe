@@ -2,10 +2,38 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { SurveyReportComponent } from './survey-report/survey-report.component';
 
 const routes: Routes = [
-  { path: 'dashboard', component: AdminDashboardComponent },
-  { path: '', pathMatch: 'full', redirectTo: 'dashboard' }
+  // {
+  //   path: 'reports',
+  //   component: AdminDashboardComponent,
+  //   children: [
+  //     {
+  //       path: ':id',
+  //       component: SurveyReportComponent
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '',
+  //   pathMatch: 'full',
+  //   redirectTo: 'reports'
+  // }
+
+  {
+    path: 'reports',
+    component: AdminDashboardComponent
+  },
+  {
+    path: 'reports/:id',
+    component: SurveyReportComponent
+  },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'reports'
+  }
 ];
 
 @NgModule({

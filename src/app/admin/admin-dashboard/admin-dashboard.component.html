@@ -1,11 +1,7 @@
-<div class="container d-flex justify-content-center pad-top">
-  <div id="all-submissions" class="col-md-4">
-    <h5>All Submissions:</h5>
-    <submission-thumbnail-list [submissions]="submissions" [buttonText]="'View'">
-    </submission-thumbnail-list>
-  </div>
-
-  <div id="submission-stats" class="col-md-4">
-    <h5>Submission Stats:</h5>
-  </div>
+<div class="container pad-top">
+  <h5>Survey reports:</h5>
+  <survey-thumbnail-list [surveys]="surveys"
+                         buttonText="View Report"
+                         (thumbnailClick)="openSurveyReport($event)">
+  </survey-thumbnail-list>
 </div>

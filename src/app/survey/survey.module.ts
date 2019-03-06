@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SurveyRoutingModule } from './survey-routing.module';
 import { SurveyDashboardComponent } from './survey-dashboard/survey-dashboard.component';
 import { SurveyQuestionComponent } from './survey-question/survey-question.component';
-import { SubmissionPageComponent } from './submission-page/submission-page.component';
+import { SubmissionFormComponent } from './submission-form/submission-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreationFormComponent } from './creation-form/creation-form.component';
 import { SharedModule } from '../shared/shared.module';
@@ -19,7 +19,7 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     SurveyDashboardComponent,
     SurveyQuestionComponent,
-    SubmissionPageComponent,
+    SubmissionFormComponent,
     CreationFormComponent
   ]
 })

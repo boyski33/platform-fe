@@ -25,6 +25,10 @@ export class SurveyService {
     return this._surveyApi.getSurveyById(id);
   }
 
+  createNewSurvey(survey: Survey): Observable<Survey> {
+    return this._surveyApi.postSurvey(survey);
+  }
+
   getAllSubmissions(): Observable<Submission[]> {
     return this._submissionApi.getAllSubmissions();
   }

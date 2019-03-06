@@ -1,3 +1,39 @@
-<p>
-  creation-form works!
-</p>
+<div *ngIf="form" class="container pad-top">
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+
+    <div class="form-row">
+      <label>
+        Title:
+        <input class="form-control" type="text" formControlName="title">
+      </label>
+    </div>
+
+    <div class="form-row">
+      <label>
+        Description:
+        <input class="form-control" type="text" formControlName="description">
+      </label>
+    </div>
+
+    <div formArrayName="questions">
+      <h4>Questions:</h4>
+      <div *ngFor="let q of questions.controls; let i=index">
+        <label>
+          Question:
+          <input type="text" [formControlName]="i">
+        </label>
+        <button class="btn btn-danger" type="button" (click)="remove(i)">&times;</button>
+      </div>
+
+      <button class="btn btn-info" type="button" (click)="dummyAdd()">Add</button>
+    </div>
+
+
+    <div class="form-row pad-top">
+      <button type="submit" class="btn btn-success">
+        Create
+      </button>
+    </div>
+
+  </form>
+</div>

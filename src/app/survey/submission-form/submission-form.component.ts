@@ -13,10 +13,10 @@ import { AnsweredQuestion } from '../model/answered-question';
 
 @Component({
   selector: 'submission-page',
-  templateUrl: './submission-page.component.html',
-  styleUrls: ['./submission-page.component.scss']
+  templateUrl: './submission-form.component.html',
+  styleUrls: ['./submission-form.component.scss']
 })
-export class SubmissionPageComponent implements OnInit {
+export class SubmissionFormComponent implements OnInit {
 
   survey: Survey;
   form: FormGroup;

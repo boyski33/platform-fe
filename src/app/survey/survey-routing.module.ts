@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { SurveyDashboardComponent } from './survey-dashboard/survey-dashboard.component';
-import { SubmissionPageComponent } from './submission-page/submission-page.component';
+import { SubmissionFormComponent } from './submission-form/submission-form.component';
 import { CreationFormComponent } from './creation-form/creation-form.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: SurveyDashboardComponent },
   { path: 'new', component: CreationFormComponent },
-  { path: ':id', component: SubmissionPageComponent },
+  { path: ':id', component: SubmissionFormComponent },
   { path: '', pathMatch: 'full', redirectTo: 'dashboard' }
 ];
 

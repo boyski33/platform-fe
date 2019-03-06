@@ -24,7 +24,7 @@ export class SurveyApiService {
     return this._http.get<Survey>(url);
   }
 
-  createNewSurvey(survey: Survey) {
+  postSurvey(survey: Survey) {
     return this._http.post<Survey>(surveysUrl, survey);
   }
 }

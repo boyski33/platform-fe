@@ -7,6 +7,8 @@ import { SubmissionFormComponent } from './submission-form/submission-form.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreationFormComponent } from './creation-form/creation-form.component';
 import { SharedModule } from '../shared/shared.module';
+import { DropdownQuestionFormComponent } from './question-forms/dropdown-question-form/dropdown-question-form.component';
+import { TextboxQuestionFormComponent } from './question-forms/textbox-question-form/textbox-question-form.component';
 
 @NgModule({
   imports: [
@@ -20,7 +22,9 @@ import { SharedModule } from '../shared/shared.module';
     SurveyDashboardComponent,
     SurveyQuestionComponent,
     SubmissionFormComponent,
-    CreationFormComponent
+    CreationFormComponent,
+    DropdownQuestionFormComponent,
+    TextboxQuestionFormComponent
   ]
 })
 export class SurveyModule {

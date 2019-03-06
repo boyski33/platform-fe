@@ -14,7 +14,7 @@ import { AnsweredQuestion } from '../model/answered-question';
 @Component({
   selector: 'submission-page',
   templateUrl: './submission-form.component.html',
-  styleUrls: ['./submission-form.component.scss']
+  styleUrls: [ './submission-form.component.scss' ]
 })
 export class SubmissionFormComponent implements OnInit {
 
@@ -47,23 +47,22 @@ export class SubmissionFormComponent implements OnInit {
     this.form = this._questionControlService.toFormGroup(questions);
   }
 
-  onSubmit() {
+  submitForm() {
     const submission = this._assembleSubmissionObject();
     console.log(this.form);
 
     this._surveyService.postSubmission(submission).subscribe(
       s => {
-        // TODO: redirect
-        console.log(s);
+        this._router.navigate([ '..' ], { relativeTo: this._route });
       },
       e => {
-        // TODO: something went wrong
+        alert('Oh no, something went wrong!');
       }
     );
   }
 
   private _assembleSubmissionObject(): Submission {
-    const loggedInUser: User = {username: 'dummy_user'};
+    const loggedInUser: User = { username: 'dummy_user' };
     const answers = this._getSurveyAnswers();
 
     return new Submission(loggedInUser, this.survey, answers);

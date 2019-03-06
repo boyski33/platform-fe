@@ -26,6 +26,9 @@ export class SurveyService {
   }
 
   createNewSurvey(survey: Survey): Observable<Survey> {
+    survey.questions.forEach(q => {
+      q.key = `key${q.order}`;
+    });
     return this._surveyApi.postSurvey(survey);
   }
 

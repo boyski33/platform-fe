@@ -1,4 +1,4 @@
-<div *ngIf="form" class="container pad-top">
+<div *ngIf="form" class="container pad-top col-md-6">
   <form [formGroup]="form" (ngSubmit)="submitForm()">
 
     <div class="form-row">
@@ -18,14 +18,42 @@
     <div formArrayName="questions">
       <h4>Questions:</h4>
       <div *ngFor="let q of questions.controls; let i=index">
-        <label>
-          Question:
-          <input type="text" [formControlName]="i">
-        </label>
-        <button class="btn btn-danger" type="button" (click)="remove(i)">&times;</button>
+        <div [formGroupName]="i">
+          <div class="mb-3 border-bottom border-danger form-row" *ngIf="q.value.controlType === 'textbox'">
+            <label>
+              Label:
+              <input class="form-control" type="text" formControlName="label">
+            </label>
+            <button class="m-4 btn btn-danger" type="button" (click)="remove(i)">&times;</button>
+          </div>
+          <!--<div *ngIf="q.value.controlType === 'dropdown'">-->
+          <!--<label>-->
+          <!--Text:-->
+          <!--<input type="text" formControlName="label">-->
+          <!--</label>-->
+
+          <!--<label>-->
+          <!--Option 1:-->
+          <!--<input type="text" formControlName="option1">-->
+          <!--</label>-->
+          <!--</div>-->
+        </div>
+
       </div>
 
-      <button class="btn btn-info" type="button" (click)="dummyAdd()">Add</button>
+      <div>
+        <label>Question type:
+          <select #typeSelect class="form-control" name="">
+            <option value="textbox">Textbox</option>
+            <option value="dropdown">Dropdown</option>
+          </select>
+        </label>
+        <button style="margin: 1em" class="btn btn-info" type="button" (click)="addQuestion(typeSelect.value)">
+          Add
+        </button>
+
+
+      </div>
     </div>
 
 

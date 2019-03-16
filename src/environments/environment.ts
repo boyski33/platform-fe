@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  mockApiUrl: 'http://localhost:3000'
+  mockApiUrl: 'http://localhost:3000',
+  coreSurveyServiceUrl: 'http://localhost:8866'
 };
 
 /*

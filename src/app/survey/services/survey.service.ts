@@ -20,6 +20,10 @@ export class SurveyService {
     return this._surveyApi.getAllSurveys();
   }
 
+  getAllSurveysMetadata(): Observable<Survey[]> {
+    return this._surveyApi.getAllSurveysMetadata();
+  }
+
   getSurvey(id: string): Observable<Survey> {
     // TODO: make sure questions are sorted by order
     return this._surveyApi.getSurveyById(id);

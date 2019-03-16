@@ -21,7 +21,7 @@ export class SurveyDashboardComponent implements OnInit {
   }
 
   private _loadSurveys() {
-    this._questionService.getAllSurveys()
+    this._questionService.getAllSurveysMetadata()
       .subscribe(data => this.surveys = data);
   }
 

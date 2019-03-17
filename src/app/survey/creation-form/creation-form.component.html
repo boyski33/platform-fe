@@ -19,12 +19,12 @@
       <h4>Questions:</h4>
       <div *ngFor="let q of questions.controls; let i=index">
         <div [formGroupName]="i">
-          <div class="mb-3 border-bottom border-danger form-row" *ngIf="q.value.controlType === 'textbox'">
-            <label>
-              Label:
-              <input class="form-control" type="text" formControlName="label">
-            </label>
-            <button class="m-4 btn btn-danger" type="button" (click)="remove(i)">&times;</button>
+          <div class="mb-3 border-bottom border-danger form-row">
+
+            <textbox-question *ngIf="q.value.controlType === 'textbox'" [questionForm]="q"></textbox-question>
+            <!--<dropdown-question *ngIf="q.value.controlType === 'textbox'" [questionForm]="q"></dropdown-question>-->
+
+            <button class="m-4 btn btn-danger rounded-circle" type="button" (click)="remove(i)">&times;</button>
           </div>
           <!--<div *ngIf="q.value.controlType === 'dropdown'">-->
           <!--<label>-->

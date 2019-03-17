@@ -24,9 +24,9 @@ export class CreationFormComponent implements OnInit {
   addQuestion(type: string) {
     if (type === 'textbox') {
       this.questions.push(this.fb.group({
-        controlType: [ 'textbox' ],
-        order: [ this.questions.length ],
-        label: [ '' ]
+        controlType: type,
+        order: this.questions.length,
+        label: ''
       }));
     }
   }
@@ -35,6 +35,7 @@ export class CreationFormComponent implements OnInit {
     this._surveyService.createNewSurvey(this.form.value).subscribe(s => {
       alert('Created');
       this.form.reset();
+      this.form = this._buildForm();
     });
   }
 

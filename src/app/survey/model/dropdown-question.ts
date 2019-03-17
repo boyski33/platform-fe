@@ -2,10 +2,10 @@ import { Question } from './question';
 
 export class DropdownQuestion extends Question {
   controlType = 'dropdown';
-  dropdownOptions: string[];
+  options: string[];
 
   constructor(options: any = {}) {
     super(options);
-    this.dropdownOptions = options['dropdownOptions'] || [];
+    this.options = options['options'] || [];
   }
 }

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Survey } from '../model/survey';
 import { environment } from '../../../environments/environment';
 
-const apiUrl = environment.mockApiUrl;
+const apiUrl = environment.coreSurveyServiceUrl;
 const surveysUrl = `${apiUrl}/surveys`;
 
 @Injectable({
@@ -18,13 +18,19 @@ export class SurveyApiService {
     return this._http.get<Survey[]>(surveysUrl);
   }
 
+  getAllSurveysMetadata() {
+    const url = `${surveysUrl}?meta=true`;
+
+    return this._http.get<Survey[]>(url);
+  }
+
   getSurveyById(id: string) {
     const url = `${surveysUrl}/${id}`;
 
     return this._http.get<Survey>(url);
   }
 
-  createNewSurvey(survey: Survey) {
+  postSurvey(survey: Survey) {
     return this._http.post<Survey>(surveysUrl, survey);
   }
 }

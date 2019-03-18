@@ -1,3 +1,56 @@
-<p>
-  creation-form works!
-</p>
+<div *ngIf="form" class="container pad-top col-md-6">
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+
+    <div class="form-row">
+      <label>
+        Title:
+        <input class="form-control" type="text" formControlName="title">
+      </label>
+    </div>
+
+    <div class="form-row">
+      <label>
+        Description:
+        <input class="form-control" type="text" formControlName="description">
+      </label>
+    </div>
+
+    <div formArrayName="questions">
+      <h4>Questions:</h4>
+      <div *ngFor="let q of questions.controls; let i=index">
+        <div [formGroupName]="i">
+          <div class="mb-3 border-bottom border-danger form-row" [ngSwitch]="q.value.controlType">
+
+            <textbox-question *ngSwitchCase="'textbox'" [questionForm]="q"></textbox-question>
+            <dropdown-question *ngSwitchCase="'dropdown'" [questionForm]="q"></dropdown-question>
+
+            <button class="m-4 btn btn-danger" type="button" (click)="remove(i)">&times;</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div>
+        <label>Question type:
+          <select #typeSelect class="form-control" name="">
+            <option value="textbox">Textbox</option>
+            <option value="dropdown">Dropdown</option>
+          </select>
+        </label>
+        <button style="margin: 1em" class="btn btn-info" type="button" (click)="addQuestion(typeSelect.value)">
+          Add
+        </button>
+
+
+      </div>
+    </div>
+
+
+    <div class="form-row pad-top">
+      <button type="submit" class="btn btn-success">
+        Create
+      </button>
+    </div>
+
+  </form>
+</div>

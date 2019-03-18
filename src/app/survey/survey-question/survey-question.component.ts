@@ -16,7 +16,6 @@ export class SurveyQuestionComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.question);
   }
 
   get isValid() {

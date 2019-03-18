@@ -9,10 +9,10 @@
     <select #select class="form-control" [id]="question.key" *ngSwitchCase="'dropdown'"
             [formControlName]="question.key">
       <option *ngIf="!select.value" value="" disabled selected>Select your option</option>
-      <option *ngFor="let opt of question['dropdownOptions']" [value]="opt">{{opt}}</option>
+      <option *ngFor="let opt of question['options']" [value]="opt.key">{{opt.value}}</option>
     </select>
 
   </div>
 
-  <div class="text-danger" *ngIf="!isValid">{{question.label}} is required</div>
+  <div class="text-danger" *ngIf="!isValid">^ required ^</div>
 </div>

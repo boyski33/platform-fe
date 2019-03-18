@@ -27,8 +27,7 @@ export class AdminDashboardComponent implements OnInit {
 
   private _getSurveys() {
     // TODO: get for user
-    this._surveyService.getAllSurveys().subscribe(data => {
-      this.surveys = data;
-    });
+    this._surveyService.getAllSurveysMetadata()
+      .subscribe(data => this.surveys = data);
   }
 }

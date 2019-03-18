@@ -6,7 +6,7 @@
       {{survey.description}}
     </p>
     <div *ngIf="form" class="container">
-      <form (ngSubmit)="onSubmit()" [formGroup]="form">
+      <form (ngSubmit)="submitForm()" [formGroup]="form">
 
         <div *ngFor="let question of survey.questions" class="form-row">
           <survey-question [question]="question" [form]="form"></survey-question>

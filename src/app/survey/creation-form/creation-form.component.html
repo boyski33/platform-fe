@@ -19,24 +19,13 @@
       <h4>Questions:</h4>
       <div *ngFor="let q of questions.controls; let i=index">
         <div [formGroupName]="i">
-          <div class="mb-3 border-bottom border-danger form-row">
+          <div class="mb-3 border-bottom border-danger form-row" [ngSwitch]="q.value.controlType">
 
-            <textbox-question *ngIf="q.value.controlType === 'textbox'" [questionForm]="q"></textbox-question>
-            <!--<dropdown-question *ngIf="q.value.controlType === 'textbox'" [questionForm]="q"></dropdown-question>-->
+            <textbox-question *ngSwitchCase="'textbox'" [questionForm]="q"></textbox-question>
+            <dropdown-question *ngSwitchCase="'dropdown'" [questionForm]="q"></dropdown-question>
 
-            <button class="m-4 btn btn-danger rounded-circle" type="button" (click)="remove(i)">&times;</button>
+            <button class="m-4 btn btn-danger" type="button" (click)="remove(i)">&times;</button>
           </div>
-          <!--<div *ngIf="q.value.controlType === 'dropdown'">-->
-          <!--<label>-->
-          <!--Text:-->
-          <!--<input type="text" formControlName="label">-->
-          <!--</label>-->
-
-          <!--<label>-->
-          <!--Option 1:-->
-          <!--<input type="text" formControlName="option1">-->
-          <!--</label>-->
-          <!--</div>-->
         </div>
 
       </div>

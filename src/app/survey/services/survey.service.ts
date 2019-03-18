@@ -10,7 +10,8 @@ import { SubmissionApiService } from './submission-api.service';
 })
 export class SurveyService {
 
-  // TODO: maybe refactor this service to returns entities and not observables
+  // TODO: refactor this service to returns entities and not observables
+  // TODO: extract error handling logic here
 
   constructor(private _surveyApi: SurveyApiService,
               private _submissionApi: SubmissionApiService) {
@@ -30,10 +31,32 @@ export class SurveyService {
   }
 
   createNewSurvey(survey: Survey): Observable<Survey> {
-    survey.questions.forEach(q => {
-      q.key = `key${q.order}`;
-    });
+    SurveyService._assembleSurveyQuestions(survey);
+
     return this._surveyApi.postSurvey(survey);
+  }
+
+  /**
+   * A helper method:
+   * Before submitting the survey, first make sure every question
+   * and question option (if applicable) have a unique key.
+   *
+   * @param survey the actual Survey object
+   * @private
+   */
+  private static _assembleSurveyQuestions(survey: Survey) {
+    survey.questions.forEach((question, i) => {
+
+      question.key = `key${i}`;
+      question.order = i;
+
+      if (question.options) {
+        question.options.forEach((option, j) => {
+          option.key = `key${j}`;
+        });
+      }
+
+    });
   }
 
   getAllSubmissions(): Observable<Submission[]> {

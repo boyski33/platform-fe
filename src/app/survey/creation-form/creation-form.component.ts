@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Question } from '../model/question';
+import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { Survey } from '../model/survey';
 import { SurveyService } from '../services/survey.service';
 
 @Component({
   selector: 'creation-form',
   templateUrl: './creation-form.component.html',
-  styleUrls: [ './creation-form.component.scss' ]
+  styleUrls: ['./creation-form.component.scss']
 })
 export class CreationFormComponent implements OnInit {
 
@@ -24,9 +23,14 @@ export class CreationFormComponent implements OnInit {
   addQuestion(type: string) {
     if (type === 'textbox') {
       this.questions.push(this.fb.group({
-        controlType: type,
-        order: this.questions.length,
-        label: ''
+        controlType: [type],
+        label: ['']
+      }));
+    } else if (type === 'dropdown') {
+      this.questions.push(this.fb.group({
+        controlType: [type],
+        label: [''],
+        options: this.fb.array([])
       }));
     }
   }
@@ -45,8 +49,8 @@ export class CreationFormComponent implements OnInit {
 
   private _buildForm() {
     return this.fb.group({
-      title: [ '', Validators.required ],
-      description: [ '' ],
+      title: ['', Validators.required],
+      description: [''],
       questions: this.fb.array([])
     });
   }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'dropdown-question',
@@ -10,9 +10,21 @@ export class DropdownQuestionComponent implements OnInit {
 
   @Input() questionForm: FormGroup;
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
   }
 
+  addOption() {
+    this.options.push(this.fb.group({
+      key: '',
+      value: ''
+    }));
+
+    console.log(this.questionForm.getRawValue());
+  }
+
+  get options() {
+    return this.questionForm.get('options') as FormArray;
+  }
 }

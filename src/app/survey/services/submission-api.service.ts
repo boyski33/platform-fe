@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Submission } from '../model/submission';
 
-const apiUrl = environment.mockApiUrl;
+const apiUrl = environment.coreSurveyServiceUrl;
 const submissionsUrl = `${apiUrl}/submissions`;
 
 @Injectable({

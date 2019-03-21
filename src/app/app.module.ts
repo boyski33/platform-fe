@@ -8,6 +8,7 @@ import { NavigationComponent } from './general/navigation/navigation.component';
 import { NotFoundComponent } from './general/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomePageComponent } from './general/home-page/home-page.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HomePageComponent } from './general/home-page/home-page.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]

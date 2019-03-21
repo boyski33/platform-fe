@@ -17,6 +17,28 @@ export class SurveyService {
               private _submissionApi: SubmissionApiService) {
   }
 
+  /**
+   * A helper method:
+   * Before submitting the survey, first make sure every question
+   * and question option (if applicable) have a unique key.
+   *
+   * @param survey the actual Survey object
+   */
+  private static _assembleSurveyQuestions(survey: Survey) {
+    survey.questions.forEach((question, i) => {
+
+      question.key = `key${i}`;
+      question.order = i;
+
+      if (question.options) {
+        question.options.forEach((option, j) => {
+          option.key = `key${j}`;
+        });
+      }
+
+    });
+  }
+
   getAllSurveys(): Observable<Survey[]> {
     return this._surveyApi.getAllSurveys();
   }
@@ -34,29 +56,6 @@ export class SurveyService {
     SurveyService._assembleSurveyQuestions(survey);
 
     return this._surveyApi.postSurvey(survey);
-  }
-
-  /**
-   * A helper method:
-   * Before submitting the survey, first make sure every question
-   * and question option (if applicable) have a unique key.
-   *
-   * @param survey the actual Survey object
-   * @private
-   */
-  private static _assembleSurveyQuestions(survey: Survey) {
-    survey.questions.forEach((question, i) => {
-
-      question.key = `key${i}`;
-      question.order = i;
-
-      if (question.options) {
-        question.options.forEach((option, j) => {
-          option.key = `key${j}`;
-        });
-      }
-
-    });
   }
 
   getAllSubmissions(): Observable<Submission[]> {

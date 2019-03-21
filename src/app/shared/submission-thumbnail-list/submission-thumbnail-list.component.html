@@ -12,13 +12,13 @@
         <i>no description</i>
       </p>
 
-      <button data-toggle="modal" data-target="#exampleModalLong" class="btn btn-primary">
-        {{buttonText}}
-      </button>
     </div>
 
+    <submission-modal
+      [submission]="sub"
+      [buttonText]="buttonText">
+    </submission-modal>
 
-    <submission-modal [submission]="sub"></submission-modal>
   </div>
 
 </div>

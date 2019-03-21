@@ -3,7 +3,7 @@
 
   <div [ngSwitch]="question.controlType">
 
-    <input class="form-control" *ngSwitchCase="'textbox'" [value]="answer" disabled
+    <input disabled class="form-control" *ngSwitchCase="'textbox'" [value]="answer"
            [id]="question.key" [type]="question.controlType" [placeholder]="question.placeholder">
 
     <select disabled class="form-control" [id]="question.key" *ngSwitchCase="'dropdown'">

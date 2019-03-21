@@ -11,16 +11,11 @@ export class SubmissionThumbnailListComponent implements OnInit {
 
   @Input() submissions: Submission[];
   @Input() buttonText: string;
-  @Output() thumbnailClick = new EventEmitter<Submission>();
 
   constructor() {
   }
 
   ngOnInit() {
-  }
-
-  openSubmission(submission: Submission) {
-    this.thumbnailClick.emit(submission);
   }
 
 }

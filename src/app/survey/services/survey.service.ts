@@ -66,6 +66,10 @@ export class SurveyService {
     return this._submissionApi.getSubmissionById(id);
   }
 
+  getSubmissionsForSurvey(surveyId: string): Observable<Submission[]> {
+    return this._submissionApi.getSubmissionsForSurvey(surveyId);
+  }
+
   postSubmission(submission: Submission): Observable<Submission> {
     return this._submissionApi.postSubmission(submission);
   }

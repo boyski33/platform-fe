@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SurveyService } from '../../survey/services/survey.service';
 import { Submission } from '../../survey/model/submission';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, tap } from 'rxjs/operators';
 import { Survey } from '../../survey/model/survey';
 
 @Component({
@@ -24,7 +24,6 @@ export class SurveyReportComponent implements OnInit {
       switchMap(params => this._getSubmissionsForSurvey(params.get('surveyId')))
     ).subscribe(
       data => {
-        console.log(data);
         this.submissions = data;
       },
       e => {
@@ -38,8 +37,7 @@ export class SurveyReportComponent implements OnInit {
   }
 
   private _getSubmissionsForSurvey(surveyId: string) {
-    // TODO: get per survey
-    return this._surveyService.getAllSubmissions();
+    return this._surveyService.getSubmissionsForSurvey(surveyId);
   }
 
 }

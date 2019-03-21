@@ -26,7 +26,7 @@ const routes: Routes = [
     component: AdminDashboardComponent
   },
   {
-    path: 'reports/:id',
+    path: 'reports/:surveyId',
     component: SurveyReportComponent
   },
   {

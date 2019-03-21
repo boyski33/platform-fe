@@ -24,6 +24,12 @@ export class SubmissionApiService {
     return this._http.get<Submission>(url);
   }
 
+  getSubmissionsForSurvey(surveyId: string) {
+    const url = `${submissionsUrl}/survey/${surveyId}`;
+
+    return this._http.get<Submission[]>(url);
+  }
+
   postSubmission(submission: Submission) {
     return this._http.post<Submission>(submissionsUrl, submission);
   }

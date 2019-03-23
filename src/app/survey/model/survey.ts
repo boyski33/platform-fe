@@ -5,7 +5,8 @@ export class Survey {
   id: string;
   title: string;
   description: string;
-  createdBy: User;
+  owner: User;
+  timestamp: string;
   questions: Question[];
 
   constructor() {}

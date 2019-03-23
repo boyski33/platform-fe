@@ -3,8 +3,8 @@ import { Survey } from './survey';
 import { AnsweredQuestion } from './answered-question';
 
 export class Submission {
-  _id: string;
-  timestamp: number;
+  id: string;
+  timestamp: string;
   user: User;
   survey: Survey;
   answers: AnsweredQuestion[];

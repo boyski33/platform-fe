@@ -6,7 +6,6 @@ export class Question {
   label: string;
   order: number;
   controlType: string;
-  placeholder?: string;
   options?: QuestionOption[];
 
   // constructor(options: {

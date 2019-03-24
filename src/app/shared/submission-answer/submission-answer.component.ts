@@ -16,7 +16,6 @@ export class SubmissionAnswerComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.answer);
     this.question = this.answeredQuestion.question;
     this.answer = this.answeredQuestion.answer;
 

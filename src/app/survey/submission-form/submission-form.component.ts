@@ -20,7 +20,6 @@ export class SubmissionFormComponent implements OnInit {
 
   survey: Survey;
   form: FormGroup;
-  formValue = '';
 
   constructor(private _route: ActivatedRoute,
               private _router: Router,
@@ -49,7 +48,6 @@ export class SubmissionFormComponent implements OnInit {
 
   submitForm() {
     const submission = this._assembleSubmissionObject();
-    console.log(this.form);
 
     this._surveyService.postSubmission(submission).subscribe(
       s => {

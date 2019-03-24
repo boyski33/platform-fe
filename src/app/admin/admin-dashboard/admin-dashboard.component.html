@@ -1,7 +1,7 @@
 <div class="container pad-top">
   <h5>Survey reports:</h5>
   <survey-thumbnail-list [surveys]="surveys"
-                         buttonText="View Report"
+                         [buttonText]="'View Report'"
                          (thumbnailClick)="openSurveyReport($event)">
   </survey-thumbnail-list>
 </div>

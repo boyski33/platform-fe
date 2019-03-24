@@ -20,8 +20,6 @@ export class DropdownQuestionComponent implements OnInit {
       key: '',
       value: ''
     }));
-
-    console.log(this.questionForm.getRawValue());
   }
 
   get options() {

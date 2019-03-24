@@ -32,7 +32,7 @@ export class SurveyService {
 
       if (question.options) {
         question.options.forEach((option, j) => {
-          option.key = `key${j}`;
+          option.key = `option${j}`;
         });
       }
 

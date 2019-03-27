@@ -4,7 +4,8 @@
   <div [ngSwitch]="question.controlType">
 
     <input class="form-control" *ngSwitchCase="'textbox'" [formControlName]="question.key"
-           [id]="question.key" [type]="question.controlType" placeholder="Type answer">
+           [id]="question.key" [type]="question.controlType" placeholder="Type answer"
+           [autocomplete]="'off'">
 
     <select #select class="form-control" [id]="question.key" *ngSwitchCase="'dropdown'"
             [formControlName]="question.key">
@@ -14,5 +15,5 @@
 
   </div>
 
-  <div class="text-danger" *ngIf="!isValid">^ required ^</div>
+  <div class="text-danger" *ngIf="control.errors?.required && control.touched">This field is required.</div>
 </div>

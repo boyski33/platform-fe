@@ -7,7 +7,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class QuestionControlService {
 
-  constructor() {}
+  constructor() {
+  }
 
   toFormGroup(questions: Question[]) {
     // TODO: add custom validations, such as not empty

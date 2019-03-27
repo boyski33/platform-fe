@@ -18,8 +18,8 @@ export class SurveyQuestionComponent implements OnInit {
   ngOnInit() {
   }
 
-  get isValid() {
-    return this.form.controls[ this.question.key ].valid;
+  get control() {
+    return this.form.controls[ this.question.key ];
   }
 
 }

@@ -1,10 +1,21 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Submission } from '../model/submission';
 
 const apiUrl = environment.coreSurveyServiceUrl;
 const submissionsUrl = `${apiUrl}/submissions`;
+
+function headers() {
+  const token = localStorage.getItem('access_token');
+
+  return {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    })
+  };
+}
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +38,7 @@ export class SubmissionApiService {
   getSubmissionsForSurvey(surveyId: string) {
     const url = `${submissionsUrl}/survey/${surveyId}`;
 
-    return this._http.get<Submission[]>(url);
+    return this._http.get<Submission[]>(url, headers());
   }
 
   postSubmission(submission: Submission) {

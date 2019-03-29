@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../auth/auth.service';
+import { UtilService } from '../services/util.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,10 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() {
+  constructor(private authService: AuthService,
+              private utilService: UtilService) {
   }
 
   ngOnInit() {
+  }
+
+  logout() {
+    if (this.authenticated) {
+      this.utilService.openConfirmationDialog()
+        .then(() => {
+          this.authService.logout();
+        })
+        .catch(() => {
+          console.log('Closed with NO');
+        });
+    }
+  }
+
+  get authenticated() {
+    return this.authService.isAuthenticated();
   }
 
 }

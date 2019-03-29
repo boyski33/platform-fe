@@ -6,10 +6,23 @@ import { SubmissionFormComponent } from './submission-form/submission-form.compo
 import { CreationFormComponent } from './creation-form/creation-form.component';
 
 const routes: Routes = [
-  { path: 'dashboard', component: SurveyDashboardComponent },
-  { path: 'new', component: CreationFormComponent },
-  { path: ':id', component: SubmissionFormComponent },
-  { path: '', pathMatch: 'full', redirectTo: 'dashboard' }
+  {
+    path: 'dashboard',
+    component: SurveyDashboardComponent
+  },
+  {
+    path: 'new',
+    component: CreationFormComponent
+  },
+  {
+    path: ':id',
+    component: SubmissionFormComponent
+  },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'dashboard'
+  }
 ];
 
 @NgModule({

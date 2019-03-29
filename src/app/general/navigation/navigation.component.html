@@ -5,7 +5,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" routerLink="home" routerLinkActive="active">
           Home
@@ -30,6 +30,11 @@
         <a class="nav-link" routerLink="admin" routerLinkActive="active">
           Admin Panel
         </a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav" [hidden]="!authenticated">
+      <li class="nav-item" style="cursor: pointer;">
+        <button class="btn btn-danger text-light" (click)="logout()">Logout</button>
       </li>
     </ul>
   </div>

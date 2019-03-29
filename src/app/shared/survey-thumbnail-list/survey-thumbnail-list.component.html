@@ -1,7 +1,7 @@
 <div class="container">
   <!--TODO: use flexbox view?-->
 
-  <div *ngFor="let survey of surveys" class="card custom-width">
+  <div *ngFor="let survey of surveys" class="card custom-width margin-top">
     <div class="card-body">
       <h5 *ngIf="survey.title" class="card-title">{{survey.title}}</h5>
       <h5 *ngIf="!survey.title" class="card-title"><i>Untitled</i></h5>

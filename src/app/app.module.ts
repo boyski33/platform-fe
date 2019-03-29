@@ -9,6 +9,7 @@ import { NotFoundComponent } from './general/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HomePageComponent } from './general/home-page/home-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmationDialogComponent } from './general/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UserHistoryComponent,
     NavigationComponent,
     NotFoundComponent,
-    HomePageComponent
+    HomePageComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NgbModule
   ],
   providers: [],
+  entryComponents: [
+    ConfirmationDialogComponent
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {

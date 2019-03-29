@@ -15,5 +15,7 @@
 
   </div>
 
-  <div class="text-danger" *ngIf="control.errors?.required && control.touched">This field is required.</div>
+  <div class="text-danger" [class.hidden]="!control.errors?.required || !control.touched">
+    This field is required.
+  </div>
 </div>

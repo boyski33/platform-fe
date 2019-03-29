@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import * as auth0 from 'auth0-js';
 
 @Injectable({
@@ -16,7 +15,7 @@ export class AuthService {
     scope: 'openid view:submissions'
   });
 
-  constructor(private router: Router) {
+  constructor() {
   }
 
   public login() {
@@ -29,7 +28,7 @@ export class AuthService {
         window.location.hash = '';
         this.setSession(authResult);
       } else if (err) {
-        console.log(err);
+        console.error(err);
       }
     });
   }
@@ -48,13 +47,16 @@ export class AuthService {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
 
-    // Go back to the home route
-    this.router.navigate([ '/' ]);
+    // Disable silent authentication by calling logout() explicitly
+    this.auth0.logout({
+      return_to: window.location.origin
+    });
   }
 
+  /**
+   * Checks whether the current time is past the access token's expiry time
+   */
   public isAuthenticated(): boolean {
-    // Check whether the current time is past the
-    // access token's expiry time
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
   }

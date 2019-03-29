@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SurveyDashboardComponent } from './survey-dashboard/survey-dashboard.component';
 import { SubmissionFormComponent } from './submission-form/submission-form.component';
 import { CreationFormComponent } from './creation-form/creation-form.component';
+import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -12,7 +13,8 @@ const routes: Routes = [
   },
   {
     path: 'new',
-    component: CreationFormComponent
+    component: CreationFormComponent,
+    canActivate: [ AuthGuard ]
   },
   {
     path: ':id',

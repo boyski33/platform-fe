@@ -9,12 +9,12 @@ const routes: Routes = [
   {
     path: 'reports',
     component: AdminDashboardComponent,
-    canActivate: [AuthGuard]
+    canActivate: [ AuthGuard ]
   },
   {
     path: 'reports/:surveyId',
     component: SurveyReportComponent,
-    canActivate: [AuthGuard]
+    canActivate: [ AuthGuard ]
   },
   {
     path: '',

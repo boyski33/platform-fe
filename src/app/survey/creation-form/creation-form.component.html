@@ -7,6 +7,9 @@
         <input class="form-control" type="text" formControlName="title">
       </label>
     </div>
+    <div class="text-danger" *ngIf="title.errors?.required && title.touched">
+      Title is required
+    </div>
 
     <div class="form-row">
       <label>
@@ -47,7 +50,7 @@
 
 
     <div class="form-row pad-top">
-      <button type="submit" class="btn btn-success">
+      <button type="submit" class="btn btn-success" [disabled]="!form.valid">
         Create
       </button>
     </div>

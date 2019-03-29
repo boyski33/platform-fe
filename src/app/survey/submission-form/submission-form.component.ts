@@ -60,7 +60,7 @@ export class SubmissionFormComponent implements OnInit {
   }
 
   private _assembleSubmissionObject(): Submission {
-    const loggedInUser: User = { username: 'dummy_user' };
+    const loggedInUser = { email: 'dummy_user' };
     const answers = this._getSurveyAnswers();
 
     return new Submission(loggedInUser, this.survey, answers);

@@ -4,12 +4,27 @@ import { RouterModule, Routes } from '@angular/router';
 import { SurveyDashboardComponent } from './survey-dashboard/survey-dashboard.component';
 import { SubmissionFormComponent } from './submission-form/submission-form.component';
 import { CreationFormComponent } from './creation-form/creation-form.component';
+import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
-  { path: 'dashboard', component: SurveyDashboardComponent },
-  { path: 'new', component: CreationFormComponent },
-  { path: ':id', component: SubmissionFormComponent },
-  { path: '', pathMatch: 'full', redirectTo: 'dashboard' }
+  {
+    path: 'dashboard',
+    component: SurveyDashboardComponent
+  },
+  {
+    path: 'new',
+    component: CreationFormComponent,
+    canActivate: [ AuthGuard ]
+  },
+  {
+    path: ':id',
+    component: SubmissionFormComponent
+  },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'dashboard'
+  }
 ];
 
 @NgModule({

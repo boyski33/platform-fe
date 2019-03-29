@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { UserHistoryComponent } from './user/profile/user-history/user-history.component';
 import { NavigationComponent } from './general/navigation/navigation.component';
 import { NotFoundComponent } from './general/not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,7 +13,6 @@ import { ConfirmationDialogComponent } from './general/confirmation-dialog/confi
 @NgModule({
   declarations: [
     AppComponent,
-    UserHistoryComponent,
     NavigationComponent,
     NotFoundComponent,
     HomePageComponent,

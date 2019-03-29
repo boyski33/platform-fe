@@ -34,12 +34,12 @@
     </ul>
     <ul class="nav navbar-nav" [hidden]="!authenticated">
       <li class="nav-item" style="cursor: pointer;">
-        <button class="btn btn-danger text-light" (click)="logout()">Logout</button>
+        <button class="btn bg-pink text-light" (click)="logout()">Logout</button>
       </li>
     </ul>
     <ul class="nav navbar-nav" [hidden]="authenticated">
       <li class="nav-item" style="cursor: pointer;">
-        <button class="btn btn-success text-light" (click)="login()">Login</button>
+        <button class="btn bg-green text-light" (click)="login()">Login</button>
       </li>
     </ul>
   </div>

@@ -8,11 +8,19 @@
 }
 
 .pink {
-  color: #ffd953;
+  color: deeppink;
 }
 
-.purple {
-  color: #59ff6b;
+.bg-pink {
+  background-color: deeppink;
+}
+
+.green {
+  color: #1be130;
+}
+
+.bg-green {
+  background-color: #1be130;
 }
 
 .bold {

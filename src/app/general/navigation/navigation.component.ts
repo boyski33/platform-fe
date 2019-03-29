@@ -28,6 +28,12 @@ export class NavigationComponent implements OnInit {
     }
   }
 
+  login() {
+    if (!this.authenticated) {
+      this.authService.login();
+    }
+  }
+
   get authenticated() {
     return this.authService.isAuthenticated();
   }

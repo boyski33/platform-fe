@@ -1,3 +1,11 @@
-.active {
-  border-bottom: 2px solid deeppink;
+@media screen and (max-width: 990px) {
+  .active {
+    border-left: 2px solid deeppink;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .active {
+    border-bottom: 2px solid deeppink;
+  }
 }

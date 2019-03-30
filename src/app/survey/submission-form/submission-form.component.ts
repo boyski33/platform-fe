@@ -10,6 +10,7 @@ import { QuestionControlService } from '../services/question-control.service';
 import { Submission } from '../model/submission';
 import { User } from '../../user/model/user';
 import { AnsweredQuestion } from '../model/answered-question';
+import { UtilService } from '../../general/services/util.service';
 
 @Component({
   selector: 'submission-page',
@@ -24,7 +25,8 @@ export class SubmissionFormComponent implements OnInit {
   constructor(private _route: ActivatedRoute,
               private _router: Router,
               private _surveyService: SurveyService,
-              private _questionControlService: QuestionControlService) {
+              private _questionControlService: QuestionControlService,
+              private _utilService: UtilService) {
   }
 
   ngOnInit() {
@@ -35,7 +37,8 @@ export class SubmissionFormComponent implements OnInit {
         this.createFormFromSurvey(s);
       },
       e => {
-        this.displayErrorDialog(JSON.stringify(e));
+        this._utilService.openSimpleDialog('Something went wrong');
+        console.error(e);
       }
     );
   }

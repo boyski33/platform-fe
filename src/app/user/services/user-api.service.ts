@@ -25,7 +25,7 @@ export class UserApiService {
   constructor(private http: HttpClient) {
   }
 
-  public postUser(user: User) {
-    return this.http.post<User>(usersUrl, user, headers());
+  public updateUser(user: User) {
+    return this.http.put<User>(usersUrl, user, headers());
   }
 }

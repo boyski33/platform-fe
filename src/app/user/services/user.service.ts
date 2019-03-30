@@ -16,6 +16,6 @@ export class UserService {
   }
 
   public addUser(user: User): Observable<User> {
-    return this.api.postUser(user);
+    return this.api.updateUser(user);
   }
 }

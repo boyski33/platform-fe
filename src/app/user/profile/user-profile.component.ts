@@ -41,7 +41,7 @@ export class UserProfileComponent implements OnInit {
 
   populateUserData() {
     if (this.authService.isAuthenticated()) {
-      const email = this.authService.extractEmail();
+      const email = this.authService.getUserEmail();
 
       this.populateForEmail(email);
     }
@@ -87,7 +87,7 @@ export class UserProfileComponent implements OnInit {
 
   private assembleUserObject(): User {
     return {
-      email: this.authService.extractEmail(),
+      email: this.authService.getUserEmail(),
       firstName: this.firstName.value,
       lastName: this.lastName.value,
       dateOfBirth: this.getFormattedDate(this.dateOfBirth.value),

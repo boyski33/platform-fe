@@ -4,17 +4,16 @@ import { Observable } from 'rxjs';
 import { Survey } from '../model/survey';
 import { Submission } from '../model/submission';
 import { SubmissionApiService } from './submission-api.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SurveyService {
 
-  // TODO: refactor this service to returns entities and not observables
-  // TODO: extract error handling logic here
-
-  constructor(private _surveyApi: SurveyApiService,
-              private _submissionApi: SubmissionApiService) {
+  constructor(private surveyApi: SurveyApiService,
+              private submissionApi: SubmissionApiService,
+              private authService: AuthService) {
   }
 
   /**
@@ -40,38 +39,39 @@ export class SurveyService {
   }
 
   getAllSurveys(): Observable<Survey[]> {
-    return this._surveyApi.getAllSurveys();
+    return this.surveyApi.getAllSurveys();
   }
 
   getAllSurveysMetadata(): Observable<Survey[]> {
-    return this._surveyApi.getAllSurveysMetadata();
+    return this.surveyApi.getAllSurveysMetadata();
   }
 
   getSurvey(id: string): Observable<Survey> {
     // TODO: make sure questions are sorted by order
-    return this._surveyApi.getSurveyById(id);
+    return this.surveyApi.getSurveyById(id);
   }
 
   createNewSurvey(survey: Survey): Observable<Survey> {
+    survey.ownerEmail = this.authService.getUserEmail();
     SurveyService._assembleSurveyQuestions(survey);
 
-    return this._surveyApi.postSurvey(survey);
+    return this.surveyApi.postSurvey(survey);
   }
 
   getAllSubmissions(): Observable<Submission[]> {
-    return this._submissionApi.getAllSubmissions();
+    return this.submissionApi.getAllSubmissions();
   }
 
   getSubmission(id: string): Observable<Submission> {
-    return this._submissionApi.getSubmissionById(id);
+    return this.submissionApi.getSubmissionById(id);
   }
 
   getSubmissionsForSurvey(surveyId: string): Observable<Submission[]> {
-    return this._submissionApi.getSubmissionsForSurvey(surveyId);
+    return this.submissionApi.getSubmissionsForSurvey(surveyId);
   }
 
   postSubmission(submission: Submission): Observable<Submission> {
-    return this._submissionApi.postSubmission(submission);
+    return this.submissionApi.postSubmission(submission);
   }
 
 }

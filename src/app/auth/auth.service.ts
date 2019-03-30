@@ -63,7 +63,7 @@ export class AuthService {
     return new Date().getTime() < expiresAt;
   }
 
-  public extractEmail() {
+  public getUserEmail(): string {
     if (this.isAuthenticated()) {
       const payload = JSON.parse(localStorage.getItem('id_token_payload'));
 

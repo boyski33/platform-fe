@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Survey } from '../model/survey';
 import { SurveyService } from '../services/survey.service';
+import { UtilService } from '../../general/services/util.service';
 
 @Component({
   selector: 'creation-form',
@@ -10,11 +11,12 @@ import { SurveyService } from '../services/survey.service';
 })
 export class CreationFormComponent implements OnInit {
 
-  form = this._buildForm();
+  form = this.buildForm();
   survey: Survey;
 
   constructor(private fb: FormBuilder,
-              private _surveyService: SurveyService) {
+              private surveyService: SurveyService,
+              private utilService: UtilService) {
   }
 
   ngOnInit() {
@@ -36,10 +38,10 @@ export class CreationFormComponent implements OnInit {
   }
 
   submitForm() {
-    this._surveyService.createNewSurvey(this.form.value).subscribe(s => {
-      alert('Created');
+    this.surveyService.createNewSurvey(this.form.value).subscribe(s => {
+      this.utilService.openSimpleDialog('Survey created.');
       this.form.reset();
-      this.form = this._buildForm();
+      this.form = this.buildForm();
     });
   }
 
@@ -47,7 +49,7 @@ export class CreationFormComponent implements OnInit {
     this.questions.controls.splice(index, 1);
   }
 
-  private _buildForm() {
+  private buildForm() {
     return this.fb.group({
       title: [ '', Validators.required ],
       description: [ '' ],

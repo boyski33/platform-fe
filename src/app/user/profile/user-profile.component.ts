@@ -5,6 +5,8 @@ import { AuthService } from '../../auth/auth.service';
 import { UserService } from '../services/user.service';
 import { UtilService } from '../../general/services/util.service';
 
+const errorMessage = 'Something went wrong';
+
 function validateDate(control: AbstractControl): { [key: string]: boolean } | null {
 
   const now = Date.now();
@@ -34,6 +36,15 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.buildForm();
+    this.populateUserData();
+  }
+
+  populateUserData() {
+    if (this.authService.isAuthenticated()) {
+      const email = this.authService.extractEmail();
+
+      this.populateForEmail(email);
+    }
   }
 
   saveProfile() {
@@ -51,10 +62,27 @@ export class UserProfileComponent implements OnInit {
 
     this.userService.addUser(user)
       .subscribe(() => {
-        this.utilService.openSimpleDialog().componentInstance.text = 'Profile updated';
+        this.utilService.openSimpleDialog('Profile updated');
       }, () => {
-        this.utilService.openSimpleDialog().componentInstance.text = 'Something went wrong...';
+        this.utilService.openSimpleDialog(errorMessage);
       });
+  }
+
+  private populateForEmail(email: string) {
+    this.userService.getUserByEmail(email).subscribe(
+      data => {
+        this.setFormData(data);
+      }
+    );
+  }
+
+  private setFormData(user: User) {
+    this.form.setValue({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      dateOfBirth: user.dateOfBirth ? this.getFormattedDate(user.dateOfBirth) : '',
+      gender: user.gender || ''
+    });
   }
 
   private assembleUserObject(): User {
@@ -62,7 +90,7 @@ export class UserProfileComponent implements OnInit {
       email: this.authService.extractEmail(),
       firstName: this.firstName.value,
       lastName: this.lastName.value,
-      dateOfBirth: this.convertDateToTimestamp(this.dateOfBirth.value).toString(),
+      dateOfBirth: this.getFormattedDate(this.dateOfBirth.value),
       gender: this.gender.value
     };
   }
@@ -76,9 +104,24 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  private convertDateToTimestamp(date: string) {
-    // Get the milliseconds of that date and convert to seconds
-    return new Date(date).getTime() / 1000;
+  /**
+   * Converts a date object to yyyy-mm-dd format
+   */
+  private getFormattedDate(date: string): string {
+    const d = new Date(date);
+    const year = `${d.getUTCFullYear()}`;
+    let month = `${d.getUTCMonth() + 1}`;
+    let day = `${d.getUTCDate()}`;
+
+    if (month.length < 2) {
+      month = '0' + month;
+    }
+
+    if (day.length < 2) {
+      day = '0' + day;
+    }
+
+    return `${year}-${month}-${day}`;
   }
 
   get firstName() {

@@ -18,7 +18,11 @@ export class UtilService {
     return this.modalService.open(this.confirmationDialog, {windowClass: 'custom-modal'}).result;
   }
 
-  public openSimpleDialog() {
+  public openSimpleDialog(text: string) {
+    this.openModal().componentInstance.text = text;
+  }
+
+  private openModal() {
     return this.modalService.open(this.simpleDialog, {windowClass: 'custom-modal'});
   }
 }

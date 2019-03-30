@@ -25,6 +25,12 @@ export class UserApiService {
   constructor(private http: HttpClient) {
   }
 
+  public getUserByEmail(email: string) {
+    const url = `${usersUrl}/${email}`;
+
+    return this.http.get<User>(url, headers());
+  }
+
   public updateUser(user: User) {
     return this.http.put<User>(usersUrl, user, headers());
   }

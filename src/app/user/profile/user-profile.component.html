@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Enter user details:</h2>
+  <h2>User details:</h2>
   <form [formGroup]="form" (ngSubmit)="saveProfile()">
     <div class="form-row">
       <label>
@@ -21,7 +21,7 @@
         <input class="form-control" type="date" formControlName="dateOfBirth">
       </label>
     </div>
-    <div class="text-danger" [class.hidden]="!dateOfBirth.errors || !dateOfBirth.touched">
+    <div class="text-danger" [hidden]="!dateOfBirth.errors || !dateOfBirth.touched">
       <div *ngIf="dateOfBirth.errors?.required">
         Date of birth is required
       </div>
@@ -34,11 +34,11 @@
         Gender:
         <select #select class="form-control" name="gender" id="gender-select" formControlName="gender">
           <option *ngIf="!select.value" value="" disabled selected>Select gender</option>
-          <option *ngFor="let g of genderList" [value]="g">{{g}}</option>
+          <option *ngFor="let g of genderList" [value]="g.toLowerCase()">{{g}}</option>
         </select>
       </label>
     </div>
-    <div class="text-danger" [class.hidden]="!gender.errors?.required || !gender.touched">
+    <div class="text-danger" [hidden]="!gender.errors?.required || !gender.touched">
       Gender is required
     </div>
 

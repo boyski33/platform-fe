@@ -11,8 +11,8 @@ export class UserService {
   constructor(private api: UserApiService) {
   }
 
-  public getUserByEmail(email: string) {
-
+  public getUserByEmail(email: string): Observable<User> {
+    return this.api.getUserByEmail(email);
   }
 
   public addUser(user: User): Observable<User> {

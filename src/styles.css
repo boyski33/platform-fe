@@ -36,3 +36,11 @@
     opacity: 0;
   }
 }
+
+.hidden {
+  visibility: hidden;
+}
+
+.custom-modal .modal-dialog {
+  max-width: 300px;
+}

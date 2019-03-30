@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomePageComponent } from './general/home-page/home-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationDialogComponent } from './general/confirmation-dialog/confirmation-dialog.component';
+import { SingleButtonDialogComponent } from './general/single-button-dialog/single-button-dialog.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ConfirmationDialogComponent } from './general/confirmation-dialog/confi
     NavigationComponent,
     NotFoundComponent,
     HomePageComponent,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    SingleButtonDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import { ConfirmationDialogComponent } from './general/confirmation-dialog/confi
   ],
   providers: [],
   entryComponents: [
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    SingleButtonDialogComponent
   ],
   bootstrap: [ AppComponent ]
 })

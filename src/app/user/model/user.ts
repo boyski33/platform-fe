@@ -1,8 +1,8 @@
 export interface User {
   id?: string;
   email: string;
-  firstName: string;
-  lastName: string;
-  dateOfBirth: string;
-  gender: string;
+  firstName?: string;
+  lastName?: string;
+  dateOfBirth?: string;
+  gender?: string;
 }

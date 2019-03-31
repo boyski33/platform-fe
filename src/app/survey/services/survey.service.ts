@@ -5,6 +5,7 @@ import { Survey } from '../model/survey';
 import { Submission } from '../model/submission';
 import { SubmissionApiService } from './submission-api.service';
 import { AuthService } from '../../auth/auth.service';
+import { UserService } from '../../user/services/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class SurveyService {
 
   constructor(private surveyApi: SurveyApiService,
               private submissionApi: SubmissionApiService,
+              private userService: UserService,
               private authService: AuthService) {
   }
 
@@ -75,6 +77,10 @@ export class SurveyService {
   }
 
   postSubmission(submission: Submission): Observable<Submission> {
+    submission.user = {
+      email: this.authService.getUserEmail()
+    };
+
     return this.submissionApi.postSubmission(submission);
   }
 

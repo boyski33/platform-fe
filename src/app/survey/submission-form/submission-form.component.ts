@@ -57,7 +57,7 @@ export class SubmissionFormComponent implements OnInit {
         this._router.navigate([ '..' ], { relativeTo: this._route });
       },
       e => {
-        alert('Oh no, something went wrong!');
+        this._utilService.openSimpleDialog('Something went wrong');
       }
     );
   }
@@ -81,11 +81,6 @@ export class SubmissionFormComponent implements OnInit {
     const answer = this.form.controls[question.key].value;
 
     return new AnsweredQuestion(question, answer);
-  }
-
-  displayErrorDialog(error: string) {
-    // TODO: add a modal window when showing errors, or extract it in a service
-    alert(error);
   }
 
 }

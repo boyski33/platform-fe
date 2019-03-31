@@ -41,6 +41,12 @@ export class SurveyApiService {
     return this._http.get<Survey>(url);
   }
 
+  getSurveysForOwner(ownerEmail: string) {
+    const url = `${surveysUrl}/user/${ownerEmail}`;
+
+    return this._http.get<Survey[]>(url, headers());
+  }
+
   postSurvey(survey: Survey) {
     return this._http.post<Survey>(surveysUrl, survey, headers());
   }

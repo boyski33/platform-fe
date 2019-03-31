@@ -1,6 +1,8 @@
 <div class="container">
 
-  <div *ngFor="let sub of submissions" class="card custom-width">
+  <!--TODO flexbox view-->
+
+  <div *ngFor="let sub of submissions" class="card custom-width margin-top">
     <div class="card-body">
       <h5 *ngIf="sub.survey.title" class="card-title">{{sub.survey.title}}</h5>
       <h5 *ngIf="!sub.survey.title" class="card-title"><i>Untitled</i></h5>

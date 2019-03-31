@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SurveyService } from '../../survey/services/survey.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Survey } from '../../survey/model/survey';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'admin-dashboard',
@@ -12,22 +13,25 @@ export class AdminDashboardComponent implements OnInit {
 
   surveys: Survey[];
 
-  constructor(private _surveyService: SurveyService,
-              private _router: Router,
-              private _route: ActivatedRoute) {
+  constructor(private surveyService: SurveyService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private authService: AuthService) {
   }
 
   ngOnInit() {
-    this._getSurveys();
+    this.getSurveysOfAuthenticatedUser();
   }
 
   openSurveyReport(surveyId: string) {
-    this._router.navigate([ surveyId ], { relativeTo: this._route });
+    this.router.navigate([ surveyId ], { relativeTo: this.route });
   }
 
-  private _getSurveys() {
-    // TODO: get for user
-    this._surveyService.getAllSurveysMetadata()
+  private getSurveysOfAuthenticatedUser() {
+    const userEmail = this.authService.getUserEmail();
+    console.log(userEmail);
+
+    this.surveyService.getSurveysForOwner(userEmail)
       .subscribe(data => this.surveys = data);
   }
 }

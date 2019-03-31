@@ -1,15 +1,11 @@
 <div class="modal-header">
-  <h4 class="modal-title" id="modal-title">Confirmation</h4>
+  <h4 class="modal-title" id="modal-title">Are you sure?</h4>
   <button type="button" class="close" aria-describedby="modal-title" (click)="modal.dismiss()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<div class="modal-body">
-  <p>
-    Are you sure?
-  </p>
-</div>
+
 <div class="modal-footer">
-  <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">No</button>
-  <button type="button" class="btn btn-danger" (click)="modal.close()">Yes</button>
+  <button type="button" class="btn btn-lg btn-outline-secondary" (click)="modal.dismiss()">No</button>
+  <button type="button" class="btn btn-lg btn-danger" (click)="modal.close()">Yes</button>
 </div>

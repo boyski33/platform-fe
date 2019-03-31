@@ -10,6 +10,7 @@ import { QuestionControlService } from '../services/question-control.service';
 import { Submission } from '../model/submission';
 import { User } from '../../user/model/user';
 import { AnsweredQuestion } from '../model/answered-question';
+import { UtilService } from '../../general/services/util.service';
 
 @Component({
   selector: 'submission-page',
@@ -24,7 +25,8 @@ export class SubmissionFormComponent implements OnInit {
   constructor(private _route: ActivatedRoute,
               private _router: Router,
               private _surveyService: SurveyService,
-              private _questionControlService: QuestionControlService) {
+              private _questionControlService: QuestionControlService,
+              private _utilService: UtilService) {
   }
 
   ngOnInit() {
@@ -35,7 +37,8 @@ export class SubmissionFormComponent implements OnInit {
         this.createFormFromSurvey(s);
       },
       e => {
-        this.displayErrorDialog(JSON.stringify(e));
+        this._utilService.openSimpleDialog('Something went wrong');
+        console.error(e);
       }
     );
   }
@@ -54,16 +57,15 @@ export class SubmissionFormComponent implements OnInit {
         this._router.navigate([ '..' ], { relativeTo: this._route });
       },
       e => {
-        alert('Oh no, something went wrong!');
+        this._utilService.openSimpleDialog('Something went wrong');
       }
     );
   }
 
   private _assembleSubmissionObject(): Submission {
-    const loggedInUser = { email: 'dummy_user' };
     const answers = this._getSurveyAnswers();
 
-    return new Submission(loggedInUser, this.survey, answers);
+    return new Submission(null, this.survey, answers);
   }
 
   private _getSurveyAnswers(): AnsweredQuestion[] {
@@ -79,11 +81,6 @@ export class SubmissionFormComponent implements OnInit {
     const answer = this.form.controls[question.key].value;
 
     return new AnsweredQuestion(question, answer);
-  }
-
-  displayErrorDialog(error: string) {
-    // TODO: add a modal window when showing errors, or extract it in a service
-    alert(error);
   }
 
 }

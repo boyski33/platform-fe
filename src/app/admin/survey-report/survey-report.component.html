@@ -1,11 +1,11 @@
-<div class="float-left">
+<div class="float-left ml-4">
   <button class="btn btn-outline-danger" (click)="navigateBack()">
     Back
   </button>
 </div>
 
 <div class="container d-flex justify-content-center pad-top">
-  <div id="all-submissions" class="col-md-6">
+  <div class="col-md-6">
     <h5>All Submissions:</h5>
     <submission-thumbnail-list
       [submissions]="submissions"
@@ -13,7 +13,7 @@
     </submission-thumbnail-list>
   </div>
 
-  <div id="submission-stats" class="col-md-6">
-    <h5>Submission Stats:</h5>
+  <div class="col-md-6">
+    <h5>Survey Stats:</h5>
   </div>
 </div>

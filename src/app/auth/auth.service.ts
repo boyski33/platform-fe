@@ -12,7 +12,7 @@ export class AuthService {
     responseType: 'token id_token',
     audience: 'http://localhost:8866',
     redirectUri: 'http://localhost:4200/home',
-    scope: 'openid view:submissions'
+    scope: 'openid email view:submissions'
   });
 
   constructor() {
@@ -38,6 +38,7 @@ export class AuthService {
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('id_token_payload', JSON.stringify(authResult.idTokenPayload));
     localStorage.setItem('expires_at', expiresAt);
   }
 
@@ -45,6 +46,7 @@ export class AuthService {
     // Remove tokens and expiry time from localStorage
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
+    localStorage.removeItem('id_token_payload');
     localStorage.removeItem('expires_at');
 
     // Disable silent authentication by calling logout() explicitly
@@ -59,5 +61,15 @@ export class AuthService {
   public isAuthenticated(): boolean {
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
+  }
+
+  public getUserEmail(): string {
+    if (this.isAuthenticated()) {
+      const payload = JSON.parse(localStorage.getItem('id_token_payload'));
+
+      return payload['email'];
+    }
+
+    return null;
   }
 }

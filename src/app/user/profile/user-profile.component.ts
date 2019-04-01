@@ -5,8 +5,6 @@ import { AuthService } from '../../auth/auth.service';
 import { UserService } from '../services/user.service';
 import { UtilService } from '../../general/services/util.service';
 
-const errorMessage = 'Something went wrong';
-
 function validateDate(control: AbstractControl): { [key: string]: boolean } | null {
 
   const now = Date.now();
@@ -64,7 +62,7 @@ export class UserProfileComponent implements OnInit {
       .subscribe(() => {
         this.utilService.openSimpleDialog('Profile updated');
       }, () => {
-        this.utilService.openSimpleDialog(errorMessage);
+        this.utilService.openSimpleDialog('Something went wrong');
       });
   }
 

@@ -57,7 +57,7 @@ export class SubmissionFormComponent implements OnInit {
         this._router.navigate([ '..' ], { relativeTo: this._route });
       },
       e => {
-        this._utilService.openSimpleDialog('Something went wrong');
+        this._utilService.openSimpleDialog(e.error);
       }
     );
   }

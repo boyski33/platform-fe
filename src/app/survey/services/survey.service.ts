@@ -77,9 +77,15 @@ export class SurveyService {
   }
 
   postSubmission(submission: Submission): Observable<Submission> {
-    submission.user = {
-      email: this.authService.getUserEmail()
-    };
+    let user = null;
+
+    if (this.authService.isAuthenticated()) {
+      user = {
+        email: this.authService.getUserEmail()
+      };
+    }
+
+    submission.user = user;
 
     return this.submissionApi.postSubmission(submission);
   }

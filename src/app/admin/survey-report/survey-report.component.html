@@ -4,7 +4,10 @@
   </button>
 </div>
 
-<div class="container d-flex justify-content-center pad-top">
+<div *ngIf="submissions.length > 0" class="container d-flex justify-content-center pad-top">
+
+  <h2>Survey: {{survey}}</h2>
+
   <div class="col-md-6">
     <h5>All Submissions:</h5>
     <submission-thumbnail-list
@@ -17,3 +20,7 @@
     <h5>Survey Stats:</h5>
   </div>
 </div>
+
+<!--<div *ngIf="submissions.length === 0">-->
+  <!--<h2>No submissions for {{survey}}</h2>-->
+<!--</div>-->

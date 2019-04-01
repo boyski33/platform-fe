@@ -1,17 +1,15 @@
 <div class="container">
 
   <!--TODO flexbox view-->
+  <!--TODO display user info instead of repeating survey info-->
 
   <div *ngFor="let sub of submissions" class="card custom-width margin-top">
     <div class="card-body">
       <h5 *ngIf="sub.survey.title" class="card-title">{{sub.survey.title}}</h5>
       <h5 *ngIf="!sub.survey.title" class="card-title"><i>Untitled</i></h5>
 
-      <p *ngIf="sub.survey.description" class="card-text">
-        {{sub.survey.description}}
-      </p>
-      <p *ngIf="!sub.survey.description" class="card-text">
-        <i>no description</i>
+      <p *ngIf="sub.timestamp" class="card-text">
+        Submitted on: {{sub.timestamp | date:'short'}}
       </p>
 
     </div>

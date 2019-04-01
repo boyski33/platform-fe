@@ -40,4 +40,12 @@ export class SurveyReportComponent implements OnInit {
     return this._surveyService.getSubmissionsForSurvey(surveyId);
   }
 
+  get survey(): string {
+    if (this.submissions.length > 0) {
+      return this.submissions[0].survey.title;
+    }
+
+    return '';
+  }
+
 }

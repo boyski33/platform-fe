@@ -12,6 +12,7 @@ import { UserService } from '../services/user.service';
 })
 export class UserSubmissionsComponent implements OnInit {
 
+  submissions$: Observable<Submission[]>;
   private readonly userEmail = this.authService.getUserEmail();
   private hasUser = false;
 
@@ -20,11 +21,12 @@ export class UserSubmissionsComponent implements OnInit {
               private surveyService: SurveyService) { }
 
   ngOnInit() {
+    this.getSubmissionsOfUser();
     this.getUserDetails();
   }
 
-  getSubmissionsOfUser(): Observable<Submission[]> {
-    return this.surveyService.getSubmissionsOfUser(this.userEmail);
+  getSubmissionsOfUser() {
+    this.submissions$ = this.surveyService.getSubmissionsOfUser(this.userEmail);
   }
 
   private getUserDetails() {

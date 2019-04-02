@@ -3,7 +3,7 @@
   <submission-thumbnail-list
     *ngIf="hasUser"
     [buttonText]="'View'"
-    [submissions]="getSubmissionsOfUser() | async">
+    [submissions]="submissions$ | async">
   </submission-thumbnail-list>
   <div *ngIf="!hasUser">
     <p>

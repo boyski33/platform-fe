@@ -41,6 +41,12 @@ export class SubmissionApiService {
     return this._http.get<Submission[]>(url, headers());
   }
 
+  getSubmissionsOfUser(userEmail: string) {
+    const url = `${submissionsUrl}/user/${userEmail}`;
+
+    return this._http.get<Submission[]>(url, headers());
+  }
+
   postSubmission(submission: Submission) {
     return this._http.post<Submission>(submissionsUrl, submission);
   }

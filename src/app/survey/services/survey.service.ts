@@ -76,6 +76,10 @@ export class SurveyService {
     return this.submissionApi.getSubmissionsForSurvey(surveyId);
   }
 
+  getSubmissionsOfUser(userEmail: string): Observable<Submission[]> {
+    return this.submissionApi.getSubmissionsOfUser(userEmail);
+  }
+
   postSubmission(submission: Submission): Observable<Submission> {
     let user = null;
 

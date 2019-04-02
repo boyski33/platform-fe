@@ -17,11 +17,11 @@ function validateDate(control: AbstractControl): { [key: string]: boolean } | nu
 }
 
 @Component({
-  selector: 'user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: [ './user-profile.component.scss' ]
+  selector: 'user-details',
+  templateUrl: './user-details.component.html',
+  styleUrls: [ './user-details.component.scss' ]
 })
-export class UserProfileComponent implements OnInit {
+export class UserDetailsComponent implements OnInit {
 
   form: FormGroup;
   readonly genderList = [ 'Male', 'Female', 'Other' ];

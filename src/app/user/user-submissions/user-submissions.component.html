@@ -1,0 +1,13 @@
+<div class="container">
+  <h2>Your posted submissions:</h2>
+  <submission-thumbnail-list
+    *ngIf="hasUser"
+    [buttonText]="'View'"
+    [submissions]="getSubmissionsOfUser() | async">
+  </submission-thumbnail-list>
+  <div *ngIf="!hasUser">
+    <p>
+      You need to <a routerLink="/users/my-profile">put in your details</a>
+    </p>
+  </div>
+</div>

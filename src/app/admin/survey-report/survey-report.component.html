@@ -3,24 +3,26 @@
     Back
   </button>
 </div>
+<div *ngIf="submissions" class="container d-flex justify-content-center pad-top">
+  <div *ngIf="submissions.length > 0">
 
-<div *ngIf="submissions.length > 0" class="container d-flex justify-content-center pad-top">
+    <h2>Survey: {{surveyTitle}}</h2>
 
-  <h2>Survey: {{survey}}</h2>
+    <div class="col-md-6">
+      <h5>All Submissions:</h5>
+      <submission-thumbnail-list
+        [submissions]="submissions"
+        [buttonText]="'View'">
+      </submission-thumbnail-list>
+    </div>
 
-  <div class="col-md-6">
-    <h5>All Submissions:</h5>
-    <submission-thumbnail-list
-      [submissions]="submissions"
-      [buttonText]="'View'">
-    </submission-thumbnail-list>
+    <div class="col-md-6">
+      <h5>Survey Stats:</h5>
+    </div>
   </div>
 
-  <div class="col-md-6">
-    <h5>Survey Stats:</h5>
+  <div *ngIf="submissions.length === 0">
+    <h2>No submissions for the survey yet</h2>
   </div>
+
 </div>
-
-<!--<div *ngIf="submissions.length === 0">-->
-  <!--<h2>No submissions for {{survey}}</h2>-->
-<!--</div>-->

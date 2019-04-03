@@ -1,13 +1,17 @@
-<div class="container">
-  <h2>Your posted submissions:</h2>
-  <submission-thumbnail-list
-    *ngIf="hasUser"
-    [buttonText]="'View'"
-    [submissions]="submissions$ | async">
-  </submission-thumbnail-list>
-  <div *ngIf="!hasUser">
-    <p>
-      You need to <a routerLink="/users/my-profile">put in your details</a>
-    </p>
+<div *ngIf="hasUser" class="container">
+  <div *ngIf="submissions">
+    <div *ngIf="submissions.length > 0">
+      <h2>Your posted submissions:</h2>
+      <submission-thumbnail-list
+        [buttonText]="'View'"
+        [submissions]="submissions">
+      </submission-thumbnail-list>
+    </div>
+    <div *ngIf="submissions.length == 0">
+      <h3>You have no submissions yet.</h3>
+    </div>
   </div>
+</div>
+<div *ngIf="!hasUser">
+  <h3>Enter user details to track submissions.</h3>
 </div>

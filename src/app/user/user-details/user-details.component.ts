@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../model/user';
 import { AuthService } from '../../auth/auth.service';
 import { UserService } from '../services/user.service';
 import { UtilService } from '../../general/services/util.service';
+import { Router } from '@angular/router';
 
 function validateDate(control: AbstractControl): { [key: string]: boolean } | null {
 
@@ -29,7 +30,8 @@ export class UserDetailsComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private userService: UserService,
-              private utilService: UtilService) {
+              private utilService: UtilService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -61,6 +63,7 @@ export class UserDetailsComponent implements OnInit {
     this.userService.addUser(user)
       .subscribe(() => {
         this.utilService.openSimpleDialog('Profile updated');
+        this.router.navigateByUrl('/');
       }, () => {
         this.utilService.openSimpleDialog('Something went wrong');
       });

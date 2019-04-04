@@ -1,8 +1,9 @@
-<div>
-  <div class="container">
-    <p>
-      Check out these cool surveys you can take:
-    </p>
+<div *ngIf="surveys" class="container margin-top">
+  <div *ngIf="surveys.length > 0">
+    <h3>Check out these surveys you can take:</h3>
+  </div>
+  <div *ngIf="surveys.length === 0">
+    <h2>No more surveys for you</h2>
   </div>
   <div>
     <survey-thumbnail-list [surveys]="surveys"

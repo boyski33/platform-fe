@@ -4,13 +4,9 @@
   <div *ngFor="let survey of surveys" class="card custom-width margin-top">
     <div class="card-body">
       <h5 *ngIf="survey.title" class="card-title">{{survey.title}}</h5>
-      <h5 *ngIf="!survey.title" class="card-title"><i>Untitled</i></h5>
 
       <p *ngIf="survey.description" class="card-text">
         {{survey.description}}
-      </p>
-      <p *ngIf="!survey.description" class="card-text">
-        <i>no description</i>
       </p>
 
       <button class="btn btn-outline-success" (click)="openSurvey(survey.id)">{{buttonText}}</button>

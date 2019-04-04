@@ -57,6 +57,10 @@ export class SurveyService {
     return this.surveyApi.getSurveysForOwner(ownerEmail);
   }
 
+  getSurveysForUser(userEmail: string): Observable<Survey[]> {
+    return this.surveyApi.getSurveysForUser(userEmail);
+  }
+
   createNewSurvey(survey: Survey): Observable<Survey> {
     survey.ownerEmail = this.authService.getUserEmail();
     SurveyService._assembleSurveyQuestions(survey);

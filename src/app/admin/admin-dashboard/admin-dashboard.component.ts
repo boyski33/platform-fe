@@ -29,7 +29,6 @@ export class AdminDashboardComponent implements OnInit {
 
   private getSurveysOfAuthenticatedUser() {
     const userEmail = this.authService.getUserEmail();
-    console.log(userEmail);
 
     this.surveyService.getSurveysForOwner(userEmail)
       .subscribe(data => this.surveys = data);

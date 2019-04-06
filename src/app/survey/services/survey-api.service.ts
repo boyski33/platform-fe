@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Survey } from '../model/survey';
 import { environment } from '../../../environments/environment';
+import { SurveyReport } from '../model/survey-report';
 
 const apiUrl = environment.coreSurveyServiceUrl;
 const surveysUrl = `${apiUrl}/surveys`;
@@ -55,5 +56,11 @@ export class SurveyApiService {
 
   postSurvey(survey: Survey) {
     return this._http.post<Survey>(surveysUrl, survey, headers());
+  }
+
+  getReportForSurvey(surveyId: string) {
+    const url = `${surveysUrl}/report/${surveyId}`;
+
+    return this._http.get<SurveyReport>(url);
   }
 }

@@ -13,18 +13,20 @@ import { Survey } from '../../survey/model/survey';
 export class SurveyReportComponent implements OnInit {
 
   submissions: Submission[];
+  answerStats: {[key: string]: number};
 
-  constructor(private _surveyService: SurveyService,
-              private _route: ActivatedRoute,
-              private _router: Router) {
+  constructor(private surveyService: SurveyService,
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit() {
-    this._route.paramMap.pipe(
-      switchMap(params => this._getSubmissionsForSurvey(params.get('surveyId')))
+    this.route.paramMap.pipe(
+      switchMap(params => this.getSurveyReport(params.get('surveyId')))
     ).subscribe(
-      data => {
-        this.submissions = data;
+      report => {
+        this.submissions = report.submissions;
+        this.answerStats = report.answerStats;
       },
       e => {
         console.error(e);
@@ -33,11 +35,11 @@ export class SurveyReportComponent implements OnInit {
   }
 
   navigateBack() {
-    this._router.navigate([ '..' ], { relativeTo: this._route });
+    this.router.navigate([ '..' ], { relativeTo: this.route });
   }
 
-  private _getSubmissionsForSurvey(surveyId: string) {
-    return this._surveyService.getSubmissionsForSurvey(surveyId);
+  private getSurveyReport(surveyId: string) {
+    return this.surveyService.getReportForSurvey(surveyId);
   }
 
   get surveyTitle(): string {

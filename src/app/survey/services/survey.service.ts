@@ -6,6 +6,7 @@ import { Submission } from '../model/submission';
 import { SubmissionApiService } from './submission-api.service';
 import { AuthService } from '../../auth/auth.service';
 import { UserService } from '../../user/services/user.service';
+import { SurveyReport } from '../model/survey-report';
 
 @Injectable({
   providedIn: 'root'
@@ -96,6 +97,10 @@ export class SurveyService {
     submission.user = user;
 
     return this.submissionApi.postSubmission(submission);
+  }
+
+  getReportForSurvey(surveyId: string): Observable<SurveyReport> {
+    return this.surveyApi.getReportForSurvey(surveyId);
   }
 
 }

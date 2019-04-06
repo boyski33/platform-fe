@@ -9,6 +9,7 @@ import { CreationFormComponent } from './creation-form/creation-form.component';
 import { SharedModule } from '../shared/shared.module';
 import { DropdownQuestionComponent } from './question-forms/dropdown-question/dropdown-question.component';
 import { TextboxQuestionComponent } from './question-forms/textbox-question/textbox-question.component';
+import { RadioQuestionComponent } from './question-forms/radio-question/radio-question.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { TextboxQuestionComponent } from './question-forms/textbox-question/text
     SubmissionFormComponent,
     CreationFormComponent,
     DropdownQuestionComponent,
-    TextboxQuestionComponent
+    TextboxQuestionComponent,
+    RadioQuestionComponent
   ]
 })
 export class SurveyModule {

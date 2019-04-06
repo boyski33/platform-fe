@@ -1,0 +1,20 @@
+<div [formGroup]="questionForm">
+  <label>
+    Label:
+    <input class="form-control" type="text" formControlName="label">
+  </label>
+
+  <div formArrayName="options">
+    <div *ngFor="let o of options.controls; let i=index">
+      <div [formGroupName]="i">
+        <label>
+          Option:
+          <input class="form-control" type="text" formControlName="value">
+        </label>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button class="btn btn-block btn-link" type="button" (click)="addOption()">Add option</button>
+  </div>
+</div>

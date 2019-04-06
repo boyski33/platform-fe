@@ -23,17 +23,29 @@ export class CreationFormComponent implements OnInit {
   }
 
   addQuestion(type: string) {
-    if (type === 'textbox') {
-      this.questions.push(this.fb.group({
-        controlType: [ type ],
-        label: [ '' ]
-      }));
-    } else if (type === 'dropdown') {
-      this.questions.push(this.fb.group({
-        controlType: [ type ],
-        label: [ '' ],
-        options: this.fb.array([])
-      }));
+    switch (type) {
+      case 'textbox': {
+        this.questions.push(this.fb.group({
+          controlType: [ type ],
+          label: [ '' ]
+        }));
+
+        break;
+      }
+      case 'dropdown':
+      case 'radio': {
+        this.questions.push(this.fb.group({
+          controlType: [ type ],
+          label: [ '' ],
+          options: this.fb.array([])
+        }));
+
+        break;
+      }
+      default: {
+        console.error(`Question type ${type} not supported!`);
+      }
+
     }
   }
 

@@ -26,6 +26,7 @@
 
             <textbox-question *ngSwitchCase="'textbox'" [questionForm]="q"></textbox-question>
             <dropdown-question *ngSwitchCase="'dropdown'" [questionForm]="q"></dropdown-question>
+            <radio-question *ngSwitchCase="'radio'" [questionForm]="q"></radio-question>
 
             <button class="m-4 btn btn-danger" type="button" (click)="remove(i)">&times;</button>
           </div>
@@ -38,9 +39,10 @@
           <select #typeSelect class="form-control" name="">
             <option value="textbox">Textbox</option>
             <option value="dropdown">Dropdown</option>
+            <option value="radio">Radio</option>
           </select>
         </label>
-        <button style="margin: 1em" class="btn btn-info" type="button" (click)="addQuestion(typeSelect.value)">
+        <button class="btn btn-info m-2" type="button" (click)="addQuestion(typeSelect.value)">
           Add
         </button>
 

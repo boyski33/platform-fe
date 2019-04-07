@@ -1,60 +1,63 @@
 <div *ngIf="form" class="container pad-top col-md-6">
   <form [formGroup]="form" (ngSubmit)="submitForm()">
 
-    <div class="form-row">
-      <label>
-        Title:
-        <input class="form-control" type="text" formControlName="title">
-      </label>
-    </div>
-    <div class="text-danger" *ngIf="title.errors?.required && title.touched">
-      Title is required
-    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="titleField">Title:</label>
+          <input class="form-control" type="text" formControlName="title" id="titleField">
+        </div>
+        <div class="text-danger" *ngIf="title.errors?.required && title.touched">
+          Title is required
+        </div>
 
-    <div class="form-row">
-      <label>
-        Description:
-        <input class="form-control" type="text" formControlName="description">
-      </label>
-    </div>
+        <div class="form-group">
+          <label for="descriptionField">Description:</label>
+          <input class="form-control" type="text" formControlName="description" id="descriptionField">
+        </div>
 
-    <div formArrayName="questions">
-      <h4>Questions:</h4>
-      <div *ngFor="let q of questions.controls; let i=index">
-        <div [formGroupName]="i">
-          <div class="mb-3 border-bottom border-danger form-row" [ngSwitch]="q.value.controlType">
-
-            <textbox-question *ngSwitchCase="'textbox'" [questionForm]="q"></textbox-question>
-            <dropdown-question *ngSwitchCase="'dropdown'" [questionForm]="q"></dropdown-question>
-            <radio-question *ngSwitchCase="'radio'" [questionForm]="q"></radio-question>
-
-            <button class="m-4 btn btn-danger" type="button" (click)="remove(i)">&times;</button>
+        <div class="form-group">
+          <label for="questionTypeDropdown">Question type: </label>
+          <div class="input-group">
+            <select #typeSelect class="form-control" name="" id="questionTypeDropdown">
+              <option value="textbox">Textbox</option>
+              <option value="dropdown">Dropdown</option>
+              <option value="radio">Radio</option>
+            </select>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" (click)="addQuestion(typeSelect.value)">
+                Add
+              </button>
+            </div>
           </div>
         </div>
 
+        <div class="form-group">
+          <button type="submit" class="btn btn-success" [disabled]="!form.valid">
+            Create
+          </button>
+        </div>
       </div>
 
-      <div>
-        <label>Question type:
-          <select #typeSelect class="form-control" name="">
-            <option value="textbox">Textbox</option>
-            <option value="dropdown">Dropdown</option>
-            <option value="radio">Radio</option>
-          </select>
-        </label>
-        <button class="btn btn-info m-2" type="button" (click)="addQuestion(typeSelect.value)">
-          Add
-        </button>
 
+      <div class="col">
+        <div formArrayName="questions">
+          <h4>Questions:</h4>
+          <div *ngFor="let q of questions.controls; let i=index">
+            <div [formGroupName]="i">
+              <div class="mb-3 border-bottom border-danger form-row" [ngSwitch]="q.value.controlType">
 
+                <textbox-question *ngSwitchCase="'textbox'" [questionForm]="q"></textbox-question>
+                <dropdown-question *ngSwitchCase="'dropdown'" [questionForm]="q"></dropdown-question>
+                <radio-question *ngSwitchCase="'radio'" [questionForm]="q"></radio-question>
+
+                <button class="m-4 btn btn-danger" type="button" (click)="remove(i)">&times;</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
-    </div>
-
-
-    <div class="form-row pad-top">
-      <button type="submit" class="btn btn-success" [disabled]="!form.valid">
-        Create
-      </button>
     </div>
 
   </form>

@@ -19,24 +19,23 @@
         <hr>
 
         <div class="form-group">
-          <h4>Add question:</h4>
-          <div class="input-group">
-            <select #typeSelect class="form-control" name="" id="questionTypeDropdown">
-              <option value="textbox">Textbox</option>
-              <option value="dropdown">Dropdown</option>
-              <option value="radio">Radio</option>
-            </select>
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="button" (click)="addQuestion(typeSelect.value)">
-                Add <fa-icon [icon]="addIcon"></fa-icon>
-              </button>
+          <div class="dropdown">
+            <button class="btn btn-block btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Add question
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" (click)="addQuestion('textbox')">Textbox</a>
+              <a class="dropdown-item" (click)="addQuestion('dropdown')">Dropdown</a>
+              <a class="dropdown-item" (click)="addQuestion('radio')">Radio</a>
             </div>
           </div>
         </div>
 
         <div class="form-group">
           <button type="submit" class="btn btn-success" [disabled]="!form.valid">
-            <fa-icon [icon]="submitIcon"></fa-icon> Create
+            <fa-icon [icon]="submitIcon"></fa-icon>
+            Create
           </button>
         </div>
       </div>

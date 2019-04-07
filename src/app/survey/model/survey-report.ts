@@ -1,6 +1,7 @@
 import { Submission } from './submission';
+import { QuestionStats } from './question-stats';
 
 export class SurveyReport {
   submissions: Submission[];
-  answerStats: {[key: string]: number};
+  surveyStats: QuestionStats[];
 }

@@ -10,6 +10,7 @@ import { HomePageComponent } from './general/home-page/home-page.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationDialogComponent } from './general/confirmation-dialog/confirmation-dialog.component';
 import { SingleButtonDialogComponent } from './general/single-button-dialog/single-button-dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SingleButtonDialogComponent } from './general/single-button-dialog/sing
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   entryComponents: [

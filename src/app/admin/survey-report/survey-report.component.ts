@@ -2,18 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { SurveyService } from '../../survey/services/survey.service';
 import { Submission } from '../../survey/model/submission';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap, tap } from 'rxjs/operators';
-import { Survey } from '../../survey/model/survey';
+import { switchMap } from 'rxjs/operators';
+import { QuestionStats } from '../../survey/model/question-stats';
 
 @Component({
-  selector: 'app-survey-report',
+  selector: 'hippo-survey-report',
   templateUrl: './survey-report.component.html',
   styleUrls: [ './survey-report.component.scss' ]
 })
 export class SurveyReportComponent implements OnInit {
 
   submissions: Submission[];
-  answerStats: {[key: string]: number};
+  surveyStats: QuestionStats[];
 
   constructor(private surveyService: SurveyService,
               private route: ActivatedRoute,
@@ -26,7 +26,7 @@ export class SurveyReportComponent implements OnInit {
     ).subscribe(
       report => {
         this.submissions = report.submissions;
-        this.answerStats = report.answerStats;
+        this.surveyStats = report.surveyStats;
       },
       e => {
         console.error(e);

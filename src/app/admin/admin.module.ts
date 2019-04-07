@@ -4,16 +4,24 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AdminRoutingModule } from './admin-routing.module';
 import { SurveyReportComponent } from './survey-report/survey-report.component';
 import { SharedModule } from '../shared/shared.module';
+import { SurveyStatsComponent } from './survey-stats/survey-stats.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
 
 @NgModule({
   imports: [
     CommonModule,
     AdminRoutingModule,
-    SharedModule
+    SharedModule,
+    NgxChartsModule
   ],
   declarations: [
     AdminDashboardComponent,
-    SurveyReportComponent
+    SurveyReportComponent,
+    SurveyStatsComponent,
+    PieChartComponent,
+    BarChartComponent
   ]
 })
 export class AdminModule {

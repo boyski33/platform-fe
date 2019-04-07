@@ -29,7 +29,7 @@ export class SurveyService {
   private static _assembleSurveyQuestions(survey: Survey) {
     survey.questions.forEach((question, i) => {
 
-      question.key = `key${i}`;
+      question.key = `question${i}`;
       question.order = i;
 
       if (question.options) {

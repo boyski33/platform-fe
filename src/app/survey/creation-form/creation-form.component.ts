@@ -53,11 +53,17 @@ export class CreationFormComponent implements OnInit {
   }
 
   submitForm() {
-    this.surveyService.createNewSurvey(this.form.value).subscribe(s => {
-      this.utilService.openSimpleDialog('Survey created.');
-      this.form.reset();
-      this.form = this.buildForm();
-    });
+    this.utilService.openConfirmationDialog()
+      .then(() => {
+        this.surveyService.createNewSurvey(this.form.value).subscribe(s => {
+          this.utilService.openSimpleDialog('Survey created.');
+          this.form.reset();
+          this.form = this.buildForm();
+        });
+      })
+      .catch(() => {
+        console.log('Closed');
+      });
   }
 
   remove(index) {

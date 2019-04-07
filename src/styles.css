@@ -46,5 +46,19 @@
 }
 
 .row-fade {
+  border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Survey/Submission card custom width */
+@media screen and (max-width: 990px) {
+  .custom-width {
+    min-width: 200px;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .custom-width {
+    min-width: 300px;
+  }
 }

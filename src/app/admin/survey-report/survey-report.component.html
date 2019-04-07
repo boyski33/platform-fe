@@ -1,6 +1,6 @@
 <div class="float-left ml-4">
-  <button class="btn btn-outline-danger" (click)="navigateBack()">
-    Back
+  <button class="btn btn-outline-danger position-fixed" (click)="navigateBack()">
+    <fa-icon [icon]="backIcon"></fa-icon> Reports
   </button>
 </div>
 <div *ngIf="submissions" class="container justify-content-center pad-top">

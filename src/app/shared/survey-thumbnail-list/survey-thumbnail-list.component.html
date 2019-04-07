@@ -1,15 +1,17 @@
 <div class="container">
-  <!--TODO: use flexbox view?-->
 
-  <div *ngFor="let survey of surveys" class="card custom-width margin-top">
-    <div class="card-body">
-      <h5 *ngIf="survey.title" class="card-title">{{survey.title}}</h5>
+  <div class="d-flex flex-wrap">
+    <div *ngFor="let survey of surveys" class="card custom-width m-2">
+      <div class="card-body">
+        <h5 *ngIf="survey.title" class="card-title">{{survey.title}}</h5>
 
-      <p *ngIf="survey.description" class="card-text">
-        {{survey.description}}
-      </p>
+        <p class="card-text">
+          <i>Added:</i>
+          {{survey.timestamp | date}}
+        </p>
 
-      <button class="btn btn-outline-success" (click)="openSurvey(survey.id)">{{buttonText}}</button>
+        <button class="btn btn-outline-success" (click)="openSurvey(survey.id)">{{buttonText}}</button>
+      </div>
     </div>
   </div>
 

@@ -4,6 +4,7 @@ import { Submission } from '../../survey/model/submission';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { QuestionStats } from '../../survey/model/question-stats';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 
 @Component({
   selector: 'hippo-survey-report',
@@ -14,6 +15,7 @@ export class SurveyReportComponent implements OnInit {
 
   submissions: Submission[];
   surveyStats: QuestionStats[];
+  backIcon = faChevronLeft;
 
   constructor(private surveyService: SurveyService,
               private route: ActivatedRoute,

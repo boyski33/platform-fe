@@ -16,8 +16,10 @@
           <input class="form-control" type="text" formControlName="description" id="descriptionField">
         </div>
 
+        <hr>
+
         <div class="form-group">
-          <label for="questionTypeDropdown">Question type: </label>
+          <h4>Add question:</h4>
           <div class="input-group">
             <select #typeSelect class="form-control" name="" id="questionTypeDropdown">
               <option value="textbox">Textbox</option>
@@ -26,7 +28,7 @@
             </select>
             <div class="input-group-append">
               <button class="btn btn-outline-secondary" type="button" (click)="addQuestion(typeSelect.value)">
-                Add
+                Add <fa-icon [icon]="addIcon"></fa-icon>
               </button>
             </div>
           </div>
@@ -34,7 +36,7 @@
 
         <div class="form-group">
           <button type="submit" class="btn btn-success" [disabled]="!form.valid">
-            Create
+            <fa-icon [icon]="submitIcon"></fa-icon> Create
           </button>
         </div>
       </div>
@@ -42,20 +44,20 @@
 
       <div class="col">
         <div formArrayName="questions">
-          <h4>Questions:</h4>
+          <h4 *ngIf="questions.controls.length > 0">Questions:</h4>
+
           <div *ngFor="let q of questions.controls; let i=index">
 
             <div [formGroupName]="i">
-              <div class="row" [ngSwitch]="q.value.controlType" [ngClass]="{'row-fade': i % 2 == 0}">
+              <div class="container-fluid" [ngSwitch]="q.value.controlType" [ngClass]="{'row-fade': i % 2 == 0}">
 
-                <div class="col">
-                  <textbox-question *ngSwitchCase="'textbox'" [questionForm]="q" (removeClick)="remove(i)">
-                  </textbox-question>
-                  <dropdown-question *ngSwitchCase="'dropdown'" [questionForm]="q" (removeClick)="remove(i)">
-                  </dropdown-question>
-                  <radio-question *ngSwitchCase="'radio'" [questionForm]="q" (removeClick)="remove(i)">
-                  </radio-question>
-                </div>
+                <button class="btn btn-danger" type="button" (click)="remove(i)">&times;</button>
+
+
+                <textbox-question *ngSwitchCase="'textbox'" [questionForm]="q"></textbox-question>
+                <dropdown-question *ngSwitchCase="'dropdown'" [questionForm]="q"></dropdown-question>
+                <radio-question *ngSwitchCase="'radio'" [questionForm]="q"></radio-question>
+
 
               </div>
             </div>

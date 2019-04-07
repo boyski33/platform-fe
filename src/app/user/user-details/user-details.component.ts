@@ -5,6 +5,7 @@ import { AuthService } from '../../auth/auth.service';
 import { UserService } from '../services/user.service';
 import { UtilService } from '../../general/services/util.service';
 import { Router } from '@angular/router';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 function validateDate(control: AbstractControl): { [key: string]: boolean } | null {
 
@@ -25,6 +26,8 @@ function validateDate(control: AbstractControl): { [key: string]: boolean } | nu
 export class UserDetailsComponent implements OnInit {
 
   form: FormGroup;
+  submitIcon = faCheck;
+
   readonly genderList = [ 'Male', 'Female', 'Other' ];
 
   constructor(private fb: FormBuilder,

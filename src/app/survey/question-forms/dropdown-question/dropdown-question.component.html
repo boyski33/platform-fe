@@ -1,16 +1,6 @@
 <div [formGroup]="questionForm">
-
-  <div class="row">
-
-    <div class="col">
-      <div class="form-group">
-        <label>Label:</label>
-        <input class="form-control" type="text" formControlName="label">
-      </div>
-    </div>
-    <div class="align-self-center">
-      <button class="btn btn-danger" type="button" (click)="remove()">&times;</button>
-    </div>
+  <div class="form-row">
+    <input class="form-control" type="text" formControlName="label" placeholder="Label">
   </div>
 
   <div formArrayName="options">
@@ -26,6 +16,7 @@
       </div>
     </div>
   </div>
+
   <div class="form-row">
     <button class="btn btn-outline-info" type="button" (click)="addOption()">+</button>
   </div>

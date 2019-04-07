@@ -10,6 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { DropdownQuestionComponent } from './question-forms/dropdown-question/dropdown-question.component';
 import { TextboxQuestionComponent } from './question-forms/textbox-question/textbox-question.component';
 import { RadioQuestionComponent } from './question-forms/radio-question/radio-question.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { RadioQuestionComponent } from './question-forms/radio-question/radio-qu
     SurveyRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    FontAwesomeModule
   ],
   declarations: [
     SurveyDashboardComponent,

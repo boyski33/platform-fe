@@ -11,6 +11,7 @@ import { Submission } from '../model/submission';
 import { User } from '../../user/model/user';
 import { AnsweredQuestion } from '../model/answered-question';
 import { UtilService } from '../../general/services/util.service';
+import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 
 @Component({
   selector: 'submission-page',
@@ -21,6 +22,7 @@ export class SubmissionFormComponent implements OnInit {
 
   survey: Survey;
   form: FormGroup;
+  submitIcon = faCheck;
 
   constructor(private _route: ActivatedRoute,
               private _router: Router,

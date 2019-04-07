@@ -1,25 +1,24 @@
 <div class="container">
 
-  <!--TODO flexbox view-->
-  <!--TODO display user info instead of repeating survey info-->
+  <div class="d-flex flex-wrap">
+    <div *ngFor="let sub of submissions" class="card custom-width m-2">
+      <div class="card-body">
+        <h5 *ngIf="sub.survey.title" class="card-title">{{sub.survey.title}}</h5>
 
-  <div *ngFor="let sub of submissions" class="card custom-width margin-top">
-    <div class="card-body">
-      <h5 *ngIf="sub.survey.title" class="card-title">{{sub.survey.title}}</h5>
-      <h5 *ngIf="!sub.survey.title" class="card-title"><i>Untitled</i></h5>
+        <p *ngIf="sub.timestamp" class="card-text">
+          Submitted on: {{sub.timestamp | date:'short'}}
+        </p>
 
-      <p *ngIf="sub.timestamp" class="card-text">
-        Submitted on: {{sub.timestamp | date:'short'}}
-      </p>
+      </div>
+
+      <submission-modal
+        class="mb-4"
+        [submission]="sub"
+        [buttonText]="buttonText">
+      </submission-modal>
 
     </div>
-
-    <submission-modal
-      class="mb-4"
-      [submission]="sub"
-      [buttonText]="buttonText">
-    </submission-modal>
-
   </div>
+
 
 </div>

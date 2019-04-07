@@ -1,29 +1,35 @@
 <div class="float-left ml-4">
   <button class="btn btn-outline-danger position-fixed" (click)="navigateBack()">
-    <fa-icon [icon]="backIcon"></fa-icon> Reports
+    <fa-icon [icon]="backIcon"></fa-icon>
+    Reports
   </button>
 </div>
-<div *ngIf="submissions" class="container justify-content-center pad-top">
-  <div *ngIf="submissions.length > 0">
+<div>
+  <div *ngIf="submissions" class="container justify-content-center pad-top">
+    <div *ngIf="submissions.length > 0">
 
-    <h2>Survey: {{surveyTitle}}</h2>
+      <div class="row">
+        <!--<h2>Survey: {{surveyTitle}}</h2>-->
 
-    <div class="col-md-6">
-      <h5>All Submissions:</h5>
-      <submission-thumbnail-list
-        [submissions]="submissions"
-        [buttonText]="'View'">
-      </submission-thumbnail-list>
+        <div class="col">
+          <h5>All Submissions:</h5>
+          <submission-thumbnail-list
+            [submissions]="submissions"
+            [buttonText]="'View'">
+          </submission-thumbnail-list>
+        </div>
+
+        <div class="col">
+          <h5>Survey Stats:</h5>
+          <survey-stats [surveyStats]="surveyStats"></survey-stats>
+        </div>
+      </div>
     </div>
 
-    <div class="col-md-6">
-      <h5>Survey Stats:</h5>
-      <survey-stats [surveyStats]="surveyStats"></survey-stats>
+    <div *ngIf="submissions.length === 0">
+      <h2>No submissions for the survey yet</h2>
     </div>
-  </div>
 
-  <div *ngIf="submissions.length === 0">
-    <h2>No submissions for the survey yet</h2>
   </div>
 
 </div>

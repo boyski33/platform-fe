@@ -46,15 +46,15 @@
           <div *ngFor="let q of questions.controls; let i=index">
 
             <div [formGroupName]="i">
-              <div class="mb-3 border-bottom border-danger row" [ngSwitch]="q.value.controlType">
+              <div class="row" [ngSwitch]="q.value.controlType" [ngClass]="{'row-fade': i % 2 == 0}">
 
                 <div class="col">
-                  <textbox-question *ngSwitchCase="'textbox'" [questionForm]="q"></textbox-question>
-                  <dropdown-question *ngSwitchCase="'dropdown'" [questionForm]="q"></dropdown-question>
-                  <radio-question *ngSwitchCase="'radio'" [questionForm]="q"></radio-question>
-                </div>
-                <div class="col">
-                  <button class="m-4 btn btn-danger" type="button" (click)="remove(i)">&times;</button>
+                  <textbox-question *ngSwitchCase="'textbox'" [questionForm]="q" (removeClick)="remove(i)">
+                  </textbox-question>
+                  <dropdown-question *ngSwitchCase="'dropdown'" [questionForm]="q" (removeClick)="remove(i)">
+                  </dropdown-question>
+                  <radio-question *ngSwitchCase="'radio'" [questionForm]="q" (removeClick)="remove(i)">
+                  </radio-question>
                 </div>
 
               </div>

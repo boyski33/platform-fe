@@ -1,20 +1,32 @@
 <div [formGroup]="questionForm">
-  <label>
-    Label:
-    <input class="form-control" type="text" formControlName="label">
-  </label>
+
+  <div class="row">
+
+    <div class="col">
+      <div class="form-group">
+        <label>Label:</label>
+        <input class="form-control" type="text" formControlName="label">
+      </div>
+    </div>
+    <div class="align-self-center">
+      <button class="btn btn-danger" type="button" (click)="remove()">&times;</button>
+    </div>
+  </div>
 
   <div formArrayName="options">
     <div *ngFor="let o of options.controls; let i=index">
-      <div [formGroupName]="i">
-        <label>
-          Option:
+      <div [formGroupName]="i" class="form-group">
+        <label>Option:</label>
+        <div class="input-group">
           <input class="form-control" type="text" formControlName="value">
-        </label>
+          <div class="input-group-append">
+            <button type="button" class="btn btn-outline-danger">&times;</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div>
-    <button class="btn btn-block btn-link" type="button" (click)="addOption()">Add option</button>
+  <div class="form-row">
+    <button class="btn btn-outline-info" type="button" (click)="addOption()">+</button>
   </div>
 </div>

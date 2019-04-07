@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'textbox-question',
@@ -10,9 +10,16 @@ export class TextboxQuestionComponent implements OnInit {
 
   @Input() questionForm: FormGroup;
 
-  constructor() { }
+  @Output() removeClick = new EventEmitter();
+
+  constructor() {
+  }
 
   ngOnInit() {
+  }
+
+  remove() {
+    this.removeClick.emit();
   }
 
 }

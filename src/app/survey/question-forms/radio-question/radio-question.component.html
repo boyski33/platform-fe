@@ -1,8 +1,15 @@
 <div [formGroup]="questionForm">
-  <label>
-    Label:
-    <input class="form-control" type="text" formControlName="label">
-  </label>
+  <div class="form-row">
+    <div>
+      <label>
+        Label:
+        <input class="form-control" type="text" formControlName="label">
+      </label>
+    </div>
+    <div>
+      <button class="m-4 btn btn-danger" type="button" (click)="remove()">&times;</button>
+    </div>
+  </div>
 
   <div formArrayName="options">
     <div *ngFor="let o of options.controls; let i=index">

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -9,6 +9,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 export class RadioQuestionComponent implements OnInit {
 
   @Input() questionForm: FormGroup;
+  @Output() removeClick = new EventEmitter();
 
   constructor(private fb: FormBuilder) { }
 
@@ -20,6 +21,10 @@ export class RadioQuestionComponent implements OnInit {
       key: '',
       value: ''
     }));
+  }
+
+  remove() {
+    this.removeClick.emit();
   }
 
   get options() {

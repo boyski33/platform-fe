@@ -11,9 +11,11 @@
 
     <div *ngSwitchCase="'radio'">
       <div class="form-check form-check-inline" *ngFor="let opt of question['options']">
-        <input class="form-check-input" [formControlName]="question.key" [attr.name]="question.key"
-               [id]="opt.key" [attr.type]="question.controlType" [attr.value]="opt.value">
-        <label class="form-check-label" [attr.for]="opt.key">{{opt.value}}</label>
+        <label class="form-check-label">
+          <input class="form-check-input" [formControlName]="question.key" [attr.name]="question.key"
+                 [attr.type]="question.controlType" [attr.value]="opt.value">
+          {{opt.value}}
+        </label>
       </div>
     </div>
 

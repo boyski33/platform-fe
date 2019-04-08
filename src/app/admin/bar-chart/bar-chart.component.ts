@@ -12,11 +12,10 @@ export class BarChartComponent implements OnInit {
 
   newData: ChartData[];
 
-  colorScheme = 'flame';
+  view = [520, 280];
+
+  colorScheme = 'forest';
   showLegend = false;
-  explodeSlices = false;
-  showLabels = true;
-  doughnut = false;
   gradient = false;
 
   constructor() { }

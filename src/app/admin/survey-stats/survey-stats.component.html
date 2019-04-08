@@ -1,9 +1,15 @@
 <div *ngFor="let s of surveyStats; let i=index">
-  <h4>{{s.question.label}}</h4>
-  <div *ngIf="s.question.controlType == 'dropdown' || s.question.controlType == 'radio'">
-    <hippo-pie-chart [data]="convertToChartData(s.answerCount)"></hippo-pie-chart>
-  </div>
-  <div *ngIf="s.question.controlType == 'textbox'">
-    <hippo-bar-chart [data]="convertToChartData(s.answerCount)"></hippo-bar-chart>
+  <div class="container p-4">
+    <div class="row">
+      <h4>{{s.question.label}}</h4>
+    </div>
+    <div class="row">
+      <div *ngIf="s.question.controlType == 'dropdown' || s.question.controlType == 'radio'">
+        <hippo-pie-chart [data]="convertToChartData(s.answerCount)"></hippo-pie-chart>
+      </div>
+      <div *ngIf="s.question.controlType == 'textbox'">
+        <hippo-bar-chart [data]="convertToChartData(s.answerCount)"></hippo-bar-chart>
+      </div>
+    </div>
   </div>
 </div>

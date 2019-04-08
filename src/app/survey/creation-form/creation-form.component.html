@@ -55,11 +55,9 @@
                   <fa-icon [icon]="removeIcon"></fa-icon>
                 </button>
 
-
                 <textbox-question *ngSwitchCase="'textbox'" [questionForm]="q"></textbox-question>
                 <dropdown-question *ngSwitchCase="'dropdown'" [questionForm]="q"></dropdown-question>
                 <radio-question *ngSwitchCase="'radio'" [questionForm]="q"></radio-question>
-
 
               </div>
             </div>

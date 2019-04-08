@@ -12,7 +12,9 @@ export class PieChartComponent implements OnInit {
 
   newData: ChartData[];
 
-  colorScheme = 'flame';
+  view = [600, 300];
+
+  colorScheme = 'forest';
   showLegend = false;
   explodeSlices = false;
   showLabels = true;

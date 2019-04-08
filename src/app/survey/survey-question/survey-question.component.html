@@ -9,6 +9,13 @@
              [attr.autocomplete]="'off'">
     </div>
 
+    <div *ngSwitchCase="'textarea'">
+      <textarea class="form-control" [formControlName]="question.key"
+             [id]="question.key" [attr.type]="question.controlType" placeholder="Type answer"
+             [attr.autocomplete]="'off'">
+      </textarea>
+    </div>
+
     <div *ngSwitchCase="'radio'">
       <div class="form-check form-check-inline" *ngFor="let opt of question['options']">
         <label class="form-check-label">

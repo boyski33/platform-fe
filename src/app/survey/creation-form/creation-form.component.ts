@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { Survey } from '../model/survey';
 import { SurveyService } from '../services/survey.service';
 import { UtilService } from '../../general/services/util.service';
-import { faCheck, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'creation-form',
@@ -14,7 +14,7 @@ export class CreationFormComponent implements OnInit {
 
   form = this.buildForm();
   survey: Survey;
-  addIcon = faPlus;
+  removeIcon = faTimes;
   submitIcon = faCheck;
 
   constructor(private fb: FormBuilder,

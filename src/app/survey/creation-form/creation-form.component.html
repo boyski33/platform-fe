@@ -49,8 +49,7 @@
           <div *ngFor="let q of questions.controls; let i=index">
 
             <div [formGroupName]="i">
-              <div class="container shadow-sm mb-2 pb-2" [ngSwitch]="q.value.controlType"
-                   [ngClass]="{'row-fade': i % 2 == 0}">
+              <div class="container shadow mb-2 pb-2" [ngSwitch]="q.value.controlType">
 
                 <button class="btn btn-outline-danger float-right my-2" type="button" (click)="remove(i)">
                   <fa-icon [icon]="removeIcon"></fa-icon>

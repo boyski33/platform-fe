@@ -1,50 +1,46 @@
 <div class="container">
   <h2>User details:</h2>
   <form [formGroup]="form" (ngSubmit)="saveProfile()">
-    <div class="form-row">
-      <label>
-        First name:
-        <input class="form-control" type="text" formControlName="firstName">
-      </label>
+    <div class="form-group">
+      <label for="first-name">First name:</label>
+      <input class="form-control" type="text" formControlName="firstName" id="first-name">
     </div>
 
-    <div class="form-row">
-      <label>
-        Last name:
-        <input class="form-control" type="text" formControlName="lastName">
-      </label>
+    <div class="form-group">
+      <label for="last-name">Last name:</label>
+      <input class="form-control" type="text" formControlName="lastName" id="last-name">
     </div>
 
-    <div class="form-row">
-      <label>
-        Date of birth:
-        <input class="form-control" type="date" formControlName="dateOfBirth">
-      </label>
-    </div>
-    <div class="text-danger" [hidden]="!dateOfBirth.errors || !dateOfBirth.touched">
-      <div *ngIf="dateOfBirth.errors?.required">
-        Date of birth is required
-      </div>
-      <div *ngIf="dateOfBirth.errors?.date">
-        Invalid - future date
+    <div class="form-group">
+      <label for="dob">Date of birth:</label>
+      <input class="form-control" type="date" formControlName="dateOfBirth" id="dob">
+
+      <div class="text-danger" [hidden]="!dateOfBirth.errors || !dateOfBirth.touched">
+        <div *ngIf="dateOfBirth.errors?.required">
+          Date of birth is required
+        </div>
+        <div *ngIf="dateOfBirth.errors?.date">
+          Invalid - future date
+        </div>
       </div>
     </div>
-    <div class="form-row">
-      <label>
-        Gender:
-        <select #select class="form-control" name="gender" id="gender-select" formControlName="gender">
-          <option *ngIf="!select.value" value="" disabled selected>Select gender</option>
-          <option *ngFor="let g of genderList" [value]="g.toLowerCase()">{{g}}</option>
-        </select>
-      </label>
-    </div>
-    <div class="text-danger" [hidden]="!gender.errors?.required || !gender.touched">
-      Gender is required
+
+    <div class="form-group">
+      <label for="gender-select">Gender:</label>
+      <select #select class="form-control" name="gender" id="gender-select" formControlName="gender">
+        <option *ngIf="!select.value" value="" disabled selected>Select gender</option>
+        <option *ngFor="let g of genderList" [value]="g.toLowerCase()">{{g}}</option>
+      </select>
+
+      <div class="text-danger" [hidden]="!gender.errors?.required || !gender.touched">
+        Gender is required
+      </div>
     </div>
 
-    <div class="form-row pad-top">
+    <div class="form-group">
       <button class="btn btn-success" type="submit" [disabled]="!form.valid">
-        <fa-icon [icon]="submitIcon"></fa-icon> Update
+        <fa-icon [icon]="submitIcon"></fa-icon>
+        Update
       </button>
     </div>
 

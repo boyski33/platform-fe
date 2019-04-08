@@ -7,9 +7,8 @@ import { SubmissionFormComponent } from './submission-form/submission-form.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreationFormComponent } from './creation-form/creation-form.component';
 import { SharedModule } from '../shared/shared.module';
-import { DropdownQuestionComponent } from './question-forms/dropdown-question/dropdown-question.component';
-import { TextboxQuestionComponent } from './question-forms/textbox-question/textbox-question.component';
-import { RadioQuestionComponent } from './question-forms/radio-question/radio-question.component';
+import { MultipleChoiceQuestionComponent } from './question-forms/multiple-choice-question/multiple-choice-question.component';
+import { FreeResponseQuestionComponent } from './question-forms/free-response-question/free-response-question.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
@@ -26,9 +25,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SurveyQuestionComponent,
     SubmissionFormComponent,
     CreationFormComponent,
-    DropdownQuestionComponent,
-    TextboxQuestionComponent,
-    RadioQuestionComponent
+    MultipleChoiceQuestionComponent,
+    FreeResponseQuestionComponent,
   ]
 })
 export class SurveyModule {

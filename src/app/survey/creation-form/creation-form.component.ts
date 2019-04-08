@@ -29,7 +29,15 @@ export class CreationFormComponent implements OnInit {
     switch (type) {
       case 'textbox': {
         this.questions.push(this.fb.group({
-          controlType: [ type ],
+          controlType: [ 'textbox' ],
+          label: [ '' ]
+        }));
+
+        break;
+      }
+      case 'textarea': {
+        this.questions.push(this.fb.group({
+          controlType: [ 'textarea' ],
           label: [ '' ]
         }));
 
@@ -42,6 +50,14 @@ export class CreationFormComponent implements OnInit {
           label: [ '' ],
           options: this.fb.array([])
         }));
+
+        break;
+      }
+      case 'yesno': {
+
+        break;
+      }
+      case 'range': {
 
         break;
       }

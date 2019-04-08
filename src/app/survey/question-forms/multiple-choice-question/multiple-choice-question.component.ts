@@ -3,11 +3,11 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'dropdown-question',
-  templateUrl: './dropdown-question.component.html',
-  styleUrls: [ './dropdown-question.component.scss' ]
+  selector: 'multiple-choice-question',
+  templateUrl: './multiple-choice-question.component.html',
+  styleUrls: [ './multiple-choice-question.component.scss' ]
 })
-export class DropdownQuestionComponent implements OnInit {
+export class MultipleChoiceQuestionComponent implements OnInit {
 
   @Input() questionForm: FormGroup;
   btnDisable = true;

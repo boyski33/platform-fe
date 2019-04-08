@@ -26,8 +26,8 @@
               Add question
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" (click)="addQuestion('textbox')">Textbox</a>
-              <a class="dropdown-item" (click)="addQuestion('textarea')">Textarea</a>
+              <a class="dropdown-item" (click)="addQuestion('textbox')">Short answer</a>
+              <a class="dropdown-item" (click)="addQuestion('textarea')">Long answer</a>
               <a class="dropdown-item" (click)="addQuestion('dropdown')">Dropdown</a>
               <a class="dropdown-item" (click)="addQuestion('radio')">Radio</a>
               <a class="dropdown-item" (click)="addQuestion('yesno')">Yes/No</a>
@@ -61,6 +61,7 @@
                 <free-response-question *ngSwitchCase="'textarea'" [questionForm]="q"></free-response-question>
                 <multiple-choice-question *ngSwitchCase="'dropdown'" [questionForm]="q"></multiple-choice-question>
                 <multiple-choice-question *ngSwitchCase="'radio'" [questionForm]="q"></multiple-choice-question>
+                <yesno-question-form *ngSwitchCase="'yesno'" [questionForm]="q"></yesno-question-form>
 
               </div>
             </div>

@@ -10,6 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { MultipleChoiceQuestionComponent } from './question-forms/multiple-choice-question/multiple-choice-question.component';
 import { FreeResponseQuestionComponent } from './question-forms/free-response-question/free-response-question.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { YesnoQuestionFormComponent } from './question-forms/yesno-question-form/yesno-question-form.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CreationFormComponent,
     MultipleChoiceQuestionComponent,
     FreeResponseQuestionComponent,
+    YesnoQuestionFormComponent,
   ]
 })
 export class SurveyModule {

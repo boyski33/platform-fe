@@ -54,6 +54,11 @@ export class CreationFormComponent implements OnInit {
         break;
       }
       case 'yesno': {
+        this.questions.push(this.fb.group({
+          controlType: [ 'yesno' ],
+          label: [ '' ],
+          options: this.fb.array([])
+        }));
 
         break;
       }

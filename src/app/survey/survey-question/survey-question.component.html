@@ -34,6 +34,16 @@
       </select>
     </div>
 
+    <div *ngSwitchCase="'yesno'">
+      <div class="form-check form-check-inline" *ngFor="let opt of question['options']">
+        <label class="form-check-label">
+          <input class="form-check-input" [formControlName]="question.key" [attr.name]="question.key"
+                 [attr.type]="'radio'" [attr.value]="opt.value">
+          {{opt.value}}
+        </label>
+      </div>
+    </div>
+
   </div>
 
   <div class="text-danger" [class.hidden]="!control.errors?.required || !control.touched">

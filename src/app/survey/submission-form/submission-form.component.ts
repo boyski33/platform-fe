@@ -11,6 +11,7 @@ import { Submission } from '../model/submission';
 import { User } from '../../user/model/user';
 import { AnsweredQuestion } from '../model/answered-question';
 import { UtilService } from '../../general/services/util.service';
+import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 
 @Component({
   selector: 'submission-page',
@@ -21,23 +22,24 @@ export class SubmissionFormComponent implements OnInit {
 
   survey: Survey;
   form: FormGroup;
+  submitIcon = faCheck;
 
-  constructor(private _route: ActivatedRoute,
-              private _router: Router,
-              private _surveyService: SurveyService,
-              private _questionControlService: QuestionControlService,
-              private _utilService: UtilService) {
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private surveyService: SurveyService,
+              private questionControlService: QuestionControlService,
+              private utilService: UtilService) {
   }
 
   ngOnInit() {
-    this._route.paramMap.pipe(
-      switchMap(params => this._surveyService.getSurvey(params.get('id')))
+    this.route.paramMap.pipe(
+      switchMap(params => this.surveyService.getSurvey(params.get('id')))
     ).subscribe(s => {
         this.survey = s;
         this.createFormFromSurvey(s);
       },
       e => {
-        this._utilService.openSimpleDialog('Something went wrong');
+        this.utilService.openSimpleDialog('Something went wrong');
         console.error(e);
       }
     );
@@ -46,38 +48,48 @@ export class SubmissionFormComponent implements OnInit {
   createFormFromSurvey(survey: Survey) {
     // TODO: make use of the Question constructor or use interfaces
     const questions = survey.questions || [];
-    this.form = this._questionControlService.toFormGroup(questions);
+    this.form = this.questionControlService.toFormGroup(questions);
   }
 
   submitForm() {
-    const submission = this._assembleSubmissionObject();
+    this.utilService.openConfirmationDialog()
+      .then(() => {
+        this.assembleAndPostSubmission();
+      })
+      .catch(() => {
+        console.log('Closed');
+      });
+  }
 
-    this._surveyService.postSubmission(submission).subscribe(
+  private assembleAndPostSubmission() {
+    const submission = this.assembleSubmissionObject();
+
+    this.surveyService.postSubmission(submission).subscribe(
       s => {
-        this._router.navigate([ '..' ], { relativeTo: this._route });
+        this.router.navigate([ '..' ], { relativeTo: this.route });
       },
       e => {
-        this._utilService.openSimpleDialog('Something went wrong');
+        this.utilService.openSimpleDialog(e.error.error);
       }
     );
   }
 
-  private _assembleSubmissionObject(): Submission {
-    const answers = this._getSurveyAnswers();
+  private assembleSubmissionObject(): Submission {
+    const answers = this.getSurveyAnswers();
 
     return new Submission(null, this.survey, answers);
   }
 
-  private _getSurveyAnswers(): AnsweredQuestion[] {
+  private getSurveyAnswers(): AnsweredQuestion[] {
     const answers = [];
     this.survey.questions.forEach(question => {
-      answers.push(this._assembleAnswerObject(question));
+      answers.push(this.assembleAnswerObject(question));
     });
 
     return answers;
   }
 
-  private _assembleAnswerObject(question: Question): AnsweredQuestion {
+  private assembleAnswerObject(question: Question): AnsweredQuestion {
     const answer = this.form.controls[question.key].value;
 
     return new AnsweredQuestion(question, answer);

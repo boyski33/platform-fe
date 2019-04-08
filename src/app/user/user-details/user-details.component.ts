@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../model/user';
 import { AuthService } from '../../auth/auth.service';
 import { UserService } from '../services/user.service';
 import { UtilService } from '../../general/services/util.service';
-
-const errorMessage = 'Something went wrong';
+import { Router } from '@angular/router';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 function validateDate(control: AbstractControl): { [key: string]: boolean } | null {
 
@@ -19,19 +19,22 @@ function validateDate(control: AbstractControl): { [key: string]: boolean } | nu
 }
 
 @Component({
-  selector: 'user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: [ './user-profile.component.scss' ]
+  selector: 'user-details',
+  templateUrl: './user-details.component.html',
+  styleUrls: [ './user-details.component.scss' ]
 })
-export class UserProfileComponent implements OnInit {
+export class UserDetailsComponent implements OnInit {
 
   form: FormGroup;
+  submitIcon = faCheck;
+
   readonly genderList = [ 'Male', 'Female', 'Other' ];
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private userService: UserService,
-              private utilService: UtilService) {
+              private utilService: UtilService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -63,8 +66,9 @@ export class UserProfileComponent implements OnInit {
     this.userService.addUser(user)
       .subscribe(() => {
         this.utilService.openSimpleDialog('Profile updated');
+        this.router.navigateByUrl('/');
       }, () => {
-        this.utilService.openSimpleDialog(errorMessage);
+        this.utilService.openSimpleDialog('Something went wrong');
       });
   }
 

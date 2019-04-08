@@ -1,11 +1,24 @@
 @media screen and (max-width: 990px) {
+  .nav-link {
+    border-left: 2px solid transparent;
+    padding-left: 10px;
+  }
   .active {
     border-left: 2px solid deeppink;
+    transition: 400ms;
   }
 }
 
 @media screen and (min-width: 990px) {
+  .nav-link {
+    border-bottom: 2px solid transparent;
+  }
   .active {
     border-bottom: 2px solid deeppink;
+    transition: 400ms;
   }
+}
+
+.navbar-brand {
+  border-bottom: 2px solid transparent;
 }

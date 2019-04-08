@@ -3,10 +3,13 @@
 
   <div [ngSwitch]="question.controlType">
 
-    <input disabled class="form-control" *ngSwitchCase="'textbox'" [value]="answer"
-           [id]="question.key" [type]="question.controlType" placeholder="Type answer here">
+    <input readonly class="form-control" *ngSwitchCase="'textbox'" [value]="answer"
+           [id]="question.key" [attr.type]="'text'">
 
-    <select disabled class="form-control" [id]="question.key" *ngSwitchCase="'dropdown'">
+    <input readonly class="form-control" *ngSwitchCase="'radio'" [value]="answer"
+           [id]="question.key" [attr.type]="'text'">
+
+    <select readonly class="form-control" [id]="question.key" *ngSwitchCase="'dropdown'">
       <option [value]="answer">{{answer}}</option>
     </select>
 

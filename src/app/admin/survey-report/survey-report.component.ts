@@ -2,29 +2,33 @@ import { Component, OnInit } from '@angular/core';
 import { SurveyService } from '../../survey/services/survey.service';
 import { Submission } from '../../survey/model/submission';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap, tap } from 'rxjs/operators';
-import { Survey } from '../../survey/model/survey';
+import { switchMap } from 'rxjs/operators';
+import { QuestionStats } from '../../survey/model/question-stats';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 
 @Component({
-  selector: 'app-survey-report',
+  selector: 'hippo-survey-report',
   templateUrl: './survey-report.component.html',
   styleUrls: [ './survey-report.component.scss' ]
 })
 export class SurveyReportComponent implements OnInit {
 
   submissions: Submission[];
+  surveyStats: QuestionStats[];
+  backIcon = faChevronLeft;
 
-  constructor(private _surveyService: SurveyService,
-              private _route: ActivatedRoute,
-              private _router: Router) {
+  constructor(private surveyService: SurveyService,
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit() {
-    this._route.paramMap.pipe(
-      switchMap(params => this._getSubmissionsForSurvey(params.get('surveyId')))
+    this.route.paramMap.pipe(
+      switchMap(params => this.getSurveyReport(params.get('surveyId')))
     ).subscribe(
-      data => {
-        this.submissions = data;
+      report => {
+        this.submissions = report.submissions;
+        this.surveyStats = report.surveyStats;
       },
       e => {
         console.error(e);
@@ -33,11 +37,19 @@ export class SurveyReportComponent implements OnInit {
   }
 
   navigateBack() {
-    this._router.navigate([ '..' ], { relativeTo: this._route });
+    this.router.navigate([ '..' ], { relativeTo: this.route });
   }
 
-  private _getSubmissionsForSurvey(surveyId: string) {
-    return this._surveyService.getSubmissionsForSurvey(surveyId);
+  private getSurveyReport(surveyId: string) {
+    return this.surveyService.getReportForSurvey(surveyId);
+  }
+
+  get surveyTitle(): string {
+    if (this.submissions && this.submissions.length > 0) {
+      return this.submissions[0].survey.title;
+    }
+
+    return '';
   }
 
 }

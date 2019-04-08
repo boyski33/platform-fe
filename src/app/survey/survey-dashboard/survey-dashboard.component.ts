@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SurveyService } from '../services/survey.service';
 import { Survey } from '../model/survey';
 import { Router } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'survey-dashboard',
@@ -11,22 +12,29 @@ import { Router } from '@angular/router';
 export class SurveyDashboardComponent implements OnInit {
 
   surveys: Survey[];
+  loggedInUser: string | null;
 
-  constructor(private _questionService: SurveyService,
-              private _router: Router) {
+  constructor(private surveyService: SurveyService,
+              private authService: AuthService,
+              private router: Router) {
   }
 
   ngOnInit() {
-    this._loadSurveys();
-  }
-
-  private _loadSurveys() {
-    this._questionService.getAllSurveysMetadata()
-      .subscribe(data => this.surveys = data);
+    this.loggedInUser = this.authService.getUserEmail();
+    this.loadSurveys();
   }
 
   redirectToSurvey(id: string) {
-    this._router.navigate([ 'surveys', id ]);
+    this.router.navigate([ 'surveys', id ]);
   }
 
+  private loadSurveys() {
+    if (this.loggedInUser) {
+      this.surveyService.getSurveysForUser(this.loggedInUser)
+        .subscribe(data => this.surveys = data);
+    } else {
+      this.surveyService.getAllSurveysMetadata()
+        .subscribe(data => this.surveys = data);
+    }
+  }
 }

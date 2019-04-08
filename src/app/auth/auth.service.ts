@@ -25,7 +25,7 @@ export class AuthService {
   public handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
-        window.location.hash = '';
+        window.location.pathname = '/users';
         this.setSession(authResult);
       } else if (err) {
         console.error(err);

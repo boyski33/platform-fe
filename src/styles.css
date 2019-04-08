@@ -16,11 +16,11 @@
 }
 
 .green {
-  color: #1be130;
+  color: #28A745;
 }
 
 .bg-green {
-  background-color: #1be130;
+  background-color: #28A745;
 }
 
 .bold {
@@ -43,4 +43,22 @@
 
 .custom-modal .modal-dialog {
   max-width: 300px;
+}
+
+.row-fade {
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+/* Survey/Submission card custom width */
+@media screen and (max-width: 990px) {
+  .custom-width {
+    min-width: 200px;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .custom-width {
+    min-width: 300px;
+  }
 }

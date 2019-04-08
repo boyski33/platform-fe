@@ -1,19 +1,22 @@
 <div class="d-flex justify-content-center container pad-top">
 
-  <div *ngIf="survey">
+  <div *ngIf="survey" class="col-md-6 shadow p-4">
     <h3>{{survey.title}}</h3>
     <p>
       {{survey.description}}
     </p>
-    <div *ngIf="form" class="container">
+    <div *ngIf="form">
       <form (ngSubmit)="submitForm()" [formGroup]="form">
 
-        <div *ngFor="let question of survey.questions" class="form-row">
+        <div *ngFor="let question of survey.questions">
           <survey-question [question]="question" [form]="form"></survey-question>
         </div>
 
-        <div class="form-row pad-top">
-          <button class="btn btn-success" type="submit" [disabled]="!form.valid">Submit</button>
+        <div class="form-group pad-top">
+          <button class="btn btn-success" type="submit" [disabled]="!form.valid">
+            <fa-icon [icon]="submitIcon"></fa-icon>
+            Submit
+          </button>
         </div>
       </form>
 

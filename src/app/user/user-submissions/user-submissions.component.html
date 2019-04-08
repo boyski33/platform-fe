@@ -1,0 +1,17 @@
+<div *ngIf="hasUser" class="container">
+  <div *ngIf="submissions">
+    <div *ngIf="submissions.length > 0">
+      <h3>Your posted submissions:</h3>
+      <submission-thumbnail-list
+        [buttonText]="'View'"
+        [submissions]="submissions">
+      </submission-thumbnail-list>
+    </div>
+    <div *ngIf="submissions.length == 0">
+      <h2>You have no submissions yet.</h2>
+    </div>
+  </div>
+</div>
+<div *ngIf="!hasUser">
+  <h2>Enter user details to track submissions.</h2>
+</div>

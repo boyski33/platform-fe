@@ -6,6 +6,7 @@ import { Submission } from '../model/submission';
 import { SubmissionApiService } from './submission-api.service';
 import { AuthService } from '../../auth/auth.service';
 import { UserService } from '../../user/services/user.service';
+import { SurveyReport } from '../model/survey-report';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class SurveyService {
   private static _assembleSurveyQuestions(survey: Survey) {
     survey.questions.forEach((question, i) => {
 
-      question.key = `key${i}`;
+      question.key = `question${i}`;
       question.order = i;
 
       if (question.options) {
@@ -57,6 +58,10 @@ export class SurveyService {
     return this.surveyApi.getSurveysForOwner(ownerEmail);
   }
 
+  getSurveysForUser(userEmail: string): Observable<Survey[]> {
+    return this.surveyApi.getSurveysForUser(userEmail);
+  }
+
   createNewSurvey(survey: Survey): Observable<Survey> {
     survey.ownerEmail = this.authService.getUserEmail();
     SurveyService._assembleSurveyQuestions(survey);
@@ -76,12 +81,26 @@ export class SurveyService {
     return this.submissionApi.getSubmissionsForSurvey(surveyId);
   }
 
+  getSubmissionsOfUser(userEmail: string): Observable<Submission[]> {
+    return this.submissionApi.getSubmissionsOfUser(userEmail);
+  }
+
   postSubmission(submission: Submission): Observable<Submission> {
-    submission.user = {
-      email: this.authService.getUserEmail()
-    };
+    let user = null;
+
+    if (this.authService.isAuthenticated()) {
+      user = {
+        email: this.authService.getUserEmail()
+      };
+    }
+
+    submission.user = user;
 
     return this.submissionApi.postSubmission(submission);
+  }
+
+  getReportForSurvey(surveyId: string): Observable<SurveyReport> {
+    return this.surveyApi.getReportForSurvey(surveyId);
   }
 
 }

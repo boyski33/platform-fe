@@ -1,58 +1,71 @@
 <div *ngIf="form" class="container pad-top col-md-6">
   <form [formGroup]="form" (ngSubmit)="submitForm()">
 
-    <div class="form-row">
-      <label>
-        Title:
-        <input class="form-control" type="text" formControlName="title">
-      </label>
-    </div>
-    <div class="text-danger" *ngIf="title.errors?.required && title.touched">
-      Title is required
-    </div>
-
-    <div class="form-row">
-      <label>
-        Description:
-        <input class="form-control" type="text" formControlName="description">
-      </label>
-    </div>
-
-    <div formArrayName="questions">
-      <h4>Questions:</h4>
-      <div *ngFor="let q of questions.controls; let i=index">
-        <div [formGroupName]="i">
-          <div class="mb-3 border-bottom border-danger form-row" [ngSwitch]="q.value.controlType">
-
-            <textbox-question *ngSwitchCase="'textbox'" [questionForm]="q"></textbox-question>
-            <dropdown-question *ngSwitchCase="'dropdown'" [questionForm]="q"></dropdown-question>
-
-            <button class="m-4 btn btn-danger" type="button" (click)="remove(i)">&times;</button>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="titleField">Title:</label>
+          <input class="form-control" type="text" formControlName="title" id="titleField" autocomplete="off">
+          <div class="text-danger" *ngIf="title.errors?.required && title.touched">
+            Title is required
           </div>
         </div>
 
+        <div class="form-group">
+          <label for="descriptionField">Description:</label>
+          <input class="form-control" type="text" formControlName="description" id="descriptionField"
+                 autocomplete="off">
+        </div>
+
+        <hr>
+
+        <div class="form-group">
+          <div class="btn-group dropright">
+            <button class="btn btn-block btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Add question
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" (click)="addQuestion('textbox')">Textbox</a>
+              <a class="dropdown-item" (click)="addQuestion('dropdown')">Dropdown</a>
+              <a class="dropdown-item" (click)="addQuestion('radio')">Radio</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-success" [disabled]="!form.valid">
+            <fa-icon [icon]="submitIcon"></fa-icon>
+            Create
+          </button>
+        </div>
       </div>
 
-      <div>
-        <label>Question type:
-          <select #typeSelect class="form-control" name="">
-            <option value="textbox">Textbox</option>
-            <option value="dropdown">Dropdown</option>
-          </select>
-        </label>
-        <button style="margin: 1em" class="btn btn-info" type="button" (click)="addQuestion(typeSelect.value)">
-          Add
-        </button>
 
+      <div class="col">
+        <div formArrayName="questions">
+          <h4 *ngIf="questions.controls.length > 0">Questions:</h4>
 
+          <div *ngFor="let q of questions.controls; let i=index">
+
+            <div [formGroupName]="i">
+              <div class="container shadow mb-2 pb-2" [ngSwitch]="q.value.controlType">
+
+                <button class="btn btn-outline-danger float-right my-2" type="button" (click)="remove(i)">
+                  <fa-icon [icon]="removeIcon"></fa-icon>
+                </button>
+
+                <textbox-question *ngSwitchCase="'textbox'" [questionForm]="q"></textbox-question>
+                <dropdown-question *ngSwitchCase="'dropdown'" [questionForm]="q"></dropdown-question>
+                <radio-question *ngSwitchCase="'radio'" [questionForm]="q"></radio-question>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
-    </div>
 
-
-    <div class="form-row pad-top">
-      <button type="submit" class="btn btn-success" [disabled]="!form.valid">
-        Create
-      </button>
     </div>
 
   </form>

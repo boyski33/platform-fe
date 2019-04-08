@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'textbox-question',
@@ -10,7 +10,8 @@ export class TextboxQuestionComponent implements OnInit {
 
   @Input() questionForm: FormGroup;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

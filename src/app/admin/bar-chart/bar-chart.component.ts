@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ChartData } from '../survey-stats/survey-stats.component';
+import { AnswerChartData } from '../survey-stats/survey-stats.component';
 
 @Component({
   selector: 'hippo-bar-chart',
@@ -8,9 +8,7 @@ import { ChartData } from '../survey-stats/survey-stats.component';
 })
 export class BarChartComponent implements OnInit {
 
-  @Input() data: ChartData[];
-
-  newData: ChartData[];
+  @Input() data: AnswerChartData[];
 
   view = [520, 280];
 
@@ -21,7 +19,6 @@ export class BarChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.newData = this.data;
   }
 
 }

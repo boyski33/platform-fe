@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ChartData } from '../survey-stats/survey-stats.component';
+import { AnswerChartData } from '../survey-stats/survey-stats.component';
 
 @Component({
   selector: 'hippo-pie-chart',
@@ -8,9 +8,7 @@ import { ChartData } from '../survey-stats/survey-stats.component';
 })
 export class PieChartComponent implements OnInit {
 
-  @Input() data: ChartData[];
-
-  newData: ChartData[];
+  @Input() data: AnswerChartData[];
 
   view = [600, 300];
 
@@ -25,7 +23,6 @@ export class PieChartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.newData = this.data;
   }
 
 }

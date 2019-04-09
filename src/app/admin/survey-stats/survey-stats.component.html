@@ -4,7 +4,11 @@
       <h4>{{s.question.label}}</h4>
     </div>
     <div class="row">
-      <div *ngIf="s.question.controlType == 'dropdown' || s.question.controlType == 'radio'">
+      <div
+        *ngIf="s.question.controlType == 'dropdown'
+        || s.question.controlType == 'radio'
+        ||s.question.controlType == 'yesno'"
+      >
         <hippo-pie-chart [data]="s.data"></hippo-pie-chart>
       </div>
       <div *ngIf="s.question.controlType == 'textbox'">

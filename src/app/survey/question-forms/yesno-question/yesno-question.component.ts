@@ -2,11 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'yesno-question-form',
-  templateUrl: './yesno-question-form.component.html',
-  styleUrls: [ './yesno-question-form.component.scss' ]
+  selector: 'yesno-question',
+  templateUrl: './yesno-question.component.html',
+  styleUrls: [ './yesno-question.component.scss' ]
 })
-export class YesnoQuestionFormComponent implements OnInit {
+export class YesnoQuestionComponent implements OnInit {
 
   @Input() questionForm: FormGroup;
 

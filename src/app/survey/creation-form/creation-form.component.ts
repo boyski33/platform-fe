@@ -26,6 +26,7 @@ export class CreationFormComponent implements OnInit {
   }
 
   addQuestion(type: string) {
+    // todo DRY
     switch (type) {
       case 'textbox': {
         this.questions.push(this.fb.group({
@@ -63,6 +64,11 @@ export class CreationFormComponent implements OnInit {
         break;
       }
       case 'range': {
+        this.questions.push(this.fb.group({
+          controlType: [ 'range' ],
+          label: [ '' ],
+          options: this.fb.array([])
+        }));
 
         break;
       }

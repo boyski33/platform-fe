@@ -61,7 +61,8 @@
                 <free-response-question *ngSwitchCase="'textarea'" [questionForm]="q"></free-response-question>
                 <multiple-choice-question *ngSwitchCase="'dropdown'" [questionForm]="q"></multiple-choice-question>
                 <multiple-choice-question *ngSwitchCase="'radio'" [questionForm]="q"></multiple-choice-question>
-                <yesno-question-form *ngSwitchCase="'yesno'" [questionForm]="q"></yesno-question-form>
+                <yesno-question *ngSwitchCase="'yesno'" [questionForm]="q"></yesno-question>
+                <range-question *ngSwitchCase="'range'" [questionForm]="q"></range-question>
 
               </div>
             </div>

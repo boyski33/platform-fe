@@ -4,15 +4,19 @@
       <h4>{{s.question.label}}</h4>
     </div>
     <div class="row">
+      <div *ngIf="s.question.controlType == 'textbox'">
+        <hippo-bar-chart [data]="s.data"></hippo-bar-chart>
+      </div>
+      <div *ngIf="s.question.controlType == 'textarea'">
+        <answer-list></answer-list>
+      </div>
       <div
         *ngIf="s.question.controlType == 'dropdown'
         || s.question.controlType == 'radio'
+        || s.question.controlType == 'range'
         ||s.question.controlType == 'yesno'"
       >
         <hippo-pie-chart [data]="s.data"></hippo-pie-chart>
-      </div>
-      <div *ngIf="s.question.controlType == 'textbox'">
-        <hippo-bar-chart [data]="s.data"></hippo-bar-chart>
       </div>
     </div>
   </div>

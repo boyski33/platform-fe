@@ -6,12 +6,22 @@
     <input readonly class="form-control" *ngSwitchCase="'textbox'" [value]="answer"
            [id]="question.key" [attr.type]="'text'">
 
+    <textarea readonly class="form-control" *ngSwitchCase="'textarea'" [value]="answer"
+           [id]="question.key" [attr.type]="'text'">
+    </textarea>
+
     <input readonly class="form-control" *ngSwitchCase="'radio'" [value]="answer"
            [id]="question.key" [attr.type]="'text'">
 
     <select readonly class="form-control" [id]="question.key" *ngSwitchCase="'dropdown'">
       <option [value]="answer">{{answer}}</option>
     </select>
+
+    <input readonly class="form-control" *ngSwitchCase="'yesno'" [value]="answer"
+           [id]="question.key" [attr.type]="'text'">
+
+    <input readonly class="form-control" *ngSwitchCase="'range'" [value]="answer"
+           [id]="question.key" [attr.type]="'text'">
 
   </div>
 </div>

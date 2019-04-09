@@ -9,6 +9,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AnswerListComponent } from './answer-list/answer-list.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SurveyReportComponent,
     SurveyStatsComponent,
     PieChartComponent,
-    BarChartComponent
+    BarChartComponent,
+    AnswerListComponent
   ]
 })
 export class AdminModule {

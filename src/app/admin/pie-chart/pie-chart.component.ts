@@ -13,9 +13,9 @@ export class PieChartComponent implements OnInit {
   view = [600, 300];
 
   colorScheme = 'forest';
-  showLegend = false;
+  showLegend = true;
   explodeSlices = false;
-  showLabels = true;
+  showLabels = false;
   doughnut = false;
   gradient = false;
 

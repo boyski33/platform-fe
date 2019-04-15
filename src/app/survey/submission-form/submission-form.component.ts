@@ -11,6 +11,7 @@ import { Submission } from '../model/submission';
 import { AnsweredQuestion } from '../model/answered-question';
 import { UtilService } from '../../general/services/util.service';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
 
 @Component({
   selector: 'submission-page',
@@ -22,6 +23,7 @@ export class SubmissionFormComponent implements OnInit, OnDestroy {
   survey: Survey;
   form: FormGroup;
   submitIcon = faCheck;
+  backIcon = faChevronLeft;
   componentDestroyed$: Subject<boolean> = new Subject();
 
   constructor(private route: ActivatedRoute,
@@ -50,8 +52,17 @@ export class SubmissionFormComponent implements OnInit, OnDestroy {
     this.componentDestroyed$.next(true);
   }
 
+  navigateBack() {
+    this.utilService.openConfirmationDialog()
+      .then(() => {
+        this.router.navigateByUrl('/surveys/dashboard');
+      })
+      .catch(() => {
+        console.log('Closed with NO.');
+      });
+  }
+
   createFormFromSurvey(survey: Survey) {
-    // TODO: make use of the Question constructor or use interfaces
     const questions = survey.questions || [];
     this.form = this.questionControlService.toFormGroup(questions);
   }
@@ -62,7 +73,7 @@ export class SubmissionFormComponent implements OnInit, OnDestroy {
         this.assembleAndPostSubmission();
       })
       .catch(() => {
-        console.log('Closed');
+        console.log('Closed with NO.');
       });
   }
 

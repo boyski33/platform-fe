@@ -1,14 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Survey } from '../model/survey';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SurveyService } from '../services/survey.service';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { switchMap, takeUntil } from 'rxjs/operators';
 import { Question } from '../model/question';
 import { FormGroup } from '@angular/forms';
 import { QuestionControlService } from '../services/question-control.service';
 import { Submission } from '../model/submission';
-import { User } from '../../user/model/user';
 import { AnsweredQuestion } from '../model/answered-question';
 import { UtilService } from '../../general/services/util.service';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
@@ -18,11 +17,12 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
   templateUrl: './submission-form.component.html',
   styleUrls: [ './submission-form.component.scss' ]
 })
-export class SubmissionFormComponent implements OnInit {
+export class SubmissionFormComponent implements OnInit, OnDestroy {
 
   survey: Survey;
   form: FormGroup;
   submitIcon = faCheck;
+  componentDestroyed$: Subject<boolean> = new Subject();
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -33,7 +33,8 @@ export class SubmissionFormComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.pipe(
-      switchMap(params => this.surveyService.getSurvey(params.get('id')))
+      switchMap(params => this.surveyService.getSurvey(params.get('id'))),
+      takeUntil(this.componentDestroyed$)
     ).subscribe(s => {
         this.survey = s;
         this.createFormFromSurvey(s);
@@ -43,6 +44,10 @@ export class SubmissionFormComponent implements OnInit {
         console.error(e);
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.componentDestroyed$.next(true);
   }
 
   createFormFromSurvey(survey: Survey) {
@@ -64,14 +69,16 @@ export class SubmissionFormComponent implements OnInit {
   private assembleAndPostSubmission() {
     const submission = this.assembleSubmissionObject();
 
-    this.surveyService.postSubmission(submission).subscribe(
-      s => {
-        this.router.navigate([ '..' ], { relativeTo: this.route });
-      },
-      e => {
-        this.utilService.openSimpleDialog(e.error.error);
-      }
-    );
+    this.surveyService.postSubmission(submission)
+      .pipe(takeUntil(this.componentDestroyed$))
+      .subscribe(
+        s => {
+          this.router.navigate([ '..' ], { relativeTo: this.route });
+        },
+        e => {
+          this.utilService.openSimpleDialog(e.error.error);
+        }
+      );
   }
 
   private assembleSubmissionObject(): Submission {

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AnswerChartData } from '../survey-stats/survey-stats.component';
 
 @Component({
   selector: 'answer-list',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./answer-list.component.scss']
 })
 export class AnswerListComponent implements OnInit {
+
+  @Input() data: AnswerChartData[];
 
   constructor() { }
 

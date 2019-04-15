@@ -15,7 +15,7 @@ export class SurveyDashboardComponent implements OnInit, OnDestroy {
 
   surveys: Survey[];
   loggedInUser: string | null;
-  private componentDestroyed: Subject<boolean> = new Subject();
+  componentDestroyed$: Subject<boolean> = new Subject();
 
   constructor(private surveyService: SurveyService,
               private authService: AuthService,
@@ -28,7 +28,7 @@ export class SurveyDashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.componentDestroyed.next(true);
+    this.componentDestroyed$.next(true);
   }
 
   redirectToSurvey(id: string) {
@@ -38,11 +38,11 @@ export class SurveyDashboardComponent implements OnInit, OnDestroy {
   private loadSurveys() {
     if (this.loggedInUser) {
       this.surveyService.getSurveysForUser(this.loggedInUser)
-        .pipe(takeUntil(this.componentDestroyed))
+        .pipe(takeUntil(this.componentDestroyed$))
         .subscribe(data => this.surveys = data);
     } else {
       this.surveyService.getAllSurveysMetadata()
-        .pipe(takeUntil(this.componentDestroyed))
+        .pipe(takeUntil(this.componentDestroyed$))
         .subscribe(data => this.surveys = data);
     }
   }

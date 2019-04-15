@@ -1,21 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Survey } from '../model/survey';
 import { SurveyService } from '../services/survey.service';
 import { UtilService } from '../../general/services/util.service';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'creation-form',
   templateUrl: './creation-form.component.html',
   styleUrls: [ './creation-form.component.scss' ]
 })
-export class CreationFormComponent implements OnInit {
+export class CreationFormComponent implements OnInit, OnDestroy {
 
   form = this.buildForm();
   survey: Survey;
   removeIcon = faTimes;
   submitIcon = faCheck;
+  componentDestroyed$: Subject<boolean> = new Subject();
 
   constructor(private fb: FormBuilder,
               private surveyService: SurveyService,
@@ -23,6 +26,10 @@ export class CreationFormComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.componentDestroyed$.next(true);
   }
 
   addQuestion(type: string) {
@@ -82,11 +89,13 @@ export class CreationFormComponent implements OnInit {
   submitForm() {
     this.utilService.openConfirmationDialog()
       .then(() => {
-        this.surveyService.createNewSurvey(this.form.value).subscribe(s => {
-          this.utilService.openSimpleDialog('Survey created.');
-          this.form.reset();
-          this.form = this.buildForm();
-        });
+        this.surveyService.createNewSurvey(this.form.value)
+          .pipe(takeUntil(this.componentDestroyed$))
+          .subscribe(() => {
+            this.utilService.openSimpleDialog('Survey created.');
+            this.form.reset();
+            this.form = this.buildForm();
+          });
       })
       .catch(() => {
         console.log('Closed');

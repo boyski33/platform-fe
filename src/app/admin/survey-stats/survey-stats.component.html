@@ -8,7 +8,7 @@
         <hippo-bar-chart [data]="s.data"></hippo-bar-chart>
       </div>
       <div *ngIf="s.question.controlType == 'textarea'">
-        <answer-list></answer-list>
+        <answer-list [data]="s.data"></answer-list>
       </div>
       <div
         *ngIf="s.question.controlType == 'dropdown'

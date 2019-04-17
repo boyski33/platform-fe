@@ -31,7 +31,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
   submitIcon = faCheck;
   componentDestroyed$: Subject<boolean> = new Subject();
 
-  readonly genderList = [ 'Male', 'Female', 'Other' ];
+  readonly genderList = [ 'Male', 'Female' ];
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,

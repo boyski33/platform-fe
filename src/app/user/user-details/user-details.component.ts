@@ -5,7 +5,7 @@ import { AuthService } from '../../auth/auth.service';
 import { UserService } from '../services/user.service';
 import { UtilService } from '../../general/services/util.service';
 import { Router } from '@angular/router';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faEdit, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
@@ -29,8 +29,10 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
   submitIcon = faCheck;
+  editIcon = faEdit;
+  cancelIcon = faTimes;
+  formDisabled = true;
   componentDestroyed$: Subject<boolean> = new Subject();
-
   readonly genderList = [ 'Male', 'Female' ];
 
   constructor(private fb: FormBuilder,
@@ -116,6 +118,15 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
       dateOfBirth: [ '', [ Validators.required, validateDate ] ],
       gender: [ '', Validators.required ]
     });
+  }
+
+
+  enableForm() {
+    this.formDisabled = null;
+  }
+
+  disableForm() {
+    this.formDisabled = true;
   }
 
   /**

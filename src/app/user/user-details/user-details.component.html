@@ -3,17 +3,18 @@
   <form [formGroup]="form" (ngSubmit)="saveProfile()">
     <div class="form-group">
       <label for="first-name">First name:</label>
-      <input class="form-control" type="text" formControlName="firstName" id="first-name">
+      <input [attr.disabled]="formDisabled" class="form-control" type="text" formControlName="firstName"
+             id="first-name">
     </div>
 
     <div class="form-group">
       <label for="last-name">Last name:</label>
-      <input class="form-control" type="text" formControlName="lastName" id="last-name">
+      <input [attr.disabled]="formDisabled" class="form-control" type="text" formControlName="lastName" id="last-name">
     </div>
 
     <div class="form-group">
       <label for="dob">Date of birth:</label>
-      <input class="form-control" type="date" formControlName="dateOfBirth" id="dob">
+      <input [attr.disabled]="formDisabled" class="form-control" type="date" formControlName="dateOfBirth" id="dob">
 
       <div class="text-danger" [hidden]="!dateOfBirth.errors || !dateOfBirth.touched">
         <div *ngIf="dateOfBirth.errors?.required">
@@ -27,7 +28,9 @@
 
     <div class="form-group">
       <label for="gender-select">Gender:</label>
-      <select #select class="form-control" name="gender" id="gender-select" formControlName="gender">
+      <select [attr.disabled]="formDisabled" #select
+              class="form-control" name="gender" id="gender-select"
+              formControlName="gender">
         <option *ngIf="!select.value" value="" disabled selected>Select gender</option>
         <option *ngFor="let g of genderList" [value]="g.toLowerCase()">{{g}}</option>
       </select>
@@ -38,10 +41,22 @@
     </div>
 
     <div class="form-group">
-      <button class="btn btn-success" type="submit" [disabled]="!form.valid">
-        <fa-icon [icon]="submitIcon"></fa-icon>
-        Update
-      </button>
+      <div *ngIf="formDisabled">
+        <button class="btn btn-outline-dark" type="button" (click)="enableForm()" [disabled]="!form.valid">
+          <fa-icon [icon]="editIcon"></fa-icon>
+          Edit
+        </button>
+      </div>
+      <div *ngIf="!formDisabled">
+        <button class="btn btn-danger mr-2" type="button" (click)="disableForm()" [disabled]="!form.valid">
+          <fa-icon [icon]="cancelIcon"></fa-icon>
+          Cancel
+        </button>
+        <button class="btn btn-success" type="submit" [disabled]="!form.valid">
+          <fa-icon [icon]="submitIcon"></fa-icon>
+          Update
+        </button>
+      </div>
     </div>
 
   </form>

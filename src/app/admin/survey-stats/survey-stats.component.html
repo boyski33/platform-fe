@@ -4,7 +4,7 @@
       <h4>{{s.question.label}}</h4>
     </div>
     <div class="row">
-      <div *ngIf="s.question.controlType == 'textbox'">
+      <div *ngIf="s.question.controlType == 'textbox' || s.question.controlType == 'date'">
         <hippo-bar-chart [data]="s.data"></hippo-bar-chart>
       </div>
       <div *ngIf="s.question.controlType == 'textarea'">

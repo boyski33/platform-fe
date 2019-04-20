@@ -79,6 +79,14 @@ export class CreationFormComponent implements OnInit, OnDestroy {
 
         break;
       }
+      case 'date': {
+        this.questions.push(this.fb.group({
+          controlType: [ 'date' ],
+          label: [ '' ]
+        }));
+
+        break;
+      }
       default: {
         console.error(`Question type ${type} not supported!`);
       }

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'survey-dashboard',
@@ -19,12 +20,15 @@ export class SurveyDashboardComponent implements OnInit, OnDestroy {
 
   constructor(private surveyService: SurveyService,
               private authService: AuthService,
-              private router: Router) {
+              private router: Router,
+              private spinner: NgxSpinnerService) {
   }
 
   ngOnInit() {
+    this.spinner.show();
     this.loggedInUser = this.authService.getUserEmail();
     this.loadSurveys();
+    this.spinner.hide();
   }
 
   ngOnDestroy() {

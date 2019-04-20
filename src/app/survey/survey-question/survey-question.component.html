@@ -54,6 +54,11 @@
       </div>
     </div>
 
+    <div *ngSwitchCase="'date'">
+      <input class="form-control" [formControlName]="question.key" [id]="question.key"
+             [attr.type]="question.controlType" [attr.autocomplete]="'off'">
+    </div>
+
   </div>
 
   <div class="text-danger" [class.hidden]="!control.errors?.required || !control.touched">

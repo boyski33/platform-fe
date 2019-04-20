@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SurveyService } from '../../survey/services/survey.service';
 import { Submission } from '../../survey/model/submission';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, takeUntil } from 'rxjs/operators';
 import { QuestionStats } from '../../survey/model/question-stats';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'hippo-survey-report',
   templateUrl: './survey-report.component.html',
   styleUrls: [ './survey-report.component.scss' ]
 })
-export class SurveyReportComponent implements OnInit {
+export class SurveyReportComponent implements OnInit, OnDestroy {
 
   submissions: Submission[];
   surveyStats: QuestionStats[];
   backIcon = faChevronLeft;
+  componentDestroyed$: Subject<boolean> = new Subject();
 
   constructor(private surveyService: SurveyService,
               private route: ActivatedRoute,
@@ -24,7 +26,8 @@ export class SurveyReportComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.pipe(
-      switchMap(params => this.getSurveyReport(params.get('surveyId')))
+      switchMap(params => this.getSurveyReport(params.get('surveyId'))),
+      takeUntil(this.componentDestroyed$)
     ).subscribe(
       report => {
         this.submissions = report.submissions;
@@ -34,6 +37,10 @@ export class SurveyReportComponent implements OnInit {
         console.error(e);
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.componentDestroyed$.next(true);
   }
 
   navigateBack() {

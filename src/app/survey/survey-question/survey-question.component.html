@@ -9,6 +9,13 @@
              [attr.autocomplete]="'off'">
     </div>
 
+    <div *ngSwitchCase="'textarea'">
+      <textarea class="form-control" [formControlName]="question.key"
+                [id]="question.key" [attr.type]="question.controlType" placeholder="Type answer"
+                [attr.autocomplete]="'off'">
+      </textarea>
+    </div>
+
     <div *ngSwitchCase="'radio'">
       <div class="form-check form-check-inline" *ngFor="let opt of question['options']">
         <label class="form-check-label">
@@ -25,6 +32,26 @@
         <option *ngIf="!select.value" value="" disabled selected>Select option</option>
         <option *ngFor="let opt of question['options']" [value]="opt.value">{{opt.value}}</option>
       </select>
+    </div>
+
+    <div *ngSwitchCase="'yesno'">
+      <div class="form-check form-check-inline" *ngFor="let opt of question['options']">
+        <label class="form-check-label">
+          <input class="form-check-input" [formControlName]="question.key" [attr.name]="question.key"
+                 [attr.type]="'radio'" [attr.value]="opt.value">
+          {{opt.value}}
+        </label>
+      </div>
+    </div>
+
+    <div *ngSwitchCase="'range'">
+      <div class="form-check form-check-inline" *ngFor="let opt of question['options']">
+        <label class="form-check-label">
+          <input class="form-check-input" [formControlName]="question.key" [attr.name]="question.key"
+                 [attr.type]="'radio'" [attr.value]="opt.value">
+          {{opt.value}}
+        </label>
+      </div>
     </div>
 
   </div>

@@ -1,0 +1,27 @@
+<div [formGroup]="questionForm">
+  <div class="form-group">
+    <input class="form-control" type="text" formControlName="label" placeholder="Text">
+  </div>
+</div>
+
+<div>
+  <div class="row form-group">
+    <div class="col"><b>Range:</b></div>
+  </div>
+
+  <div class="form-row" (change)="updateRangeOptions()">
+    <div class="col">
+      <label for="range-from">From:</label>
+      <select id="range-from" class="form-control" [(ngModel)]="rangeFrom">
+        <option *ngFor="let i of rangeValues" [value]="i+1">{{i + 1}}</option>
+      </select>
+    </div>
+    <div class="col">
+      <label for="range-to">To:</label>
+      <select id="range-to" class="form-control" type="text" [(ngModel)]="rangeTo">
+        <option *ngFor="let i of rangeValues" [value]="i+1">{{i + 1}}</option>
+      </select>
+    </div>
+  </div>
+</div>
+

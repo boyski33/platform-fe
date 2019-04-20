@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../model/user';
 import { AuthService } from '../../auth/auth.service';
 import { UserService } from '../services/user.service';
 import { UtilService } from '../../general/services/util.service';
 import { Router } from '@angular/router';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faEdit, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 function validateDate(control: AbstractControl): { [key: string]: boolean } | null {
 
@@ -23,12 +25,15 @@ function validateDate(control: AbstractControl): { [key: string]: boolean } | nu
   templateUrl: './user-details.component.html',
   styleUrls: [ './user-details.component.scss' ]
 })
-export class UserDetailsComponent implements OnInit {
+export class UserDetailsComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
   submitIcon = faCheck;
-
-  readonly genderList = [ 'Male', 'Female', 'Other' ];
+  editIcon = faEdit;
+  cancelIcon = faTimes;
+  formDisabled = true;
+  componentDestroyed$: Subject<boolean> = new Subject();
+  readonly genderList = [ 'Male', 'Female' ];
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
@@ -40,6 +45,10 @@ export class UserDetailsComponent implements OnInit {
   ngOnInit() {
     this.form = this.buildForm();
     this.populateUserData();
+  }
+
+  ngOnDestroy() {
+    this.componentDestroyed$.next(true);
   }
 
   populateUserData() {
@@ -64,6 +73,7 @@ export class UserDetailsComponent implements OnInit {
     const user = this.assembleUserObject();
 
     this.userService.addUser(user)
+      .pipe(takeUntil(this.componentDestroyed$))
       .subscribe(() => {
         this.utilService.openSimpleDialog('Profile updated');
         this.router.navigateByUrl('/');
@@ -73,11 +83,13 @@ export class UserDetailsComponent implements OnInit {
   }
 
   private populateForEmail(email: string) {
-    this.userService.getUserByEmail(email).subscribe(
-      data => {
-        this.setFormData(data);
-      }
-    );
+    this.userService.getUserByEmail(email)
+      .pipe(takeUntil(this.componentDestroyed$))
+      .subscribe(
+        data => {
+          this.setFormData(data);
+        }
+      );
   }
 
   private setFormData(user: User) {
@@ -106,6 +118,15 @@ export class UserDetailsComponent implements OnInit {
       dateOfBirth: [ '', [ Validators.required, validateDate ] ],
       gender: [ '', Validators.required ]
     });
+  }
+
+
+  enableForm() {
+    this.formDisabled = null;
+  }
+
+  disableForm() {
+    this.formDisabled = true;
   }
 
   /**

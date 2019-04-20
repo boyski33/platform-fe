@@ -17,8 +17,6 @@
                  autocomplete="off">
         </div>
 
-        <hr>
-
         <div class="form-group">
           <div class="btn-group dropright">
             <button class="btn btn-block btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -26,9 +24,12 @@
               Add question
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" (click)="addQuestion('textbox')">Textbox</a>
+              <a class="dropdown-item" (click)="addQuestion('textbox')">Short answer</a>
+              <a class="dropdown-item" (click)="addQuestion('textarea')">Long answer</a>
               <a class="dropdown-item" (click)="addQuestion('dropdown')">Dropdown</a>
               <a class="dropdown-item" (click)="addQuestion('radio')">Radio</a>
+              <a class="dropdown-item" (click)="addQuestion('yesno')">Yes/No</a>
+              <a class="dropdown-item" (click)="addQuestion('range')">Range</a>
             </div>
           </div>
         </div>
@@ -40,7 +41,6 @@
           </button>
         </div>
       </div>
-
 
       <div class="col">
         <div formArrayName="questions">
@@ -55,9 +55,12 @@
                   <fa-icon [icon]="removeIcon"></fa-icon>
                 </button>
 
-                <textbox-question *ngSwitchCase="'textbox'" [questionForm]="q"></textbox-question>
-                <dropdown-question *ngSwitchCase="'dropdown'" [questionForm]="q"></dropdown-question>
-                <radio-question *ngSwitchCase="'radio'" [questionForm]="q"></radio-question>
+                <free-response-question *ngSwitchCase="'textbox'" [questionForm]="q"></free-response-question>
+                <free-response-question *ngSwitchCase="'textarea'" [questionForm]="q"></free-response-question>
+                <multiple-choice-question *ngSwitchCase="'dropdown'" [questionForm]="q"></multiple-choice-question>
+                <multiple-choice-question *ngSwitchCase="'radio'" [questionForm]="q"></multiple-choice-question>
+                <yesno-question *ngSwitchCase="'yesno'" [questionForm]="q"></yesno-question>
+                <range-question *ngSwitchCase="'range'" [questionForm]="q"></range-question>
 
               </div>
             </div>

@@ -42,13 +42,13 @@
 
     <div class="form-group">
       <div *ngIf="formDisabled">
-        <button class="btn btn-outline-dark" type="button" (click)="enableForm()" [disabled]="!form.valid">
+        <button class="btn btn-outline-dark" type="button" (click)="enableForm()">
           <fa-icon [icon]="editIcon"></fa-icon>
           Edit
         </button>
       </div>
       <div *ngIf="!formDisabled">
-        <button class="btn btn-danger mr-2" type="button" (click)="disableForm()" [disabled]="!form.valid">
+        <button class="btn btn-danger mr-2" type="button" (click)="disableForm()">
           <fa-icon [icon]="cancelIcon"></fa-icon>
           Cancel
         </button>

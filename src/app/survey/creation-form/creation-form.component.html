@@ -17,30 +17,33 @@
                  autocomplete="off">
         </div>
 
-        <div class="form-group">
-          <div class="btn-group dropright">
-            <button class="btn btn-block btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Add question
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" (click)="addQuestion('textbox')">Short answer</a>
-              <a class="dropdown-item" (click)="addQuestion('textarea')">Long answer</a>
-              <a class="dropdown-item" (click)="addQuestion('dropdown')">Dropdown</a>
-              <a class="dropdown-item" (click)="addQuestion('radio')">Radio</a>
-              <a class="dropdown-item" (click)="addQuestion('yesno')">Yes/No</a>
-              <a class="dropdown-item" (click)="addQuestion('range')">Range</a>
-              <a class="dropdown-item" (click)="addQuestion('date')">Date</a>
+        <div class="form-row">
+          <div class="col">
+            <div class="btn-group dropright btn-block">
+              <button class="btn btn-block btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Add question
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" (click)="addQuestion('textbox')">Short answer</a>
+                <a class="dropdown-item" (click)="addQuestion('textarea')">Long answer</a>
+                <a class="dropdown-item" (click)="addQuestion('dropdown')">Dropdown</a>
+                <a class="dropdown-item" (click)="addQuestion('radio')">Radio</a>
+                <a class="dropdown-item" (click)="addQuestion('yesno')">Yes/No</a>
+                <a class="dropdown-item" (click)="addQuestion('range')">Range</a>
+                <a class="dropdown-item" (click)="addQuestion('date')">Date</a>
+              </div>
             </div>
+          </div>
+
+          <div class="col">
+            <button type="submit" class="btn btn-success btn-block" [disabled]="!form.valid">
+              <fa-icon [icon]="submitIcon"></fa-icon>
+              Create
+            </button>
           </div>
         </div>
 
-        <div class="form-group">
-          <button type="submit" class="btn btn-success" [disabled]="!form.valid">
-            <fa-icon [icon]="submitIcon"></fa-icon>
-            Create
-          </button>
-        </div>
       </div>
 
       <div class="col">

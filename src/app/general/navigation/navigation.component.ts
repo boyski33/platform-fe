@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { UtilService } from '../services/util.service';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navigation',
@@ -8,6 +9,8 @@ import { UtilService } from '../services/util.service';
   styleUrls: [ './navigation.component.scss' ]
 })
 export class NavigationComponent implements OnInit {
+
+  userIcon = faUser;
 
   constructor(private authService: AuthService,
               private utilService: UtilService) {
@@ -36,6 +39,12 @@ export class NavigationComponent implements OnInit {
 
   get authenticated() {
     return this.authService.isAuthenticated();
+  }
+
+  get email() {
+    if (this.authenticated) {
+      return this.authService.getUserEmail();
+    }
   }
 
 }

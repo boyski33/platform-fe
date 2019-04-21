@@ -33,6 +33,11 @@
       </li>
     </ul>
     <ul class="nav navbar-nav" [hidden]="!authenticated">
+      <li class="nav-link" routerLink="users" style="cursor: pointer;">
+        <fa-icon [icon]="userIcon"></fa-icon> {{email}}
+      </li>
+    </ul>
+    <ul class="nav navbar-nav" [hidden]="!authenticated">
       <li class="nav-item" style="cursor: pointer;">
         <button class="btn bg-pink text-light" (click)="logout()">Logout</button>
       </li>

@@ -12,6 +12,7 @@ import { ConfirmationDialogComponent } from './general/confirmation-dialog/confi
 import { SingleButtonDialogComponent } from './general/single-button-dialog/single-button-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     HttpClientModule,
     NgbModule,
     BrowserAnimationsModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    FontAwesomeModule
   ],
   providers: [],
   entryComponents: [

@@ -5,6 +5,7 @@ import { Survey } from '../../survey/model/survey';
 import { AuthService } from '../../auth/auth.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'admin-dashboard',
@@ -19,10 +20,12 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
   constructor(private surveyService: SurveyService,
               private router: Router,
               private route: ActivatedRoute,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private spinner: NgxSpinnerService) {
   }
 
   ngOnInit() {
+    this.spinner.show();
     this.getSurveysOfAuthenticatedUser();
   }
 
@@ -39,6 +42,11 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
 
     this.surveyService.getSurveysForOwner(userEmail)
       .pipe(takeUntil(this.componentDestroyed$))
-      .subscribe(data => this.surveys = data);
+      .subscribe(data => {
+          this.surveys = data;
+        }, () => {
+        }, () => {
+          this.spinner.hide();
+        });
   }
 }

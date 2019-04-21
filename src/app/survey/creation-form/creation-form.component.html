@@ -45,22 +45,23 @@
 
       <div class="col">
         <div formArrayName="questions">
-          <h4 *ngIf="questions.controls.length > 0">Questions:</h4>
+          <h4 *ngIf="questions.controls.length > 0">Questions ({{questions.controls.length}}):</h4>
 
           <div *ngFor="let q of questions.controls; let i=index">
 
             <div [formGroupName]="i">
               <div class="container shadow mb-2 pb-2" [ngSwitch]="q.value.controlType">
 
-                <div class="row">
-                  <div class="col-md-6">
-                    {{i+1}}
-                    {{q.value.controlType}}
+                <div class="row justify-content-between">
+                  <div class="col my-1">
+                    <b>{{q.value.controlType | titlecase}} question</b>
                   </div>
 
-                  <button class="btn btn-outline-danger float-right my-2" type="button" (click)="remove(i)">
-                    <fa-icon [icon]="removeIcon"></fa-icon>
-                  </button>
+                  <div class="col-md-2">
+                    <button class="btn btn-outline-danger my-1" type="button" (click)="remove(i)">
+                      <fa-icon [icon]="removeIcon"></fa-icon>
+                    </button>
+                  </div>
                 </div>
 
                 <free-response-question *ngSwitchCase="'textbox'" [questionForm]="q"></free-response-question>

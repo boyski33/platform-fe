@@ -5,4 +5,5 @@ export interface User {
   lastName?: string;
   dateOfBirth?: string;
   gender?: string;
+  isPredicted?: boolean;
 }

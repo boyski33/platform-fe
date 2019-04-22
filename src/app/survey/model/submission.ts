@@ -8,6 +8,7 @@ export class Submission {
   user: User;
   survey: Survey;
   answers: AnsweredQuestion[];
+  isPredicted: boolean;
 
   constructor(user, survey, answers: AnsweredQuestion[]) {
     this.user = user;

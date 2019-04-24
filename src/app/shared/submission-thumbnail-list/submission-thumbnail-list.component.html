@@ -6,6 +6,8 @@
         <h5 *ngIf="sub.survey.title" class="card-title">{{sub.survey.title}}</h5>
 
         <p *ngIf="sub.timestamp" class="card-text">
+          <hippo-user-icon [user]="sub.user"></hippo-user-icon>
+          <br>
           Submitted on: {{sub.timestamp | date:'short'}}
         </p>
 

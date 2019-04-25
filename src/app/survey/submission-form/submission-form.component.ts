@@ -87,11 +87,10 @@ export class SubmissionFormComponent implements OnInit, OnDestroy {
       .subscribe(
         s => {
           this.router.navigate([ '..' ], { relativeTo: this.route });
+          this.spinner.hide();
         },
         e => {
           this.utilService.openSimpleDialog(e.error.error);
-        },
-        () => {
           this.spinner.hide();
         }
       );

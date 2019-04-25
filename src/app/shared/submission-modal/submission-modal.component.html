@@ -13,6 +13,19 @@
         <submission-answer [answeredQuestion]="ans"></submission-answer>
       </div>
 
+      <hr>
+
+      <div *ngIf="submission.user">
+        <div>
+          <b>User Details:</b>
+        </div>
+        <span>
+          Gender: {{submission.user.gender | titlecase}}
+          <br>
+          Age: {{submission.user.dateOfBirth | age}}
+        </span>
+      </div>
+
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-success" (click)="modal.close()">OK</button>

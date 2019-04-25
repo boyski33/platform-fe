@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { User } from '../../../user/model/user';
-import { Submission } from '../../../survey/model/submission';
+import { User } from '../../user/model/user';
+import { Submission } from '../../survey/model/submission';
 import { faUser, faUserSecret } from '@fortawesome/free-solid-svg-icons';
 
 

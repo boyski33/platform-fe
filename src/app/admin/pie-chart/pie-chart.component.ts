@@ -10,10 +10,10 @@ export class PieChartComponent implements OnInit {
 
   @Input() data: AnswerChartData[];
 
-  view = [600, 300];
+  view = [500, 300];
 
   colorScheme = 'forest';
-  showLegend = true;
+  showLegend = false;
   explodeSlices = false;
   showLabels = false;
   doughnut = false;

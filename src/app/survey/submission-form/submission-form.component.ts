@@ -12,6 +12,7 @@ import { AnsweredQuestion } from '../model/answered-question';
 import { UtilService } from '../../general/services/util.service';
 import { faCheck } from '@fortawesome/free-solid-svg-icons/faCheck';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'submission-page',
@@ -30,7 +31,8 @@ export class SubmissionFormComponent implements OnInit, OnDestroy {
               private router: Router,
               private surveyService: SurveyService,
               private questionControlService: QuestionControlService,
-              private utilService: UtilService) {
+              private utilService: UtilService,
+              private spinner: NgxSpinnerService) {
   }
 
   ngOnInit() {
@@ -78,16 +80,18 @@ export class SubmissionFormComponent implements OnInit, OnDestroy {
   }
 
   private assembleAndPostSubmission() {
-    const submission = this.assembleSubmissionObject();
+    this.spinner.show();
 
-    this.surveyService.postSubmission(submission)
+    this.surveyService.postSubmission(this.assembleSubmissionObject())
       .pipe(takeUntil(this.componentDestroyed$))
       .subscribe(
         s => {
           this.router.navigate([ '..' ], { relativeTo: this.route });
+          this.spinner.hide();
         },
         e => {
           this.utilService.openSimpleDialog(e.error.error);
+          this.spinner.hide();
         }
       );
   }

@@ -8,7 +8,6 @@ import { SurveyStatsComponent } from './survey-stats/survey-stats.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AnswerListComponent } from './answer-list/answer-list.component';
 
 @NgModule({
@@ -16,8 +15,7 @@ import { AnswerListComponent } from './answer-list/answer-list.component';
     CommonModule,
     AdminRoutingModule,
     SharedModule,
-    NgxChartsModule,
-    FontAwesomeModule
+    NgxChartsModule
   ],
   declarations: [
     AdminDashboardComponent,

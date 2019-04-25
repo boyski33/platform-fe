@@ -5,10 +5,13 @@
       <div class="card-body">
         <h5 *ngIf="sub.survey.title" class="card-title">{{sub.survey.title}}</h5>
 
+        <div class="icon">
+          <hippo-user-icon [user]="sub.user"></hippo-user-icon>
+        </div>
+
         <p *ngIf="sub.timestamp" class="card-text">
           Submitted on: {{sub.timestamp | date:'short'}}
         </p>
-
       </div>
 
       <submission-modal

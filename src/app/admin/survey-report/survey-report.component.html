@@ -5,16 +5,14 @@
   </button>
 </div>
 <div>
-  <div *ngIf="submissions" class="container justify-content-center pad-top">
+  <div *ngIf="submissions" class="container justify-content-start pad-top">
     <div *ngIf="submissions.length > 0">
 
       <div class="row">
         <h1>{{surveyTitle}}</h1>
       </div>
       <div class="row">
-        <!--<h2>Survey: {{surveyTitle}}</h2>-->
-
-        <div class="col">
+        <div class="col-md-8">
           <h5>All Submissions:</h5>
           <submission-thumbnail-list
             [submissions]="submissions"
@@ -22,7 +20,7 @@
           </submission-thumbnail-list>
         </div>
 
-        <div class="col">
+        <div class="col-md-4">
           <h5>Survey Stats:</h5>
           <survey-stats [surveyStats]="surveyStats"></survey-stats>
         </div>

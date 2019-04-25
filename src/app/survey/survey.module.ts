@@ -9,9 +9,9 @@ import { CreationFormComponent } from './creation-form/creation-form.component';
 import { SharedModule } from '../shared/shared.module';
 import { MultipleChoiceQuestionComponent } from './question-forms/multiple-choice-question/multiple-choice-question.component';
 import { FreeResponseQuestionComponent } from './question-forms/free-response-question/free-response-question.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { YesnoQuestionComponent } from './question-forms/yesno-question/yesno-question.component';
 import { RangeQuestionComponent } from './question-forms/range-question/range-question.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [
@@ -20,7 +20,7 @@ import { RangeQuestionComponent } from './question-forms/range-question/range-qu
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    FontAwesomeModule
+    NgbModule
   ],
   declarations: [
     SurveyDashboardComponent,

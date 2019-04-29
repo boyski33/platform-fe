@@ -7,11 +7,13 @@ import { SubmissionAnswerComponent } from './submission-answer/submission-answer
 import { UserIconComponent } from './user-icon/user-icon.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AgePipe } from './user-icon/age.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
   ],
   declarations: [
     SurveyThumbnailListComponent,

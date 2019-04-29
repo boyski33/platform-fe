@@ -1,7 +1,15 @@
 <div class="container pad-top">
-  <h3>Survey reports:</h3>
-  <survey-thumbnail-list [surveys]="surveys"
-                         [buttonText]="'View Report'"
-                         (thumbnailClick)="openSurveyReport($event)">
-  </survey-thumbnail-list>
+  <div *ngIf="surveys">
+    <h3>Survey reports:</h3>
+    <survey-thumbnail-list [surveys]="surveys"
+                           [buttonText]="'View Report'"
+                           (thumbnailClick)="openSurveyReport($event)">
+    </survey-thumbnail-list>
+  </div>
+  <div *ngIf="!surveys">
+    <h5><i>You have no surveys yet</i></h5>
+    <button type="button" class="btn btn-lg btn-success" (click)="navigateToCreationPage()">
+      Create survey
+    </button>
+  </div>
 </div>

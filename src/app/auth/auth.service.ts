@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as auth0 from 'auth0-js';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,8 @@ export class AuthService {
     clientID: 'iJe22hqFhTq8fcgSjOMa8s4vO37H51D3',
     domain: 'hippo-survey.eu.auth0.com',
     responseType: 'token id_token',
-    audience: 'http://localhost:8866',
-    redirectUri: 'http://localhost:4200/home',
+    audience: environment.coreSurveyServiceUrl,
+    redirectUri: environment.appUrl,
     scope: 'openid email view:submissions'
   });
 

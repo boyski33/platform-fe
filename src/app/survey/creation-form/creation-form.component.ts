@@ -1,11 +1,15 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { Survey } from '../model/survey';
 import { SurveyService } from '../services/survey.service';
 import { UtilService } from '../../general/services/util.service';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+
+// function questionOptionsValidator(): ValidatorFn {
+//
+// }
 
 @Component({
   selector: 'creation-form',
@@ -118,7 +122,7 @@ export class CreationFormComponent implements OnInit, OnDestroy {
     return this.fb.group({
       title: [ '', Validators.required ],
       description: [ '' ],
-      questions: this.fb.array([])
+      questions: this.fb.array([], Validators.required)
     });
   }
 

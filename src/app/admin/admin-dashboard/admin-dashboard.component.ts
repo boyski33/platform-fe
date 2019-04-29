@@ -37,6 +37,10 @@ export class AdminDashboardComponent implements OnInit, OnDestroy {
     this.router.navigate([ surveyId ], { relativeTo: this.route });
   }
 
+  navigateToCreationPage() {
+    this.router.navigate(['surveys', 'new']);
+  }
+
   private getSurveysOfAuthenticatedUser() {
     const userEmail = this.authService.getUserEmail();
 

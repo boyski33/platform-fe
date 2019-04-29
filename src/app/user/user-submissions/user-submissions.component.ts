@@ -16,8 +16,8 @@ export class UserSubmissionsComponent implements OnInit, OnDestroy {
   submissions: Submission[];
   componentDestroyed$: Subject<boolean> = new Subject();
 
+  hasUser = true;
   private readonly userEmail = this.authService.getUserEmail();
-  private hasUser = true;
 
   constructor(private authService: AuthService,
               private userService: UserService,

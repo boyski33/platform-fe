@@ -10,4 +10,4 @@ COPY ./src/ /app/src/
 
 RUN npm install
 
-CMD npm start
+CMD npm start --prod

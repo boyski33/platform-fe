@@ -37,56 +37,25 @@ export class CreationFormComponent implements OnInit, OnDestroy {
   }
 
   addQuestion(type: string) {
-    // todo DRY
     switch (type) {
-      case 'textbox': {
+      case 'textbox':
+      case 'textarea':
+      case 'date': {
         this.questions.push(this.fb.group({
-          controlType: [ 'textbox' ],
-          label: [ '' ]
-        }));
-
-        break;
-      }
-      case 'textarea': {
-        this.questions.push(this.fb.group({
-          controlType: [ 'textarea' ],
+          controlType: [ type ],
           label: [ '' ]
         }));
 
         break;
       }
       case 'dropdown':
-      case 'radio': {
+      case 'radio':
+      case 'yesno':
+      case 'range': {
         this.questions.push(this.fb.group({
           controlType: [ type ],
           label: [ '' ],
           options: this.fb.array([])
-        }));
-
-        break;
-      }
-      case 'yesno': {
-        this.questions.push(this.fb.group({
-          controlType: [ 'yesno' ],
-          label: [ '' ],
-          options: this.fb.array([])
-        }));
-
-        break;
-      }
-      case 'range': {
-        this.questions.push(this.fb.group({
-          controlType: [ 'range' ],
-          label: [ '' ],
-          options: this.fb.array([])
-        }));
-
-        break;
-      }
-      case 'date': {
-        this.questions.push(this.fb.group({
-          controlType: [ 'date' ],
-          label: [ '' ]
         }));
 
         break;

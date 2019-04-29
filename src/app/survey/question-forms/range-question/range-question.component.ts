@@ -39,4 +39,8 @@ export class RangeQuestionComponent implements OnInit {
   set options(array: FormArray) {
     this.questionForm.setControl('options', array);
   }
+
+  get label() {
+    return this.questionForm.get('label');
+  }
 }

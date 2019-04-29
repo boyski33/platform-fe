@@ -16,4 +16,8 @@ export class FreeResponseQuestionComponent implements OnInit {
   ngOnInit() {
   }
 
+  get label() {
+    return this.questionForm.get('label');
+  }
+
 }

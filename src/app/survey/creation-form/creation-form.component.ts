@@ -43,7 +43,7 @@ export class CreationFormComponent implements OnInit, OnDestroy {
       case 'date': {
         this.questions.push(this.fb.group({
           controlType: [ type ],
-          label: [ '' ]
+          label: [ '', Validators.required ]
         }));
 
         break;
@@ -54,8 +54,8 @@ export class CreationFormComponent implements OnInit, OnDestroy {
       case 'range': {
         this.questions.push(this.fb.group({
           controlType: [ type ],
-          label: [ '' ],
-          options: this.fb.array([])
+          label: [ '', Validators.required ],
+          options: this.fb.array([], Validators.required)
         }));
 
         break;
@@ -85,6 +85,10 @@ export class CreationFormComponent implements OnInit, OnDestroy {
 
   remove(index) {
     this.questions.controls.splice(index, 1);
+
+    if (this.questions.controls.length < 1) {
+      this.form.get('questions').reset();
+    }
   }
 
   private buildForm() {

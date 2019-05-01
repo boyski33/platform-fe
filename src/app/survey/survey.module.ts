@@ -12,6 +12,7 @@ import { FreeResponseQuestionComponent } from './question-forms/free-response-qu
 import { YesnoQuestionComponent } from './question-forms/yesno-question/yesno-question.component';
 import { RangeQuestionComponent } from './question-forms/range-question/range-question.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { QuestionTypePipe } from './creation-form/question-type.pipe';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FreeResponseQuestionComponent,
     YesnoQuestionComponent,
     RangeQuestionComponent,
+    QuestionTypePipe,
   ]
 })
 export class SurveyModule {

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="isReport">
   <div class="col-md-6">
     <input class="form-control" type="text" placeholder="Filter"
            [ngModel]="filterText" (ngModelChange)="filterSubmissions($event)">
@@ -20,6 +20,7 @@
 
     <submission-modal
       class="mb-4"
+      [showDetails]="isReport"
       [submission]="sub"
       [buttonText]="buttonText">
     </submission-modal>

@@ -11,6 +11,7 @@ export class SubmissionModalComponent implements OnInit {
 
   @Input() submission: Submission;
   @Input() buttonText: string;
+  @Input() showDetails = true;
 
   constructor(private modalService: NgbModal) {}
 

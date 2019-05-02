@@ -13,7 +13,7 @@ export class PieChartComponent implements OnInit {
   view = [500, 300];
 
   colorScheme = 'forest';
-  showLegend = false;
+  showLegend = true;
   explodeSlices = false;
   showLabels = false;
   doughnut = false;

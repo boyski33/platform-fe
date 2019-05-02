@@ -6,10 +6,7 @@ import { UtilService } from '../../general/services/util.service';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-
-// function questionOptionsValidator(): ValidatorFn {
-//
-// }
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'creation-form',
@@ -26,7 +23,8 @@ export class CreationFormComponent implements OnInit, OnDestroy {
 
   constructor(private fb: FormBuilder,
               private surveyService: SurveyService,
-              private utilService: UtilService) {
+              private utilService: UtilService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -76,6 +74,7 @@ export class CreationFormComponent implements OnInit, OnDestroy {
             this.utilService.openSimpleDialog('Survey created.');
             this.form.reset();
             this.form = this.buildForm();
+            this.router.navigate(['surveys', 'dashboard']);
           });
       })
       .catch(() => {

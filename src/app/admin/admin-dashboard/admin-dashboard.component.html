@@ -1,12 +1,12 @@
 <div class="container pad-top">
-  <div *ngIf="surveys">
+  <div *ngIf="surveys && surveys.length > 0">
     <h3>Survey reports:</h3>
     <survey-thumbnail-list [surveys]="surveys"
                            [buttonText]="'View Report'"
                            (thumbnailClick)="openSurveyReport($event)">
     </survey-thumbnail-list>
   </div>
-  <div *ngIf="!surveys">
+  <div *ngIf="surveys && surveys.length == 0">
     <h5><i>You have no surveys yet</i></h5>
     <button type="button" class="btn btn-lg btn-success" (click)="navigateToCreationPage()">
       Create survey

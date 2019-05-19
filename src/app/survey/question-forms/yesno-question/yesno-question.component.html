@@ -1,21 +1,20 @@
 <div [formGroup]="questionForm">
   <div class="form-group">
     <input class="form-control" type="text" formControlName="label" placeholder="Text">
+    <div class="text-danger" *ngIf="label.errors?.required && label.touched">
+      Text is required
+    </div>
   </div>
 
   <div>
-    <div class="row form-group">
-      <div class="col"><b>Options:</b></div>
-    </div>
-
-      <div class="form-row">
-        <div class="col">
-          <input disabled class="form-control" type="text" value="Yes">
-        </div>
-        <div class="col">
-          <input disabled class="form-control" type="text" value="No">
-        </div>
+    <div class="form-row">
+      <div class="col">
+        <input disabled class="form-control opt" type="text" value="Yes">
+      </div>
+      <div class="col">
+        <input disabled class="form-control opt" type="text" value="No">
       </div>
     </div>
+  </div>
 
 </div>

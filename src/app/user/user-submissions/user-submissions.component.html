@@ -3,6 +3,7 @@
     <div *ngIf="submissions.length > 0">
       <h3>Your posted submissions:</h3>
       <submission-thumbnail-list
+        [isReport]="false"
         [buttonText]="'View'"
         [submissions]="submissions">
       </submission-thumbnail-list>

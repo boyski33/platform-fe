@@ -6,10 +6,7 @@ import { UtilService } from '../../general/services/util.service';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-
-// function questionOptionsValidator(): ValidatorFn {
-//
-// }
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'creation-form',
@@ -26,7 +23,8 @@ export class CreationFormComponent implements OnInit, OnDestroy {
 
   constructor(private fb: FormBuilder,
               private surveyService: SurveyService,
-              private utilService: UtilService) {
+              private utilService: UtilService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -37,56 +35,25 @@ export class CreationFormComponent implements OnInit, OnDestroy {
   }
 
   addQuestion(type: string) {
-    // todo DRY
     switch (type) {
-      case 'textbox': {
+      case 'textbox':
+      case 'textarea':
+      case 'date': {
         this.questions.push(this.fb.group({
-          controlType: [ 'textbox' ],
-          label: [ '' ]
-        }));
-
-        break;
-      }
-      case 'textarea': {
-        this.questions.push(this.fb.group({
-          controlType: [ 'textarea' ],
-          label: [ '' ]
+          controlType: [ type ],
+          label: [ '', Validators.required ]
         }));
 
         break;
       }
       case 'dropdown':
-      case 'radio': {
-        this.questions.push(this.fb.group({
-          controlType: [ type ],
-          label: [ '' ],
-          options: this.fb.array([])
-        }));
-
-        break;
-      }
-      case 'yesno': {
-        this.questions.push(this.fb.group({
-          controlType: [ 'yesno' ],
-          label: [ '' ],
-          options: this.fb.array([])
-        }));
-
-        break;
-      }
+      case 'radio':
+      case 'yesno':
       case 'range': {
         this.questions.push(this.fb.group({
-          controlType: [ 'range' ],
-          label: [ '' ],
-          options: this.fb.array([])
-        }));
-
-        break;
-      }
-      case 'date': {
-        this.questions.push(this.fb.group({
-          controlType: [ 'date' ],
-          label: [ '' ]
+          controlType: [ type ],
+          label: [ '', Validators.required ],
+          options: this.fb.array([], Validators.required)
         }));
 
         break;
@@ -107,6 +74,7 @@ export class CreationFormComponent implements OnInit, OnDestroy {
             this.utilService.openSimpleDialog('Survey created.');
             this.form.reset();
             this.form = this.buildForm();
+            this.router.navigate(['surveys', 'dashboard']);
           });
       })
       .catch(() => {
@@ -116,6 +84,10 @@ export class CreationFormComponent implements OnInit, OnDestroy {
 
   remove(index) {
     this.questions.controls.splice(index, 1);
+
+    if (this.questions.controls.length < 1) {
+      this.form.get('questions').reset();
+    }
   }
 
   private buildForm() {

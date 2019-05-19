@@ -31,4 +31,8 @@ export class YesnoQuestionComponent implements OnInit {
   get options() {
     return this.questionForm.get('options') as FormArray;
   }
+
+  get label() {
+    return this.questionForm.get('label');
+  }
 }

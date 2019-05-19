@@ -55,13 +55,17 @@ export class SubmissionFormComponent implements OnInit, OnDestroy {
   }
 
   navigateBack() {
-    this.utilService.openConfirmationDialog()
-      .then(() => {
-        this.router.navigateByUrl('/surveys/dashboard');
-      })
-      .catch(() => {
-        console.log('Closed with NO.');
-      });
+    if (!this.form.touched) {
+      this.router.navigateByUrl('/surveys/dashboard');
+    } else {
+      this.utilService.openConfirmationDialog()
+        .then(() => {
+          this.router.navigateByUrl('/surveys/dashboard');
+        })
+        .catch(() => {
+          console.log('Closed with NO.');
+        });
+    }
   }
 
   createFormFromSurvey(survey: Survey) {

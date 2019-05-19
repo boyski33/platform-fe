@@ -1,11 +1,14 @@
 <div [formGroup]="questionForm">
   <div class="form-group">
     <input class="form-control" type="text" formControlName="label" placeholder="Text">
+    <div class="text-danger" *ngIf="label.errors?.required && label.touched">
+      Text is required
+    </div>
   </div>
 
   <div formArrayName="options">
     <div class="row form-group justify-content-between">
-      <div class="col-md-2"><b>Options:</b></div>
+      <div class="col-md-2">Options:</div>
       <div class="col-md-2">
         <button class="btn btn-sm btn-outline-secondary" type="button" (click)="addOption()">
           <fa-icon [icon]="addIcon"></fa-icon>

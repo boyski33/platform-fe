@@ -13,7 +13,7 @@
         <submission-answer [answeredQuestion]="ans"></submission-answer>
       </div>
 
-      <div *ngIf="submission.user">
+      <div *ngIf="submission.user && showDetails">
         <hr>
         <div>
           <b>User Details:</b>

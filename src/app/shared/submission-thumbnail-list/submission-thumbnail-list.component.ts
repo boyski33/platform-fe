@@ -12,6 +12,7 @@ export class SubmissionThumbnailListComponent implements OnInit {
 
   @Input() submissions: Submission[];
   @Input() buttonText: string;
+  @Input() isReport = true;
 
   filterText: string;
   visibleSubmissions: Submission[];

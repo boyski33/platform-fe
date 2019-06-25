@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  appUrl: 'http://localhost:80',
-  coreSurveyServiceUrl: 'https://hippo-survey-core.herokuapp.com'
+  appUrl: 'https://hippo-survey.herokuapp.com',
+  coreSurveyServiceUrl: 'http://localhost:8866'
 };

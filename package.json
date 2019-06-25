@@ -7,9 +7,14 @@
     "start-remote": "ng serve --port 3333",
     "build": "ng build",
     "build-prod": "ng build --prod",
+    "postinstall": "ng build --aot --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
+  },
+  "engines": {
+    "node": "10.15.0",
+    "npm": "6.4.1"
   },
   "private": true,
   "dependencies": {
@@ -35,7 +40,8 @@
     "ngx-spinner": "^7.1.4",
     "popper.js": "~1.14.7",
     "rxjs": "~6.4.0",
-    "zone.js": "~0.8.29"
+    "zone.js": "~0.8.29",
+    "typescript": "~3.2.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.13.8",
@@ -47,6 +53,7 @@
     "@types/node": "~8.9.4",
     "codelyzer": "~4.5.0",
     "concurrently": "~4.1.0",
+    "enhanced-resolve": "^4.1.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.0.1",

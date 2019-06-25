@@ -3,7 +3,7 @@
   "version": "0.6.1",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "start-remote": "ng serve --port 3333",
     "build": "ng build",
     "build-prod": "ng build --prod",
@@ -35,13 +35,15 @@
     "auth0-js": "~9.10.1",
     "bootstrap": "~4.3.1",
     "core-js": "~2.6.3",
+    "express": "^4.17.1",
     "jquery": "^3.4.0",
     "moment": "^2.24.0",
     "ngx-spinner": "^7.1.4",
+    "path": "^0.12.7",
     "popper.js": "~1.14.7",
     "rxjs": "~6.4.0",
-    "zone.js": "~0.8.29",
-    "typescript": "~3.2.4"
+    "typescript": "~3.2.4",
+    "zone.js": "~0.8.29"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.13.8",

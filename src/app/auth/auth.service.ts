@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 export class AuthService {
 
   auth0 = new auth0.WebAuth({
-    clientID: 'iJe22hqFhTq8fcgSjOMa8s4vO37H51D3',
+    clientID: 'Eeeh52vTxKm4P9cJcMptNNxrnKR04K3p',
     domain: 'hippo-survey.eu.auth0.com',
     responseType: 'token id_token',
     audience: environment.coreSurveyServiceUrl,

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { faCheck, faEdit, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 function validateDate(control: AbstractControl): { [key: string]: boolean } | null {
 
@@ -39,6 +40,7 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
               private authService: AuthService,
               private userService: UserService,
               private utilService: UtilService,
+              private spinner: NgxSpinnerService,
               private router: Router) {
   }
 
@@ -83,12 +85,16 @@ export class UserDetailsComponent implements OnInit, OnDestroy {
   }
 
   private populateForEmail(email: string) {
+    this.spinner.show();
     this.userService.getUserByEmail(email)
       .pipe(takeUntil(this.componentDestroyed$))
       .subscribe(
         data => {
           this.setFormData(data);
-        }
+        },
+        () => {
+        },
+        () => this.spinner.hide()
       );
   }
 

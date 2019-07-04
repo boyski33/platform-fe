@@ -10,7 +10,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'user-submissions',
   templateUrl: './user-submissions.component.html',
-  styleUrls: [ './user-submissions.component.scss' ]
+  styleUrls: ['./user-submissions.component.scss']
 })
 export class UserSubmissionsComponent implements OnInit, OnDestroy {
 
@@ -48,9 +48,15 @@ export class UserSubmissionsComponent implements OnInit, OnDestroy {
   }
 
   private getUserDetails() {
+    this.spinner.show();
     return this.userService.getUserByEmail(this.userEmail)
       .pipe(takeUntil(this.componentDestroyed$))
-      .subscribe(user => this.hasUser = user.id !== null);
+      .subscribe(
+        user => this.hasUser = user.id !== null,
+        () => {
+        },
+        () => this.spinner.hide()
+      );
   }
 
 }

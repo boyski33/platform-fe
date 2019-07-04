@@ -10,7 +10,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'survey-dashboard',
   templateUrl: './survey-dashboard.component.html',
-  styleUrls: [ './survey-dashboard.component.scss' ]
+  styleUrls: ['./survey-dashboard.component.scss']
 })
 export class SurveyDashboardComponent implements OnInit, OnDestroy {
 
@@ -25,10 +25,8 @@ export class SurveyDashboardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.spinner.show();
     this.loggedInUser = this.authService.getUserEmail();
     this.loadSurveys();
-    this.spinner.hide();
   }
 
   ngOnDestroy() {
@@ -40,14 +38,25 @@ export class SurveyDashboardComponent implements OnInit, OnDestroy {
   }
 
   private loadSurveys() {
+    this.spinner.show();
     if (this.loggedInUser) {
       this.surveyService.getSurveysForUser(this.loggedInUser)
         .pipe(takeUntil(this.componentDestroyed$))
-        .subscribe(data => this.surveys = data);
+        .subscribe(
+          data => this.surveys = data,
+          () => {
+          },
+          () => this.spinner.hide()
+        );
     } else {
       this.surveyService.getAllSurveysMetadata()
         .pipe(takeUntil(this.componentDestroyed$))
-        .subscribe(data => this.surveys = data);
+        .subscribe(
+          data => this.surveys = data,
+          () => {
+          },
+          () => this.spinner.hide()
+        );
     }
   }
 }

@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
 import { SurveyService } from '../../survey/services/survey.service';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { Submission } from '../../survey/model/submission';
 import { UserService } from '../services/user.service';
 import { takeUntil } from 'rxjs/operators';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'user-submissions',
@@ -21,7 +22,8 @@ export class UserSubmissionsComponent implements OnInit, OnDestroy {
 
   constructor(private authService: AuthService,
               private userService: UserService,
-              private surveyService: SurveyService) {
+              private surveyService: SurveyService,
+              private spinner: NgxSpinnerService) {
   }
 
   ngOnInit() {
@@ -34,9 +36,15 @@ export class UserSubmissionsComponent implements OnInit, OnDestroy {
   }
 
   getSubmissionsOfUser() {
+    this.spinner.show();
     this.surveyService.getSubmissionsOfUser(this.userEmail)
       .pipe(takeUntil(this.componentDestroyed$))
-      .subscribe(data => this.submissions = data);
+      .subscribe(
+        data => this.submissions = data,
+        () => {
+        },
+        () => this.spinner.hide()
+      );
   }
 
   private getUserDetails() {
